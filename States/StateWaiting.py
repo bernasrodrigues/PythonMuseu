@@ -1,12 +1,12 @@
 import threading
-
-from State import State
+from States.State import State
+from States.StateEnum import StateEnum
 
 
 class StateWaiting(State):
 
-    def __init__(self, name):
-        super().__init__(name=name)
+    def __init__(self, name, stateMachineContext):
+        super().__init__(name=name, stateMachineContext=stateMachineContext)
 
         self.condition_set_by_user = False
         self.condition_lock = threading.Lock()
@@ -19,6 +19,7 @@ class StateWaiting(State):
         super().exitState()
 
     def execute(self):
+        super().execute()
         userCondition_thread = threading.Thread(target=self.waitForUserCondition)
         userInput_thread = threading.Thread(target=self.setUserInput)
         userCondition_thread.start()
@@ -32,9 +33,8 @@ class StateWaiting(State):
     def waitForUserCondition(self):
         print(f'Waiting for user condition...')
         self.condition_event.wait()
-
-        print(f'User condition is set! \n Moving into new State')
-
+        print(f'User condition is set! \nMoving into new State')
+        self.stateMachineContext.changeState(StateEnum.PHOTO)
 
     # TODO
     # Temporary Implementation of the user condition to move unto the next state (maybe button press in the future idk)
@@ -47,4 +47,4 @@ class StateWaiting(State):
                 self.condition_event.set()
                 return
             else:
-                print("AAAAAAA")
+                print("waiting for user condition")
