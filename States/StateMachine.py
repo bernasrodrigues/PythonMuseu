@@ -31,14 +31,15 @@ class StateMachine:
 
     # Given the enum of the next state (equivalent to the name of the state), change the current state to the next state
     def changeState(self, nextState):
-
         nextState = self.states[nextState]
-        print(f'Changing state from {self.currentState.name} to {nextState.name}')
+        print(f'----------------------------------------------------------------\n'
+              f'Changing state from {self.currentState.name} to {nextState.name}')
         self.currentState.exitState()
 
         self.currentState = nextState
 
         self.currentState.enterState()
+        print(f'----------------------------------------------------------------')
 
     def executeState(self):
         print(f'{self.name} - Executing state {self.currentState.name}')

@@ -33,7 +33,7 @@ class StateWaiting(State):
     def waitForUserCondition(self):
         print(f'Waiting for user condition...')
         self.condition_event.wait()
-        print(f'User condition is set! \nMoving into new State')
+        print(f'User condition is set! Moving into new State')
         self.stateMachineContext.changeState(StateEnum.PHOTO)
 
     # TODO
