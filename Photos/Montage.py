@@ -54,6 +54,7 @@ class Montage:
         # self.finalImage.save(self.name + "_finalImage.png")
         # print(f"Final image saved to {self.name}_finalImage.png")
 
+    # User image -> file path to the user image
     def InsertUserImage(self, userImage):
         input_image = Image.open(userImage)
 
@@ -68,14 +69,40 @@ class Montage:
 
         self.CreateFinalImage(recortedImage)
 
+    # User Image -> image with the recorted background
     def CreateFinalImage(self, userImage):
 
         self.layers[self.userImageLayer] = userImage
-        self.finalImage = self.layers[0]
+        # self.finalImage = self.layers[0]
 
-        for layer in self.layers.values():
-            print(layer)
+        width, height = self.layers[0].size                     # get the size of the first image in the layers
+        self.finalImage = Image.new('RGB', (width, height))     # create new empty image as blank canvas
+
+        for layer in self.layers.values():  # for each layer paste the image unto the canvas
             self.finalImage.paste(layer, (0, 0), layer)
 
         self.finalImage.save(self.name + "_finalImage.png")
         print(f"Final image saved to {self.name}_finalImage.png")
+
+    def InsertUserImage2(self, userImage):
+
+        # Apply background removal using rembg
+        output_array = rembg.remove(userImage)
+
+        # Create a PIL Image from the output array  (user image with the background removed)
+        recortedImage = Image.fromarray(output_array)
+        return recortedImage
+        # self.CreateFinalImage(recortedImage)
+
+    def CreateFinalImage2(self, userImage):
+
+        self.layers[self.userImageLayer] = userImage
+        # self.finalImage = self.layers[0]
+        self.finalImage = Image.new('RGB', (500, 500))
+
+        for layer in self.layers.values():
+            self.finalImage.paste(layer, (0, 0), layer)
+
+        self.finalImage.save(self.name + "_finalImage.png")
+        return self.finalImage
+        # print(f"Final image saved to {self.name}_finalImage.png")
