@@ -1,15 +1,18 @@
-# This is a sample Python script.
-from States.StateMachine import StateMachine
+import time
+
+from GUI.GUI_base import GUI_base
+from Photos import PhotoHandler
+
 
 def main():
     # State Machine
-    state_Machine = StateMachine(name="State Machine")
+    # state_Machine = StateMachine(name="State Machine")
+    # state_Machine.executeState()
 
-    state_Machine.executeState()
+    gui = GUI_base()
+    gui.initializeFrames()
+    gui.startGUI()
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

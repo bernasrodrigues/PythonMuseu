@@ -5,7 +5,7 @@ import cv2
 camImage = None
 
 
-def CameraCaptureContinuous(camPort=0):
+def CameraCaptureContinuous():
     vid = cv2.VideoCapture(0)
 
     # Repeat each loop
