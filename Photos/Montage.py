@@ -91,8 +91,6 @@ class Montage:
     def CreateFinalImage(self, userImage):
 
         self.finalImage = userImage
-        return
-
 
         self.layers[self.userImageLayer] = userImage
         # self.finalImage = self.layers[0]
