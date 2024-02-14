@@ -26,6 +26,7 @@ class CompPage(tk.Frame):
             # pady=(10,10),
             anchor="center",
         )
+        self.Image.bind("<Button-1>", lambda e: self.controller.show_frame("ChoosePage"))
 
     def EnterFrame(self):
         self.active = True
@@ -33,10 +34,18 @@ class CompPage(tk.Frame):
 
     def ShowImage(self):
         if self.active:
-            webcam_image = CameraHandler.Instance().get_current_image()
-            self.Image.photo_image = webcam_image
-            self.Image.configure(image=webcam_image, anchor="nw")
-            self.Image.after(10, self.ShowImage)
+            webcam_image = self.controller.CreateFinalImage()
+
+            self.ConfigureImage(webcam_image)
+            self.Image.after(100, self.ShowImage)
+
+    def CreateImage(self):
+        image = self.controller.CreateFinalImage()
+        self.ConfigureImage(image)
+
+    def ConfigureImage(self, image):
+        self.Image.configure(image=image)
+        self.Image.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)
 
     def ExitFrame(self):
         self.active = False

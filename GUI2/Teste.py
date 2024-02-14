@@ -30,7 +30,7 @@ app.bind('<Escape>', lambda e: app.quit())
 label_widget = Label(app)
 label_widget.pack()
 
-CameraHandler.Instance().start_recording()
+CameraHandler.Instance().StartRecording()
 # Create a function to open camera and
 # display it in the label_widget on app
 
@@ -49,7 +49,7 @@ def open_camera():
     # Convert captured image to photoimage
     photo_image = ImageTk.PhotoImage(image=captured_image)
     '''
-    photo_image = CameraHandler.Instance().get_current_image()
+    photo_image = CameraHandler.Instance().GetProcessedImage()
 
 
 

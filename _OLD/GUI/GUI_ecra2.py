@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from GUI.GUI_State import GUI_State
+from _OLD.GUI.GUI_State import GUI_State
 
 
 class GUI_ecra2(GUI_State):

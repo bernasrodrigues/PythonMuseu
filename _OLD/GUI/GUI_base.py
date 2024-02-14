@@ -2,8 +2,8 @@ import glob
 import tkinter as tk
 from PIL import Image, ImageTk
 
-from GUI.GUI_ecra1 import GUI_ecra1
-from GUI.GUI_ecra2 import GUI_ecra2
+from _OLD.GUI.GUI_ecra1 import GUI_ecra1
+from _OLD.GUI.GUI_ecra2 import GUI_ecra2
 
 
 class GUI_base():

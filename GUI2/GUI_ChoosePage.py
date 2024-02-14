@@ -15,6 +15,7 @@ class ChoosePage(tk.Frame):
             # width=1000,
             # height=1000
             image=controller.images_choice[self.image_index]
+            # image = None
         )
         self.Image.pack(
             fill="both",
@@ -41,7 +42,7 @@ class ChoosePage(tk.Frame):
         buttonLeft = tk.Button(
             self,
             text="<<",
-            command=self.PreviousImage,
+            command=lambda: self.NextImage(-1),
             font=controller.title_font)
         buttonLeft.place(
             x=800,
@@ -53,7 +54,7 @@ class ChoosePage(tk.Frame):
         buttonRight = tk.Button(
             self,
             text=">>",
-            command=self.NextImage,
+            command=lambda: self.NextImage(1),
             font=controller.title_font
         )
         buttonRight.place(
@@ -63,6 +64,7 @@ class ChoosePage(tk.Frame):
         )
         ### BUTTONS ###
 
+    '''
     def NextImage(self):
         if self.image_index == len(self.controller.images_choice) - 1:
             self.Image.configure(image=self.controller.images_choice[0])
@@ -78,9 +80,25 @@ class ChoosePage(tk.Frame):
         else:
             self.Image.configure(image=self.controller.images_choice[self.image_index - 1])
             self.image_index -= 1
+    '''
+
+    def NextImage(self, direction):
+        image = self.controller.GetNextMontageCover(direction)
+        self.ConfigureImage(image)
 
     def EnterFrame(self):
         self.active = True
+
+        # Resetimg the image list to the first montage
+        self.controller.SetMontageToFirst()
+
+        image = self.controller.GetMontageCover()
+        self.ConfigureImage(image)
+
+    # Sets the image in the Image label
+    def ConfigureImage(self, image):
+        self.Image.configure(image=image)
+        self.Image.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)
 
     def ExitFrame(self):
         self.active = False

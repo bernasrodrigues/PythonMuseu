@@ -8,6 +8,7 @@ from GUI2.GUI_ChoosePage import ChoosePage
 from GUI2.GUI_CompPage import CompPage
 from GUI2.GUI_StartPage import StartPage
 from Photos.CameraHandler import CameraHandler
+from Photos.MontageHandler import MontageHandler
 
 
 class GUI_Base(tk.Tk):
@@ -46,7 +47,7 @@ class GUI_Base(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, ChoosePage, CompPage):                                               # ADD PAGES
+        for F in (StartPage, ChoosePage, CompPage):  # ADD PAGES
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -65,16 +66,45 @@ class GUI_Base(tk.Tk):
         self.show_frame("StartPage")
 
     def show_frame(self, page_name):
+
         '''Show a frame for the given page name'''
         if self.currentFrame is not None:
             self.currentFrame.ExitFrame()
-        frame = self.frames[page_name]
-        frame.EnterFrame()
-        frame.tkraise()
+
+        self.currentFrame = self.frames[page_name]
+        self.currentFrame.EnterFrame()
+        self.currentFrame.tkraise()
+
+    def SetMontageToFirst(self):
+        MontageHandler.Instance().SetMontageToFirst()
+
+    def GetNextMontageCover(self, direction):
+        MontageHandler.Instance().GetNextElement(direction)
+        return self.GetMontageCover()
+
+    def GetMontageCover(self):
+
+        coverImage = MontageHandler.Instance().GetCurrentMontageCoverImage()
+        image = ImageTk.PhotoImage(coverImage)
+
+        return image
+        # return MontageHandler.Instance().GetCurrentMontageCoverImage()
+
+    def CreateFinalImage(self):
+        cameraImage = CameraHandler.Instance().GetPilImage()
+        montageImage = MontageHandler.Instance().CreateMontageFinalImage(cameraImage)
+        finalImage = ImageTk.PhotoImage(montageImage)
+
+        return finalImage
 
 
 if __name__ == "__main__":
-
-    CameraHandler.Instance().start_recording()
+    CameraHandler.Instance().StartRecording()
+    MontageHandler.Instance()
     app = GUI_Base()
     app.mainloop()
+
+'''
+im = Image.open(pathToImage)
+ph = ImageTk.PhotoImage(im)
+'''

@@ -4,7 +4,7 @@ import cv2
 
 
 
-### OLD DO NOT USE
+### _OLD DO NOT USE
 '''
 def Initialize():
     PhotoHandler.cameraThread.start()

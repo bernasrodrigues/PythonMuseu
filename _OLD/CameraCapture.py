@@ -5,6 +5,7 @@ import cv2
 camImage = None
 
 
+# NOT USED
 def CameraCaptureContinuous():
     vid = cv2.VideoCapture(0)
 

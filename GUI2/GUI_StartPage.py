@@ -60,4 +60,5 @@ class StartPage(tk.Frame):
         self.active = True
         self.ImageCarrousel()
 
-
+    def ExitFrame(self):
+        self.active = False

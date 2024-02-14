@@ -1,7 +1,4 @@
-import time
-
-from GUI.GUI_base import GUI_base
-from Photos import PhotoHandler
+from _OLD.GUI.GUI_base import GUI_base
 
 
 def main():

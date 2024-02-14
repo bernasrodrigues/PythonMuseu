@@ -1,6 +1,6 @@
-from States.StateEnum import StateEnum
-from States.StatePhoto import StatePhoto
-from States.StateWaiting import StateWaiting
+from OLD.States.StateEnum import StateEnum
+from OLD.States.StatePhoto import StatePhoto
+from OLD.States.StateWaiting import StateWaiting
 
 
 class StateMachine:
