@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 
 from GUI2.GUI_ChoosePage import ChoosePage
 from GUI2.GUI_CompPage import CompPage
+from GUI2.GUI_ResultPage import ResultPage
 from GUI2.GUI_StartPage import StartPage
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
@@ -47,7 +48,7 @@ class GUI_Base(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, ChoosePage, CompPage):  # ADD PAGES
+        for F in (StartPage, ChoosePage, CompPage, ResultPage):  # ADD PAGES
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -95,6 +96,12 @@ class GUI_Base(tk.Tk):
         montageImage = MontageHandler.Instance().CreateMontageFinalImage(cameraImage)
         finalImage = ImageTk.PhotoImage(montageImage)
 
+        return finalImage
+
+    def GetFinalImage(self):
+
+        montageImage = MontageHandler.Instance().GetFinalImage()
+        finalImage = ImageTk.PhotoImage(montageImage)
         return finalImage
 
 

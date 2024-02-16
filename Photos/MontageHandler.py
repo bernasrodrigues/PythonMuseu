@@ -75,7 +75,7 @@ class MontageHandler:
             return None
         # Set currentMontage to the first element in MontageList
         self.currentMontage = next(iter(self.montageList))
-        print(self.currentMontage)
+        #print(self.currentMontage)
 
     def GetCurrentMontageCoverImage(self):
         return self.montageList[self.currentMontage].coverImage
@@ -83,3 +83,6 @@ class MontageHandler:
     def GetCurrentMontage(self):
         return self.montageList[self.currentMontage]
     # def Get_NextItem(self):
+
+    def GetFinalImage(self):
+        return self.montageList[self.currentMontage].finalImage

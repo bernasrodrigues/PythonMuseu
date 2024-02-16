@@ -48,10 +48,10 @@ class StartPage(tk.Frame):
 
         if self.active:
             if self.image_index == len(self.controller.images_intro) - 1:
-                self.Image.configure(image=self.controller.images_intro[self.image_index], anchor="nw")
+                self.Image.configure(image=self.controller.images_intro[self.image_index]) #anchor="nw")
                 self.image_index = 0
             else:
-                self.Image.configure(image=self.controller.images_intro[self.image_index], anchor="nw")
+                self.Image.configure(image=self.controller.images_intro[self.image_index]) #anchor="nw")
                 self.image_index += 1
 
             self.Image.after(2000, self.ImageCarrousel)
