@@ -35,9 +35,17 @@ class ResultPage(tk.Frame):
             y=800,
             anchor="center")
 
+        self.pageLabel = tk.Label(
+            self,
+            text="Results Page",
+            font=controller.title_font)
+        self.pageLabel.place(
+            x=0,
+            y=0,
+            anchor="nw")
+
     def EnterFrame(self):
         self.active = True
-
         self.ConfigureImage(self.controller.GetFinalImage())
 
     def ConfigureImage(self, image):

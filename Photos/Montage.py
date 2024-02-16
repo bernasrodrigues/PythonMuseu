@@ -31,7 +31,7 @@ class Montage:
             imageName = os.path.basename(fileName)  # Check layer name
 
             if os.path.basename(fileName) == "cover.png":  # add cover image
-                self.coverImage = Image.open(fileName)
+                self.coverImage = Image.open(fileName).convert('RGBA')
                 print(f"Image {imageName} added as cover")  # leave space for the user image
                 continue
 
@@ -39,11 +39,11 @@ class Montage:
                 self.layers[index] = None
                 print(f"Left space for user image in layer: {index}")
                 index += 1
-                self.layers[index] = Image.open(fileName)
+                self.layers[index] = Image.open(fileName).convert('RGBA')
                 print(f"Image {imageName} added in layer: {index}")
                 index += 1
             else:
-                self.layers[index] = Image.open(fileName)
+                self.layers[index] = Image.open(fileName).convert('RGBA')
                 print(f"Image {imageName} added in layer: {index}")
                 index += 1
 
@@ -96,7 +96,7 @@ class Montage:
         # self.finalImage = self.layers[0]
 
         width, height = self.layers[0].size  # get the size of the first image in the layers
-        self.finalImage = Image.new('RGB', (width, height))  # create new empty image as blank canvas
+        self.finalImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
 
         for layer in self.layers.values():  # for each layer paste the image unto the canvas
             self.finalImage.paste(layer, (0, 0), layer)
