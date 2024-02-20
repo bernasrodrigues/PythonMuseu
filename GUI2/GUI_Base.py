@@ -1,13 +1,14 @@
 import glob
+import sys
 import tkinter as tk
 from tkinter import font as tkfont  # python 3
 
 from PIL import Image, ImageTk
 
-from GUI2.GUI_ChoosePage import ChoosePage
-from GUI2.GUI_CompPage import CompPage
-from GUI2.GUI_ResultPage import ResultPage
-from GUI2.GUI_StartPage import StartPage
+from GUI_ChoosePage import ChoosePage
+from GUI_CompPage import CompPage
+from GUI_ResultPage import ResultPage
+from GUI_StartPage import StartPage
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
 
@@ -53,12 +54,11 @@ class GUI_Base(tk.Tk):
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
 
-            # put all of the pages in the same location;
+            # put all the pages in the same location;
             # the one on the top of the stacking order
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
-            debugButtons = []
             if self.debugMode:
                 button = tk.Button(self, text="Go to " + F.__name__,
                                    command=lambda: self.show_frame(F.__name__))
@@ -68,7 +68,7 @@ class GUI_Base(tk.Tk):
 
     def show_frame(self, page_name):
 
-        '''Show a frame for the given page name'''
+        """Show a frame for the given page name"""
         if self.currentFrame is not None:
             self.currentFrame.ExitFrame()
 

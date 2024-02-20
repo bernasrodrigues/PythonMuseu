@@ -1,7 +1,4 @@
 import tkinter as tk  # python 3
-from time import sleep
-
-from Photos.CameraHandler import CameraHandler
 
 var_readyTimer = 5
 var_countdownTimer = 5
