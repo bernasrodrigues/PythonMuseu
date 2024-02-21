@@ -5,9 +5,10 @@ from tkinter import font as tkfont  # python 3
 
 from PIL import Image, ImageTk
 
-from GUI_ChoosePage import ChoosePage
-from GUI_CompPage import CompPage
-from GUI_ResultPage import ResultPage
+sys.path.append("..")
+from ChoosePage import ChoosePage
+from CompPage import CompPage
+from ResultPage import ResultPage
 from GUI_StartPage import StartPage
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
