@@ -2,11 +2,14 @@ settings = {}
 
 
 def read_variables_from_file(file_path):
+    print("------------\nLoading settings")
+
     with open(file_path, 'r') as file:
         for line in file:
             # Execute each line using exec
             exec(line, globals(), settings)
-    return settings
+
+    print("settings loaded\n------------")
 
 
 # Example usage
