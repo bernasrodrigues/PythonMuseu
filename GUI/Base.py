@@ -6,6 +6,8 @@ from tkinter import font as tkfont  # python 3
 
 from PIL import Image, ImageTk
 
+from Settings import SettingsHandler
+
 sys.path.append("..")
 sys.path.append(os.path.join(os.path.dirname(__file__),'../../'))
 from ChoosePage import ChoosePage
@@ -14,6 +16,14 @@ from ResultPage import ResultPage
 from StartPage import StartPage
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
+
+
+def LoadSettings():
+
+    currentDirectory = os.getcwd()
+    parentDirectory = os.path.dirname(currentDirectory)
+    pathToSettingsFromParent = os.path.join(parentDirectory, 'Settings', 'settings.txt')
+    SettingsHandler.ReadSettingsFromFile(pathToSettingsFromParent)
 
 
 class GUI_Base(tk.Tk):
@@ -110,8 +120,16 @@ class GUI_Base(tk.Tk):
 
 if __name__ == "__main__":
 
+    # Loading the settings file into SettingsHandler.settings[_variableName_]
+    LoadSettings()
+
+    # Initialize the camera and start the recording process
     CameraHandler.Instance().StartRecording()
+
+    # Initialize the montages
     MontageHandler.Instance()
+
+    # Initialize the GUI application
     app = GUI_Base()
     app.mainloop()
 

@@ -1,7 +1,6 @@
 settings = {}
 
-
-def read_variables_from_file(file_path):
+def ReadSettingsFromFile(file_path):
     print("------------\nLoading settings")
 
     with open(file_path, 'r') as file:
@@ -9,12 +8,12 @@ def read_variables_from_file(file_path):
             # Execute each line using exec
             exec(line, globals(), settings)
 
-    print("settings loaded\n------------")
+    print(f'settings loaded into "settings" dictionary\n------------')
 
 
 # Example usage
-settingsFile = "settings.txt"
-settings_dict = read_variables_from_file(settingsFile)
+# settingsFile = "settings.txt"
+# settings_dict = ReadSettingsFromFile(settingsFile)
 
 if __name__ == "__main__":
     print(settings)
