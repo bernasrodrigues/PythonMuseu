@@ -1,4 +1,5 @@
 import glob
+import os
 import sys
 import tkinter as tk
 from tkinter import font as tkfont  # python 3
@@ -6,10 +7,11 @@ from tkinter import font as tkfont  # python 3
 from PIL import Image, ImageTk
 
 sys.path.append("..")
+sys.path.append(os.path.join(os.path.dirname(__file__),'../../'))
 from ChoosePage import ChoosePage
 from CompPage import CompPage
 from ResultPage import ResultPage
-from GUI_StartPage import StartPage
+from StartPage import StartPage
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
 
@@ -107,6 +109,7 @@ class GUI_Base(tk.Tk):
 
 
 if __name__ == "__main__":
+
     CameraHandler.Instance().StartRecording()
     MontageHandler.Instance()
     app = GUI_Base()

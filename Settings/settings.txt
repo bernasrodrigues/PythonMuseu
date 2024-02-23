@@ -1,0 +1,26 @@
+### Settings for Base Page ###
+
+
+### Settings for ChoosePage ###
+
+
+
+### Settings for CompPage ###
+
+
+
+### Settings for ResultPage ###
+
+
+
+### Settings for StartPage ###
+
+
+
+
+
+
+
+
+
+### Settings
