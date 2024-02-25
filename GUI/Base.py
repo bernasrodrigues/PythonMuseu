@@ -2,28 +2,30 @@ import glob
 import os
 import sys
 import tkinter as tk
-from tkinter import font as tkfont  # python 3
-
-from PIL import Image, ImageTk
-
-from Settings import SettingsHandler
 
 sys.path.append("..")
-sys.path.append(os.path.join(os.path.dirname(__file__),'../../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
+
+from tkinter import font as tkfont
+from PIL import Image, ImageTk
+
 from ChoosePage import ChoosePage
 from CompPage import CompPage
 from ResultPage import ResultPage
 from StartPage import StartPage
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
+from Settings import SettingsHandler
+from Settings.SettingsHandler import settings
 
 
+##########################################################################################################
 def LoadSettings():
-
     currentDirectory = os.getcwd()
     parentDirectory = os.path.dirname(currentDirectory)
     pathToSettingsFromParent = os.path.join(parentDirectory, 'Settings', 'settings.txt')
     SettingsHandler.ReadSettingsFromFile(pathToSettingsFromParent)
+    print(f'settings loaded: {settings["testVariable"]}\n------------')
 
 
 class GUI_Base(tk.Tk):
@@ -31,11 +33,12 @@ class GUI_Base(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
+        LoadSettings()
+
         self.currentFrame = None
         self.debugMode = False
-        """
-        Load Image Data
-        """
+
+        """ Load Image Data """
         self.images_intro = []
         for image in glob.glob('../Photos/IntroImages/*'):
             pilImage = Image.open(image)
@@ -47,9 +50,7 @@ class GUI_Base(tk.Tk):
             pilImage = Image.open(image)
             tkImage = ImageTk.PhotoImage(pilImage)
             self.images_choice.append(tkImage)
-        """
-        
-        """
+        """"""
 
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 
@@ -77,7 +78,7 @@ class GUI_Base(tk.Tk):
                                    command=lambda: self.show_frame(F.__name__))
                 button.pack()
 
-        self.show_frame("StartPage")
+        #self.show_frame("StartPage")
 
     def show_frame(self, page_name):
 
@@ -120,8 +121,12 @@ class GUI_Base(tk.Tk):
 
 if __name__ == "__main__":
 
+    # Initialize app
+    app = GUI_Base()
+
     # Loading the settings file into SettingsHandler.settings[_variableName_]
-    LoadSettings()
+    # LoadSettings()
+    print(settings["start_Subtitle_PT_Text"])
 
     # Initialize the camera and start the recording process
     CameraHandler.Instance().StartRecording()
@@ -130,7 +135,8 @@ if __name__ == "__main__":
     MontageHandler.Instance()
 
     # Initialize the GUI application
-    app = GUI_Base()
+    app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')
+    app.show_frame("StartPage")
     app.mainloop()
 
 '''

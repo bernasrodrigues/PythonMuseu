@@ -1,4 +1,5 @@
 import tkinter as tk  # python 3
+from Settings.SettingsHandler import settings
 
 
 class StartPage(tk.Frame):
@@ -6,7 +7,6 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        #########################################
         self.image_index = 0
         self.active = False
 
@@ -26,13 +26,31 @@ class StartPage(tk.Frame):
         # self.canvasImage.create_image(0, 0, image=controller.images_intro[self.image_index], anchor="nw")
         self.Image.bind("<Button-1>", lambda e: self.controller.show_frame("ChoosePage"))
 
-        self.label = tk.Label(
+        self.title = tk.Label(
             self,
-            text="Toque no ecra para dar inicio à selfie",
-            font=controller.title_font)
-        self.label.place(
-            x=900,
-            y=800,
+            text=settings["start_Title_Text"],
+            font=settings["baseFont"])
+        self.title.place(
+            x=settings["start_Title_x"],
+            y=settings["start_Title_y"],
+            anchor="center")
+
+        self.subTitle_PT = tk.Label(
+            self,
+            text=settings["start_Subtitle_PT_Text"],
+            font=settings["baseFont"])
+        self.subTitle_PT.place(
+            x=settings["start_Subtitle_PT_x"],
+            y=settings["start_Subtitle_PT_y"],
+            anchor="center")
+
+        self.subTitle_EN = tk.Label(
+            self,
+            text=settings["start_Title_Text"],
+            font=settings["baseFont"])
+        self.subTitle_EN.place(
+            x=settings["start_Title_x"],
+            y=settings["start_Title_y"],
             anchor="center")
 
         """

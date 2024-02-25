@@ -46,6 +46,7 @@ class CompPage(tk.Frame):
     def EnterFrame(self):
         self.active = True
 
+
         self.Instruction.config(text=var_readyText)
         self.ReadyTimer()
         self.ShowImage()
