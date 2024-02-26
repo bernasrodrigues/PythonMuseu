@@ -13,15 +13,15 @@ baseFont = Font(family='Helvetica', size=18, weight="bold")
 
 start_Title_Text = "Selfie"                                     # Texto que aparece no inicio da pagina inicial
 start_Title_x = 540                                             # coordenadas x e y do titulo
-start_Title_y = 960
+start_Title_y = 500
 
 start_Subtitle_PT_Text = "toca no ecrã para começar"            # Texto que aparece como subtitulo em portugues
 start_Subtitle_PT_x = 540                                       # coordenadas x e y do subtitulo
-start_Subtitle_PT_y = 1000
+start_Subtitle_PT_y = 600
 
 start_Subtitle_EN_Text = "tap the screen to start"
 start_Subtitle_EN_x = 540
-start_Subtitle_EN_y = 1100
+start_Subtitle_EN_y = 700
 
 
 ### Settings for ChoosePage ###

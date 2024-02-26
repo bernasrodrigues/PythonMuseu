@@ -1,4 +1,5 @@
-import tkinter as tk  # python 3
+import tkinter as tk
+from PIL import Image, ImageTk
 from Settings.SettingsHandler import settings
 
 
@@ -6,9 +7,13 @@ class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+
         self.controller = controller
         self.image_index = 0
         self.active = False
+
+        transparent_image = Image.open('transparentImage.png')
+        transparent_photo = ImageTk.PhotoImage(transparent_image)
 
         self.Image = tk.Label(
             self,
@@ -29,7 +34,8 @@ class StartPage(tk.Frame):
         self.title = tk.Label(
             self,
             text=settings["start_Title_Text"],
-            font=settings["baseFont"])
+            font=settings["baseFont"],
+        )
         self.title.place(
             x=settings["start_Title_x"],
             y=settings["start_Title_y"],
@@ -44,14 +50,16 @@ class StartPage(tk.Frame):
             y=settings["start_Subtitle_PT_y"],
             anchor="center")
 
+        '''
         self.subTitle_EN = tk.Label(
-            self,
-            text=settings["start_Title_Text"],
-            font=settings["baseFont"])
+            self,)
+            #text=settings["start_Title_Text"])
+            #font=settings["baseFont"])
         self.subTitle_EN.place(
             x=settings["start_Title_x"],
             y=settings["start_Title_y"],
             anchor="center")
+        '''
 
         """
         button1 = tk.Button(self, text="Go to Page One",
@@ -66,10 +74,10 @@ class StartPage(tk.Frame):
 
         if self.active:
             if self.image_index == len(self.controller.images_intro) - 1:
-                self.Image.configure(image=self.controller.images_intro[self.image_index]) #anchor="nw")
+                self.Image.configure(image=self.controller.images_intro[self.image_index])  # anchor="nw")
                 self.image_index = 0
             else:
-                self.Image.configure(image=self.controller.images_intro[self.image_index]) #anchor="nw")
+                self.Image.configure(image=self.controller.images_intro[self.image_index])  # anchor="nw")
                 self.image_index += 1
 
             self.Image.after(2000, self.ImageCarrousel)

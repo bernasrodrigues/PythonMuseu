@@ -35,8 +35,10 @@ class GUI_Base(tk.Tk):
 
         LoadSettings()
 
+
         self.currentFrame = None
         self.debugMode = False
+
 
         """ Load Image Data """
         self.images_intro = []
@@ -52,7 +54,7 @@ class GUI_Base(tk.Tk):
             self.images_choice.append(tkImage)
         """"""
 
-        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
+        self.title_font = tkfont.Font(family='Helvetica', size=20, weight="bold", slant="italic")
 
         # the container is where we'll stack a bunch of frames
         # on top of each other, then the one we want visible
@@ -126,7 +128,6 @@ if __name__ == "__main__":
 
     # Loading the settings file into SettingsHandler.settings[_variableName_]
     # LoadSettings()
-    print(settings["start_Subtitle_PT_Text"])
 
     # Initialize the camera and start the recording process
     CameraHandler.Instance().StartRecording()
@@ -137,6 +138,7 @@ if __name__ == "__main__":
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')
     app.show_frame("StartPage")
+    #app.wm_attributes("-transparentcolor", 'black')
     app.mainloop()
 
 '''
