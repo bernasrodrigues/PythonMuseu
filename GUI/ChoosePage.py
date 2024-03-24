@@ -10,6 +10,23 @@ class ChoosePage(tk.Frame):
         self.image_index = 0
         self.active = False
 
+        self.canvas = tk.Canvas(
+            self,
+            width=1080,
+            height=1980,
+            background='red'
+        )
+
+        self.canvas.place(
+            relx=0.5,
+            rely=0.5,
+            anchor=tk.CENTER
+        )
+
+        self.canvas_image = self.canvas.create_image(1080 / 2, 1980 / 2, anchor=tk.CENTER,
+                                                     image=controller.images_choice[self.image_index])
+
+        '''
         self.Image = tk.Label(
             self,
             # width=1000,
@@ -24,6 +41,8 @@ class ChoosePage(tk.Frame):
             # pady=(10,10),
             anchor="center",
         )
+        '''
+
 
         ### BUTTONS ###
         # Middle Button
@@ -35,32 +54,32 @@ class ChoosePage(tk.Frame):
         self.selectButton.place(
             x=900,
             y=800,
-            anchor="center"
+            anchor=tk.CENTER
         )
 
         # Left Button
         buttonLeft = tk.Button(
             self,
-            text="<<",
+            text="<",
             command=lambda: self.NextImage(-1),
             font=controller.title_font)
         buttonLeft.place(
             x=800,
             y=800,
-            anchor="center",
+            anchor=tk.CENTER,
         )
 
         # Right Button
         buttonRight = tk.Button(
             self,
-            text=">>",
+            text=">",
             command=lambda: self.NextImage(1),
             font=controller.title_font
         )
         buttonRight.place(
             x=1000,
             y=800,
-            anchor="center"
+            anchor=tk.CENTER
         )
         ### BUTTONS ###
 
@@ -83,12 +102,14 @@ class ChoosePage(tk.Frame):
     '''
 
     def NextImage(self, direction):
+        return
+
         image = self.controller.GetNextMontageCover(direction)
         self.ConfigureImage(image)
 
     def EnterFrame(self):
         self.active = True
-
+        return
         # Resetimg the image list to the first montage
         self.controller.SetMontageToFirst()
 

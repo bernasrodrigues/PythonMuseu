@@ -35,14 +35,14 @@ class GUI_Base(tk.Tk):
 
         LoadSettings()
 
-
         self.currentFrame = None
         self.debugMode = False
 
-
         """ Load Image Data """
         self.images_intro = []
+        self.images_intro_file = []
         for image in glob.glob('../Photos/IntroImages/*'):
+            self.images_intro_file.append(image)
             pilImage = Image.open(image)
             tkImage = ImageTk.PhotoImage(pilImage)
             self.images_intro.append(tkImage)
@@ -80,7 +80,7 @@ class GUI_Base(tk.Tk):
                                    command=lambda: self.show_frame(F.__name__))
                 button.pack()
 
-        #self.show_frame("StartPage")
+        # self.show_frame("StartPage")
 
     def show_frame(self, page_name):
 
@@ -122,7 +122,6 @@ class GUI_Base(tk.Tk):
 
 
 if __name__ == "__main__":
-
     # Initialize app
     app = GUI_Base()
 
@@ -138,7 +137,7 @@ if __name__ == "__main__":
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')
     app.show_frame("StartPage")
-    #app.wm_attributes("-transparentcolor", 'black')
+    # app.wm_attributes("-transparentcolor", 'black')
     app.mainloop()
 
 '''

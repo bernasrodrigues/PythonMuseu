@@ -1,28 +1,38 @@
 testVariable = "ok"   # variavel para testar
 
 
-### Settings for Window ###
+############### Settings for Window ###############
 
 windowWidth = 1080
 windowHeight = 1920
-baseFont = Font(family='Helvetica', size=18, weight="bold")
+baseFont = ('Helvetica 18 bold')
 
 
 
-### Settings for Base Page ###
+############### Settings for Base Page ###############
+
 
 start_Title_Text = "Selfie"                                     # Texto que aparece no inicio da pagina inicial
-start_Title_x = 540                                             # coordenadas x e y do titulo
-start_Title_y = 500
+start_Title_X = 540                                             # coordenadas x e y do titulo
+start_Title_Y = 900
+start_Title_Font = ('Helvetica 200 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
+start_Title_Fill = "black"                                      # cor do texto
 
-start_Subtitle_PT_Text = "toca no ecrã para começar"            # Texto que aparece como subtitulo em portugues
-start_Subtitle_PT_x = 540                                       # coordenadas x e y do subtitulo
-start_Subtitle_PT_y = 600
+start_Subtitle_PT_Text = "toca no ecrã\npara começar"           # Texto que aparece como subtitulo em portugues
+start_Subtitle_PT_X = 540                                       # coordenadas x e y do subtitulo
+start_Subtitle_PT_Y = 1100
+start_Subtitle_PT_Font = ('Helvetica 40')                       # fonte do texto
+start_Subtitle_PT_Fill = "black"                                # cor do texto
 
-start_Subtitle_EN_Text = "tap the screen to start"
-start_Subtitle_EN_x = 540
-start_Subtitle_EN_y = 700
 
+start_Subtitle_EN_Text = "tap the screen\nto start"             # Texto que aparece como subtitulo em ingles
+start_Subtitle_EN_X = 540                                       # coordenadas x e y do subtitulo
+start_Subtitle_EN_Y = 1240
+start_Subtitle_EN_Font = ('Helvetica 40')                       # fonte do texto
+start_Subtitle_EN_Fill = "gray"                                 # cor do texto
+
+
+start_ImageCarrousel_Timer = 2000                               # tempo que demora cada imagem a mudar (em millisegundos)
 
 ### Settings for ChoosePage ###
 
