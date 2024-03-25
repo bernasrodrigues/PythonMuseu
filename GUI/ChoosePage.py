@@ -57,26 +57,26 @@ class ChoosePage(tk.Frame):
 
         # Language Select button
         # coordinates initially zero because they are set once all are created
-        self.t1 = self.canvas.create_text(0, 0,
-                                          text=settings["choose_SubTitle_PT"],
-                                          anchor=tk.E,
-                                          font=settings["choose_Subtitle_Font"])
-        self.t2 = self.canvas.create_text(0, 0,
-                                          text=settings["Choose_SubTitle_Separator"],
-                                          anchor=tk.CENTER,
-                                          font=settings["choose_Subtitle_Font"])
-        self.t3 = self.canvas.create_text(0, 0,
-                                          text=settings["choose_SubTitle_EN"],
-                                          anchor=tk.W,
-                                          font=settings["choose_Subtitle_Font"])
+        self.canvas_t1 = self.canvas.create_text(0, 0,
+                                                 text=settings["choose_SubTitle_PT"],
+                                                 anchor=tk.E,
+                                                 font=settings["choose_Subtitle_Font"])
+        self.canvas_t2 = self.canvas.create_text(0, 0,
+                                                 text=settings["Choose_SubTitle_Separator"],
+                                                 anchor=tk.CENTER,
+                                                 font=settings["choose_Subtitle_Font"])
+        self.canvas_t3 = self.canvas.create_text(0, 0,
+                                                 text=settings["choose_SubTitle_EN"],
+                                                 anchor=tk.W,
+                                                 font=settings["choose_Subtitle_Font"])
 
         # set the coordinates of the language select buttons
-        self.canvas.coords(self.t1, settings["choose_Subtitle_X"] - 20, settings["choose_Subtitle_Y"])
-        self.canvas.coords(self.t2, settings["choose_Subtitle_X"], settings["choose_Subtitle_Y"])
-        self.canvas.coords(self.t3, settings["choose_Subtitle_X"] + 20, settings["choose_Subtitle_Y"])
+        self.canvas.coords(self.canvas_t1, settings["choose_Subtitle_X"] - 20, settings["choose_Subtitle_Y"])
+        self.canvas.coords(self.canvas_t2, settings["choose_Subtitle_X"], settings["choose_Subtitle_Y"])
+        self.canvas.coords(self.canvas_t3, settings["choose_Subtitle_X"] + 20, settings["choose_Subtitle_Y"])
 
-        self.canvas.tag_bind(self.t1, '<Button-1>', lambda event: self.SetLang("_PT"))
-        self.canvas.tag_bind(self.t3, '<Button-1>', lambda event: self.SetLang("_EN"))
+        self.canvas.tag_bind(self.canvas_t1, '<Button-1>', lambda event: self.SetLang("_PT"))
+        self.canvas.tag_bind(self.canvas_t3, '<Button-1>', lambda event: self.SetLang("_EN"))
         ### BUTTONS ###
 
     def NextImage(self, direction):
@@ -105,12 +105,12 @@ class ChoosePage(tk.Frame):
 
         lang = self.controller.language
         if lang == "_PT":
-            self.canvas.itemconfigure(self.t1, font=settings["choose_Subtitle_Font_Bold"])
-            self.canvas.itemconfigure(self.t3, font=settings["choose_Subtitle_Font"])
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font_Bold"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font"])
 
         if lang == "_EN":
-            self.canvas.itemconfigure(self.t1, font=settings["choose_Subtitle_Font"])
-            self.canvas.itemconfigure(self.t3, font=settings["choose_Subtitle_Font_Bold"])
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"])
 
         self.canvas.itemconfigure(self.canvasChooseText, text=settings["choose_Title_Text" + lang])
 

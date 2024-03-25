@@ -62,14 +62,19 @@ choose_SubTitle_EN = "EN"
 
 ### Settings for CompPage ###
 
-comp_Ready_Text_PT = "Faz a tua composição"
+comp_Ready_Text_PT = "Faz a tua composição"                     # texto inicial para avisar o utilizador
 comp_Ready_Text_EN = "Make your composition"
-comp_CountDown_Text_PT = "Preparados?"
+comp_CountDown_Text_PT = "Preparados?"                          # texto que aparece para a contagem decrescente
 comp_CountDown_Text_EN = "Ready?"
+comp_Title_X = 540                                             # coordenadas x e y do texto
+comp_Title_Y = 900
+comp_Title_Font = ('Helvetica 30 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
+comp_Title_Fill = "black"                                      # cor do texto
+
+
 
 comp_readyTimer = 5                                             # tempo em segundos para dar tempo para preparar
 comp_countdownTimer = 5                                         # tempo com contagem decresente para tirar foto
-
 
 
 ### Settings for ResultPage ###
