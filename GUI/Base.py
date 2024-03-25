@@ -37,6 +37,7 @@ class GUI_Base(tk.Tk):
 
         self.currentFrame = None
         self.debugMode = False
+        self.language = "_PT"
 
         """ Load Image Data """
         self.images_intro = []
@@ -100,12 +101,9 @@ class GUI_Base(tk.Tk):
         return self.GetMontageCover()
 
     def GetMontageCover(self):
-
         coverImage = MontageHandler.Instance().GetCurrentMontageCoverImage()
         image = ImageTk.PhotoImage(coverImage)
-
         return image
-        # return MontageHandler.Instance().GetCurrentMontageCoverImage()
 
     def CreateFinalImage(self):
         cameraImage = CameraHandler.Instance().GetPilImage()
@@ -119,6 +117,10 @@ class GUI_Base(tk.Tk):
         montageImage = MontageHandler.Instance().GetFinalImage()
         finalImage = ImageTk.PhotoImage(montageImage)
         return finalImage
+
+    def SetLang(self, lang):
+        print("set language to " + lang[1:])
+        self.language = lang
 
 
 if __name__ == "__main__":

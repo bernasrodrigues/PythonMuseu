@@ -12,12 +12,23 @@ class CompPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        #########################################
-        self.image_index = 0
-
-        #self.readyTimer = var_readyTimer
-        #self.countdownTimer = var_countdownTimer
         self.active = False
+
+        '''
+        self.canvas = tk.Canvas(
+            self,
+            width=1080,
+            height=1980,
+            background='gray'
+
+        )
+        self.canvas.place(
+            relx=0.5,
+            rely=0.5,
+            anchor=tk.CENTER
+        )
+        self.canvas_image = self.canvas.create_image(1080 / 2, 1980 / 2, anchor=tk.CENTER)
+        '''
 
         self.Image = tk.Label(
             self,
@@ -45,11 +56,11 @@ class CompPage(tk.Frame):
 
     def EnterFrame(self):
         self.active = True
-
-
         self.Instruction.config(text=var_readyText)
         self.ReadyTimer()
         self.ShowImage()
+
+        self.UpdateLanguage()
 
     def ShowImage(self):
         if self.active:
@@ -78,8 +89,12 @@ class CompPage(tk.Frame):
             self.controller.show_frame("ResultPage")
 
     def ConfigureImage(self, image):
+
         self.Image.configure(image=image)
         self.Image.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)
+
+    def UpdateLanguage(self):
+        pass
 
     def ExitFrame(self):
         self.active = False

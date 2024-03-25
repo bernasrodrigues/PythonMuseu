@@ -15,14 +15,13 @@ class StartPage(tk.Frame):
         self.image_index = 0
         self.active = False
 
-        # transparent_photo = ImageTk.PhotoImage(Image.open('Slide1.png'))
-        # self.transparent_photo = transparent_photo
-
+        ### Canvas ###
+        # Canvas
         self.canvas = tk.Canvas(
             self,
             width=1080,
             height=1980,
-            background='red'
+            background='gray'
 
         )
         self.canvas.place(
@@ -34,7 +33,7 @@ class StartPage(tk.Frame):
         # Background image creation
         self.canvas_image = self.canvas.create_image(1080 / 2, 1980 / 2, anchor=tk.CENTER,
                                                      image=self.controller.images_intro[0])
-
+        ### Text ###
         # Main title text
         self.canvas_title = self.canvas.create_text(settings["start_Title_X"],
                                                     settings["start_Title_Y"],
@@ -62,12 +61,10 @@ class StartPage(tk.Frame):
         if self.active:
             if self.image_index == len(self.controller.images_intro) - 1:
                 self.canvas.itemconfig(self.canvas_image, image=self.controller.images_intro[self.image_index])
-                # self.Image.configure(image=self.controller.images_intro[self.image_index])  # anchor="nw")
                 self.image_index = 0
 
             else:
                 self.canvas.itemconfig(self.canvas_image, image=self.controller.images_intro[self.image_index])
-                # self.Image.configure(image=self.controller.images_intro[self.image_index])  # anchor="nw")
                 self.image_index += 1
 
         self.canvas.after(settings["start_ImageCarrousel_Timer"], self.ImageCarrousel)

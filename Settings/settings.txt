@@ -34,11 +34,41 @@ start_Subtitle_EN_Fill = "gray"                                 # cor do texto
 
 start_ImageCarrousel_Timer = 2000                               # tempo que demora cada imagem a mudar (em millisegundos)
 
-### Settings for ChoosePage ###
+############### Settings for ChoosePage ###############
 
+choose_Title_Text_PT = "Escolhe a image"                         # Texto que aparece no inicio da pagina inicial em Portugues
+choose_Title_Text_EN = "Choose the image"
+choose_Title_X = 540                                             # coordenadas x e y do titulo
+choose_Title_Y = 1400
+choose_Title_Font = ('Helvetica 20 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
+choose_Title_Fill = "black"                                      # cor do texto
+
+
+choose_RightArrow_X = 740                                      # coordenadas x e y da seta de escolha da direita
+choose_RightArrow_Y = 1400
+
+
+choose_LeftArrow_X = 340                                      # coordenadas x e y da seta de escolha da esquerda
+choose_LeftArrow_Y = 1400
+
+choose_Subtitle_Font = ('Helvetica 20')
+choose_Subtitle_Font_Bold = ('Helvetica 20 bold')
+choose_Subtitle_X = 100
+choose_Subtitle_Y = 1400
+choose_SubTitle_PT = "PT"
+Choose_SubTitle_Separator = " | "
+choose_SubTitle_EN = "EN"
 
 
 ### Settings for CompPage ###
+
+comp_Ready_Text_PT = "Faz a tua composição"
+comp_Ready_Text_EN = "Make your composition"
+comp_CountDown_Text_PT = "Preparados?"
+comp_CountDown_Text_EN = "Ready?"
+
+comp_readyTimer = 5                                             # tempo em segundos para dar tempo para preparar
+comp_countdownTimer = 5                                         # tempo com contagem decresente para tirar foto
 
 
 
