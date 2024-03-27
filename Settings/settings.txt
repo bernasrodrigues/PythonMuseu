@@ -8,7 +8,6 @@ windowHeight = 1920
 baseFont = ('Helvetica 18 bold')
 
 
-
 ############### Settings for Base Page ###############
 
 
@@ -60,7 +59,7 @@ Choose_SubTitle_Separator = " | "
 choose_SubTitle_EN = "EN"
 
 
-### Settings for CompPage ###
+############### Settings for CompPage ###############
 
 comp_Ready_Text_PT = "Faz a tua composição"                     # texto inicial para avisar o utilizador
 comp_Ready_Text_EN = "Make your composition"
@@ -77,11 +76,11 @@ comp_readyTimer = 5                                             # tempo em segun
 comp_countdownTimer = 5                                         # tempo com contagem decresente para tirar foto
 
 
-### Settings for ResultPage ###
+############### Settings for ResultPage ###############
 
 
 
-### Settings for StartPage ###
+############### Settings for StartPage ###############
 
 
 

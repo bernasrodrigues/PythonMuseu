@@ -1,9 +1,5 @@
-from tkinter import *
-from tkinter.font import Font
 
-settings = {}
-settings["testVariable"] = "not loaded"     # Initialize to test for errors loading
-
+settings = {"testVariable": "loaded"}
 
 def ReadSettingsFromFile(file_path):
     print("------------\nLoading settings")

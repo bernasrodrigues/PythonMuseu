@@ -1,9 +1,6 @@
 import tkinter as tk
 
-from PIL import Image, ImageTk
 from Settings.SettingsHandler import settings
-import pywinstyles
-import customtkinter
 
 
 class StartPage(tk.Frame):

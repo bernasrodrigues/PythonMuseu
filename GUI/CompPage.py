@@ -1,10 +1,5 @@
 import tkinter as tk  # python 3
-
 from Settings.SettingsHandler import settings
-
-var_readyText = "Faz a tua composição"
-var_countdownText = "Preparados ? "
-
 
 class CompPage(tk.Frame):
 
@@ -25,7 +20,13 @@ class CompPage(tk.Frame):
             anchor=tk.CENTER
         )
         # creating empty image holder to be filled with the montage images
-        self.canvas_image = self.canvas.create_image(1080 / 2, 1980 / 2, anchor=tk.CENTER)
+        self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2, anchor=tk.CENTER)
+
+        # degrade
+        self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
+                                                       anchor=tk.CENTER,
+                                                       image=self.controller.degrade)
+
 
         # text for the user
         self.canvas_text = self.canvas.create_text(settings["comp_Title_X"],
@@ -66,8 +67,8 @@ class CompPage(tk.Frame):
     # Updates the generated image every x seconds
     def ShowImage(self):
         if self.active:
-            webcam_image = self.controller.CreateFinalImage()
-            self.ConfigureImage(webcam_image)
+            userMontageImage = self.controller.CreateFinalImage()
+            self.ConfigureImage(userMontageImage)
             self.canvas.after(100, self.ShowImage)
 
     # After the user ready timer starts the countdown timer and configures the text

@@ -41,18 +41,15 @@ class GUI_Base(tk.Tk):
 
         """ Load Image Data """
         self.images_intro = []
-        self.images_intro_file = []
+        #self.images_intro_file = []
+
+        self.degrade = tk.PhotoImage(file='Images/degrade.png')
+
         for image in glob.glob('../Photos/IntroImages/*'):
-            self.images_intro_file.append(image)
+            #self.images_intro_file.append(image)
             pilImage = Image.open(image)
             tkImage = ImageTk.PhotoImage(pilImage)
             self.images_intro.append(tkImage)
-
-        self.images_choice = []
-        for image in glob.glob('../Photos/ChoiceImages/*'):
-            pilImage = Image.open(image)
-            tkImage = ImageTk.PhotoImage(pilImage)
-            self.images_choice.append(tkImage)
         """"""
 
         self.title_font = tkfont.Font(family='Helvetica', size=20, weight="bold", slant="italic")
@@ -127,9 +124,6 @@ if __name__ == "__main__":
     # Initialize app
     app = GUI_Base()
 
-    # Loading the settings file into SettingsHandler.settings[_variableName_]
-    # LoadSettings()
-
     # Initialize the camera and start the recording process
     CameraHandler.Instance().StartRecording()
 
@@ -139,10 +133,4 @@ if __name__ == "__main__":
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')
     app.show_frame("StartPage")
-    # app.wm_attributes("-transparentcolor", 'black')
     app.mainloop()
-
-'''
-im = Image.open(pathToImage)
-ph = ImageTk.PhotoImage(im)
-'''

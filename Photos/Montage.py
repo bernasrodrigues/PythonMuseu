@@ -12,121 +12,57 @@ from PIL import Image
 
 class Montage:
 
-    def __init__(self, folder, userImageLayer):
+    def __init__(self, folder):
         self.name = folder  # Name for the montage
-        self.coverImage = None
-        self.layers = {}  # List of the image locations that compose the montage
-        self.userImageLayer = userImageLayer  # Indicates what layer the user images is supposed to be in
+        self.coverImage = None  # Original image
+        self.frontImage = None  # Image in front of the user
+        self.exampleImage = None  # Image of the user
+        self.finalImage = None  # Final generated image
 
-        print(f"Creating Montage {folder}")
+        self.imageProcessing = None
+        self.ApplyEffects = None
+
+        print(f"Creating Montage for {folder}")
 
         currentDirectory = os.path.dirname(os.path.abspath(__file__))
         currentDirectory = os.path.join(currentDirectory, folder)
         allFilesInDir = [os.path.join(currentDirectory, file_name) for file_name in os.listdir(currentDirectory) if
                          os.path.isfile(os.path.join(currentDirectory, file_name))]
 
-        index = 0
         for fileName in allFilesInDir:
-
             imageName = os.path.basename(fileName)  # Check layer name
 
             if os.path.basename(fileName) == "cover.png":  # add cover image
                 self.coverImage = Image.open(fileName).convert('RGBA')
-                print(f"Image {imageName} added as cover")  # leave space for the user image
-                continue
+                print(f"Image {imageName} added as cover")
 
-            if index == userImageLayer:
-                self.layers[index] = None
-                print(f"Left space for user image in layer: {index}")
-                index += 1
-                self.layers[index] = Image.open(fileName).convert('RGBA')
-                print(f"Image {imageName} added in layer: {index}")
-                index += 1
-            else:
-                self.layers[index] = Image.open(fileName).convert('RGBA')
-                print(f"Image {imageName} added in layer: {index}")
-                index += 1
+            elif os.path.basename(fileName) == "topo.png":  # add front image
+                self.frontImage = Image.open(fileName).convert('RGBA')
+                print(f"Image {imageName} added as front image")
 
-        # Edge case to prevent situations where the user image is on the last layer
-        if index == userImageLayer:
-            self.layers[index] = None
-            print(f"Left space for user image in layer: {index}")
+            elif os.path.basename(fileName) == "user.png":  # add example image
+                self.exampleImage = Image.open(fileName).convert('RGBA')
+                print(f"Image {imageName} added as example image")  # leave space for the user image
 
-        self.finalImage = None
-
-        # self.finalImage = self.layers[0]
-        # print(self.layers)
-        #
-        #
-        # for layer in self.layers.values():
-        #     self.finalImage.paste(layer, (0, 0), layer)
-        #
-        # self.finalImage.save(self.name + "_finalImage.png")
-        # print(f"Final image saved to {self.name}_finalImage.png")
         print(f"Montage {folder} created\n---------------------")
 
     def GetCoverImage(self):
-
         return self.coverImage
 
     # User image -> file path to the user image
-    def InsertUserImage(self, userImage):
-
-        # input_image = Image.open(userImage)
-
-        # Convert the input image to a numpy array
-        # input_array = np.array(userImage)
-
+    def CreateFinalImage(self, userImage):
         # Apply background removal using rembg
-        imageWithoutBackground = rembg.remove(userImage)
-        # imageWithoutBackground = userImage
+        userImageWithoutBackground = rembg.remove(userImage)
+        self.InsertUserImage(userImageWithoutBackground)
 
-
-        # Create a PIL Image from the output array  (user image with the background removed)
-        # recortedImage = Image.fromarray(output_array)
-
-        self.CreateFinalImage(imageWithoutBackground)
 
     # User Image -> image with the recorted background
-    def CreateFinalImage(self, userImage):
+    def InsertUserImage(self, userImage):
 
-        #self.finalImage = userImage
-
-        self.layers[self.userImageLayer] = userImage
-        # self.finalImage = self.layers[0]
-
-        width, height = self.layers[0].size  # get the size of the first image in the layers
+        width, height = self.coverImage.size  # get the size of the first image in the layers
         self.finalImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
 
-        for layer in self.layers.values():  # for each layer paste the image unto the canvas
-            self.finalImage.paste(layer, (0, 0), layer)
+        self.finalImage.paste(self.coverImage, (0, 0), self.coverImage)
+        self.finalImage.paste(userImage, (0, 0), userImage)
+        self.finalImage.paste(self.frontImage, (0, 0), self.frontImage)
 
-        # self.finalImage.save(self.name + "_finalImage.png")
-        # print(f"Final image saved to {self.name}_finalImage.png")
-
-    def InsertUserImage2(self, userImage):
-
-        # Apply background removal using rembg
-        output_array = rembg.remove(userImage)
-
-        # Create a PIL Image from the output array  (user image with the background removed)
-        recortedImage = Image.fromarray(output_array)
-        return recortedImage
-        # self.CreateFinalImage(recortedImage)
-
-    def CreateFinalImage2(self, userImage):
-
-        self.layers[self.userImageLayer] = userImage
-        # self.finalImage = self.layers[0]
-        width, height = self.layers[0].size  # get the size of the first image in the layers
-        self.finalImage = Image.new('RGB', (width, height))  # create new empty image as blank canvas
-
-        for layer in self.layers.values():
-            self.finalImage.paste(layer, (0, 0), layer)
-
-        logo = Image.open("../_OLD/Logo.png")
-        self.finalImage.paste(logo, (0, 0), logo)
-
-        self.finalImage.save(self.name + "_finalImage.png")
-        return self.finalImage
-        # print(f"Final image saved to {self.name}_finalImage.png")

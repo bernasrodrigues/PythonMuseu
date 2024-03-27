@@ -1,5 +1,4 @@
 import tkinter as tk  # python 3
-
 from Settings.SettingsHandler import settings
 
 
@@ -25,8 +24,12 @@ class ChoosePage(tk.Frame):
         )
 
         # Starting canvas image
-        self.canvas_image = self.canvas.create_image(1080 / 2, 1980 / 2, anchor=tk.CENTER,
-                                                     image=controller.images_choice[0])
+        self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2, anchor=tk.CENTER,
+                                                     image=None)
+        # degrade
+        self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
+                                                       anchor=tk.CENTER,
+                                                       image=self.controller.degrade)
 
         ### BUTTONS ###
         # Middle Button
@@ -38,7 +41,7 @@ class ChoosePage(tk.Frame):
         self.canvas.tag_bind(self.canvasChooseText, '<Button-1>', lambda event: self.controller.show_frame("CompPage"))
 
         # Right Button
-        self.rightArrowImage = tk.PhotoImage(file='arrow_right.png')
+        self.rightArrowImage = tk.PhotoImage(file='Images/arrow_right.png')
 
         self.canvas_rightButton = self.canvas.create_image(settings["choose_RightArrow_X"],
                                                            settings["choose_RightArrow_Y"],
@@ -47,7 +50,7 @@ class ChoosePage(tk.Frame):
         self.canvas.tag_bind(self.canvas_rightButton, '<Button-1>', lambda event: self.NextImage(1))
 
         # Left Button
-        self.leftArrowImage = tk.PhotoImage(file='arrow_right.png')
+        self.leftArrowImage = tk.PhotoImage(file='Images/arrow_right.png')
 
         self.canvas_leftButton = self.canvas.create_image(settings["choose_LeftArrow_X"],
                                                           settings["choose_LeftArrow_Y"],

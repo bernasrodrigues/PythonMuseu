@@ -26,9 +26,12 @@ class MontageHandler:
                     cls._instance.MontageList[folder_name] = Montage(folder_name)
                 '''
 
-                cls._instance.montageList["25Abril"] = Montage("25Abril", 1)
-                cls._instance.montageList["Teste1"] = Montage("Teste1", 1)
-                cls._instance.montageList["Teste2"] = Montage("Teste2", 1)
+                cls._instance.montageList["Montagem1"] = Montage("Montagem1")
+                cls._instance.montageList["Montagem2"] = Montage("Montagem2")
+                cls._instance.montageList["Montagem3"] = Montage("Montagem3")
+                cls._instance.montageList["Montagem4"] = Montage("Montagem4")
+                cls._instance.montageList["Montagem5"] = Montage("Montagem5")
+
 
             return cls._instance
 
@@ -66,8 +69,7 @@ class MontageHandler:
         return self.montageList[self.currentMontage]
 
     def CreateMontageFinalImage(self, image):
-
-        self.montageList[self.currentMontage].InsertUserImage(image)
+        self.montageList[self.currentMontage].CreateFinalImage(image)
         return self.montageList[self.currentMontage].finalImage
 
     def SetMontageToFirst(self):
@@ -75,13 +77,14 @@ class MontageHandler:
             return None
         # Set currentMontage to the first element in MontageList
         self.currentMontage = next(iter(self.montageList))
-        #print(self.currentMontage)
+        # print(self.currentMontage)
 
     def GetCurrentMontageCoverImage(self):
         return self.montageList[self.currentMontage].coverImage
 
     def GetCurrentMontage(self):
         return self.montageList[self.currentMontage]
+
     # def Get_NextItem(self):
 
     def GetFinalImage(self):
