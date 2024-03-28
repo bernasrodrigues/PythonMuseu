@@ -1,9 +1,9 @@
-import glob
 import os
 
 import rembg
-import numpy as np
 from PIL import Image
+
+from Settings.SettingsHandler import settings
 
 
 # A Montage contains the list of layers that compose an Image
@@ -12,15 +12,16 @@ from PIL import Image
 
 class Montage:
 
-    def __init__(self, folder):
+    def __init__(self, folder, placementFunct, effectFunct):
         self.name = folder  # Name for the montage
         self.coverImage = None  # Original image
         self.frontImage = None  # Image in front of the user
         self.exampleImage = None  # Image of the user
         self.finalImage = None  # Final generated image
 
-        self.imageProcessing = None
-        self.ApplyEffects = None
+        # functions to apply Effects
+        self.placementFunct = placementFunct
+        self.effectFunct = effectFunct
 
         print(f"Creating Montage for {folder}")
 
@@ -55,14 +56,18 @@ class Montage:
         userImageWithoutBackground = rembg.remove(userImage)
         self.InsertUserImage(userImageWithoutBackground)
 
-
     # User Image -> image with the recorted background
     def InsertUserImage(self, userImage):
 
         width, height = self.coverImage.size  # get the size of the first image in the layers
         self.finalImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
 
-        self.finalImage.paste(self.coverImage, (0, 0), self.coverImage)
-        self.finalImage.paste(userImage, (0, 0), userImage)
-        self.finalImage.paste(self.frontImage, (0, 0), self.frontImage)
+        userImage = self.effectFunct(self.name, userImage)
 
+        self.finalImage.paste(self.coverImage, (0, 0), self.coverImage)  # paste initial image
+
+        self.finalImage = self.placementFunct(self.name,
+                                              self.finalImage,
+                                              userImage)  # paste user image
+
+        self.finalImage.paste(self.frontImage, (0, 0), self.frontImage)  # paste front image

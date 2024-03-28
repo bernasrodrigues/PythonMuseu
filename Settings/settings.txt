@@ -88,6 +88,33 @@ comp_countdownTimer = 5                                         # tempo com cont
 
 
 
+############### Settings for MontagePlacement ###############
+### Montagem 1 ###
+Montagem1_x = 300
+Montagem1_y = 300
+
+### Montagem 2 ###
+Montagem2_x = 300
+Montagem2_y = 300
+
+### Montagem 3 ###
+Montagem3_x = 300
+Montagem3_y = 300
+
+### Montagem 4 ###
+Montagem4_x = 300
+Montagem4_y = 300
+
+### Montagem 5 ###
+Montagem5_x = 300
+Montagem5_y = 300
+
+############### Settings for ImageEffects ###############
+brightness = 1
+contrast = 1
+sharpness = 1
+saturation = 0
+
 
 
 ### Settings
