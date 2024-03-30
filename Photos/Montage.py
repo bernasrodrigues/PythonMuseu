@@ -1,7 +1,7 @@
 import os
 
 import rembg
-from PIL import Image
+from PIL import Image, ImageOps
 
 from Settings.SettingsHandler import settings
 
@@ -62,9 +62,12 @@ class Montage:
         width, height = self.coverImage.size  # get the size of the first image in the layers
         self.finalImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
 
-        userImage = self.effectFunct(self.name, userImage)
+        userImage = self.effectFunct(self.name, userImage)   # add effect to the user image (ex: black and white filter)
 
-        self.finalImage.paste(self.coverImage, (0, 0), self.coverImage)  # paste initial image
+        # TODO remove this
+        userImage = ImageOps.expand(userImage, border=1, fill='red')        # add border to know the image position
+
+        self.finalImage.paste(self.coverImage, (0, 0), self.coverImage)  # start by adding the initial image
 
         self.finalImage = self.placementFunct(self.name,
                                               self.finalImage,

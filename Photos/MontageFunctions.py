@@ -3,7 +3,7 @@ from PIL import ImageEnhance
 from Settings.SettingsHandler import settings
 
 
-def BaseMontageEffect(name, image):
+def MontageBaseEffect(name, image):
     filter_brightness = ImageEnhance.Brightness(image)
     # image = filter_brightness.enhance(settings[name + "brightness"])
     image = filter_brightness.enhance(settings["brightness"])
@@ -20,9 +20,14 @@ def BaseMontageEffect(name, image):
     # image = filter_saturation.enhance(settings[name + "saturation"])
     image = filter_saturation.enhance(settings["saturation"])
 
+
     return image
 
 
-def BaseMontagePlacement(name, coverImage, image):
+def MontageNoEffect(name, image):
+    return image
+
+
+def MontagebasePlacement(name, coverImage, image):
     coverImage.paste(image, (settings[name + "_x"], settings[name + "_y"]), image)
     return coverImage

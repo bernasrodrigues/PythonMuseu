@@ -2,7 +2,7 @@ import os
 import threading
 
 from Photos.Montage import Montage
-from Photos.MontageEffects import BaseMontagePlacement, BaseMontageEffect
+from Photos.MontageFunctions import MontagebasePlacement, MontageBaseEffect
 
 
 class MontageHandler:
@@ -27,11 +27,11 @@ class MontageHandler:
                     cls._instance.MontageList[folder_name] = Montage(folder_name)
                 '''
 
-                cls._instance.montageList["Montagem1"] = Montage("Montagem1", BaseMontagePlacement, BaseMontageEffect)
-                cls._instance.montageList["Montagem2"] = Montage("Montagem2", BaseMontagePlacement, BaseMontageEffect)
-                cls._instance.montageList["Montagem3"] = Montage("Montagem3", BaseMontagePlacement, BaseMontageEffect)
-                cls._instance.montageList["Montagem4"] = Montage("Montagem4", BaseMontagePlacement, BaseMontageEffect)
-                cls._instance.montageList["Montagem5"] = Montage("Montagem5", BaseMontagePlacement, BaseMontageEffect)
+                cls._instance.montageList["Montagem1"] = Montage("Montagem1", MontagebasePlacement, MontageBaseEffect)
+                cls._instance.montageList["Montagem2"] = Montage("Montagem2", MontagebasePlacement, MontageBaseEffect)
+                cls._instance.montageList["Montagem3"] = Montage("Montagem3", MontagebasePlacement, MontageBaseEffect)
+                cls._instance.montageList["Montagem4"] = Montage("Montagem4", MontagebasePlacement, MontageBaseEffect)
+                cls._instance.montageList["Montagem5"] = Montage("Montagem5", MontagebasePlacement, MontageBaseEffect)
 
             return cls._instance
 

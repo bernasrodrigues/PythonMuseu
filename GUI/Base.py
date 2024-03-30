@@ -41,12 +41,10 @@ class GUI_Base(tk.Tk):
 
         """ Load Image Data """
         self.images_intro = []
-        #self.images_intro_file = []
 
         self.degrade = tk.PhotoImage(file='Images/degrade.png')
 
         for image in glob.glob('../Photos/IntroImages/*'):
-            #self.images_intro_file.append(image)
             pilImage = Image.open(image)
             tkImage = ImageTk.PhotoImage(pilImage)
             self.images_intro.append(tkImage)
