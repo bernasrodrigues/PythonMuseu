@@ -1,5 +1,7 @@
 import tkinter as tk  # python 3
+
 from Settings.SettingsHandler import settings
+
 
 class CompPage(tk.Frame):
 
@@ -67,7 +69,7 @@ class CompPage(tk.Frame):
     # Updates the generated image every x seconds
     def ShowImage(self):
         if self.active:
-            userMontageImage = self.controller.CreateFinalImage()
+            userMontageImage = self.controller.CreateUserMontageImage()
             self.ConfigureImage(userMontageImage)
             self.canvas.after(100, self.ShowImage)
 

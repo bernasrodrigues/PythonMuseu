@@ -63,8 +63,7 @@ class StartPage(tk.Frame):
             else:
                 self.canvas.itemconfig(self.canvas_image, image=self.controller.images_intro[self.image_index])
                 self.image_index += 1
-
-        self.canvas.after(settings["start_ImageCarrousel_Timer"], self.ImageCarrousel)
+            self.canvas.after(settings["start_ImageCarrousel_Timer"], self.ImageCarrousel)
 
     def EnterFrame(self):
         self.active = True

@@ -1,7 +1,7 @@
 import tkinter as tk  # python 3
 
 
-class ResultPage(tk.Frame):
+class PostalPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -26,22 +26,20 @@ class ResultPage(tk.Frame):
         )
 
         # Final image presentation initially set to none
-        self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2,
-                                                     anchor=tk.CENTER,
-                                                     image=None)
+        self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2, anchor=tk.CENTER, image=None)
         # degrade
         self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
                                                        anchor=tk.CENTER,
                                                        image=self.controller.degrade)
 
-        self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("PostalPage"))
+        self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
 
     def EnterFrame(self):
         self.active = True
         self.ConfigureImage(self.controller.GetUserMontageImage())
-        print("Showing results")
+        print("Showing Postal Image")
 
-        self.canvas.after(10000, self.MoveToNextPage)
+        #self.canvas.after(10000, self.MoveToNextPage)
 
     def ConfigureImage(self, image):
         self.canvas.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)
@@ -49,9 +47,7 @@ class ResultPage(tk.Frame):
 
     # automatically move to next page if not clicked
     def MoveToNextPage(self):
-        if self.active:
-            self.controller.show_frame("PostalPage")
-
+        pass
 
     def ExitFrame(self):
         self.active = False

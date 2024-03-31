@@ -13,6 +13,7 @@ from ChoosePage import ChoosePage
 from CompPage import CompPage
 from ResultPage import ResultPage
 from StartPage import StartPage
+from PostalPage import PostalPage
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
 from Settings import SettingsHandler
@@ -61,7 +62,7 @@ class GUI_Base(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, ChoosePage, CompPage, ResultPage):  # ADD PAGES
+        for F in (StartPage, ChoosePage, CompPage, ResultPage, PostalPage):  # ADD PAGES
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -100,18 +101,20 @@ class GUI_Base(tk.Tk):
         image = ImageTk.PhotoImage(coverImage)
         return image
 
-    def CreateFinalImage(self):
+    def CreateUserMontageImage(self):
         cameraImage = CameraHandler.Instance().GetPilImage()
-        montageImage = MontageHandler.Instance().CreateMontageFinalImage(cameraImage)
+        montageImage = MontageHandler.Instance().CreateMontageUserImage(cameraImage)
         finalImage = ImageTk.PhotoImage(montageImage)
 
         return finalImage
 
-    def GetFinalImage(self):
+    def GetUserMontageImage(self):
 
-        montageImage = MontageHandler.Instance().GetFinalImage()
+        montageImage = MontageHandler.Instance().GetUserMontageImage()
         finalImage = ImageTk.PhotoImage(montageImage)
         return finalImage
+
+    #def
 
     def SetLang(self, lang):
         print("set language to " + lang[1:])

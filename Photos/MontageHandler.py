@@ -68,9 +68,9 @@ class MontageHandler:
         # Return the corresponding Montage object
         return self.montageList[self.currentMontage]
 
-    def CreateMontageFinalImage(self, image):
-        self.montageList[self.currentMontage].CreateFinalImage(image)
-        return self.montageList[self.currentMontage].finalImage
+    def CreateMontageUserImage(self, image):
+        self.montageList[self.currentMontage].createUserMontageImage(image)
+        return self.montageList[self.currentMontage].userMontageImage
 
     def SetMontageToFirst(self):
         if not self.montageList:
@@ -87,5 +87,5 @@ class MontageHandler:
 
     # def Get_NextItem(self):
 
-    def GetFinalImage(self):
-        return self.montageList[self.currentMontage].finalImage
+    def GetUserMontageImage(self):
+        return self.montageList[self.currentMontage].userMontageImage
