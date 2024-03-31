@@ -93,3 +93,6 @@ class MontageHandler:
 
     def GetUserMontageImage(self):
         return self.montageList[self.currentMontage].userMontageImage
+
+    def GetFinalMontageImage(self):
+        return self.montageList[self.currentMontage].finalImage

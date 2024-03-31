@@ -120,12 +120,13 @@ class GUI_Base(tk.Tk):
         return postal
 
     def GetPostalMontageImage(self):
-        # montageImage = MontageHandler.Instance().GetUserMontageImage()
-        # finalImage = ImageTk.PhotoImage(montageImage)
-        # return finalImage
-        pass
+        postal = MontageHandler.Instance().GetUserMontageImage()
+        postal = ImageTk.PhotoImage(postal)
+        return postal
 
-    # def
+    def SavePostalImage(self, barcode):
+        image = MontageHandler.Instance().GetFinalMontageImage()
+        image.save("UserPhotos/" + barcode + ".png")
 
     def SetLang(self, lang):
         print("set language to " + lang[1:])
@@ -144,5 +145,8 @@ if __name__ == "__main__":
 
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')
+    # app.overrideredirect(True)                 # dont use
+    # app.attributes('-fullscreen', True)
+
     app.show_frame("StartPage")
     app.mainloop()

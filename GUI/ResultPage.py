@@ -52,6 +52,5 @@ class ResultPage(tk.Frame):
         if self.active:
             self.controller.show_frame("PostalPage")
 
-
     def ExitFrame(self):
         self.active = False
