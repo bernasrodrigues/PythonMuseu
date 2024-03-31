@@ -26,7 +26,7 @@ class PostalPage(tk.Frame):
         )
 
         # Final image presentation initially set to none
-        self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2, anchor=tk.CENTER, image=None)
+        self.canvas_image = self.canvas.create_image(1080 / 2, 1980 / 2, anchor=tk.CENTER, image=None)
 
         '''
         # degrade
