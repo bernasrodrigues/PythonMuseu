@@ -27,16 +27,19 @@ class PostalPage(tk.Frame):
 
         # Final image presentation initially set to none
         self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2, anchor=tk.CENTER, image=None)
+
+        '''
         # degrade
         self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
                                                        anchor=tk.CENTER,
                                                        image=self.controller.degrade)
+        '''
 
         self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
 
     def EnterFrame(self):
         self.active = True
-        self.ConfigureImage(self.controller.GetUserMontageImage())
+        self.ConfigureImage(self.controller.CreatePostalMontageImage())
         print("Showing Postal Image")
 
         #self.canvas.after(10000, self.MoveToNextPage)

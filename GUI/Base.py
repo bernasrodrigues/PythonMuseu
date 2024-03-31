@@ -114,7 +114,18 @@ class GUI_Base(tk.Tk):
         finalImage = ImageTk.PhotoImage(montageImage)
         return finalImage
 
-    #def
+    def CreatePostalMontageImage(self):
+        postal = MontageHandler.Instance().CreateMontagePostalImage()
+        postal = ImageTk.PhotoImage(postal)
+        return postal
+
+    def GetPostalMontageImage(self):
+        # montageImage = MontageHandler.Instance().GetUserMontageImage()
+        # finalImage = ImageTk.PhotoImage(montageImage)
+        # return finalImage
+        pass
+
+    # def
 
     def SetLang(self, lang):
         print("set language to " + lang[1:])

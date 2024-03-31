@@ -72,6 +72,10 @@ class MontageHandler:
         self.montageList[self.currentMontage].createUserMontageImage(image)
         return self.montageList[self.currentMontage].userMontageImage
 
+    def CreateMontagePostalImage(self):
+        self.montageList[self.currentMontage].CreatePostalImage()
+        return self.montageList[self.currentMontage].finalImage
+
     def SetMontageToFirst(self):
         if not self.montageList:
             return None
