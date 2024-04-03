@@ -14,13 +14,17 @@ from CompPage import CompPage
 from ResultPage import ResultPage
 from StartPage import StartPage
 from PostalPage import PostalPage
+from PostalPageFinal import PostalPageFinal
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
 from Settings import SettingsHandler
 from Settings.SettingsHandler import settings
 
-
 ##########################################################################################################
+# Pages to add to the list of Pages
+Pages = (StartPage, ChoosePage, CompPage, ResultPage, PostalPage, PostalPageFinal)
+
+
 def LoadSettings():
     currentDirectory = os.getcwd()
     parentDirectory = os.path.dirname(currentDirectory)
@@ -62,7 +66,7 @@ class GUI_Base(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, ChoosePage, CompPage, ResultPage, PostalPage):  # ADD PAGES
+        for F in Pages:  # ADD PAGES
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -80,7 +84,6 @@ class GUI_Base(tk.Tk):
         # self.show_frame("StartPage")
 
     def show_frame(self, page_name):
-
         """Show a frame for the given page name"""
         if self.currentFrame is not None:
             self.currentFrame.ExitFrame()
@@ -101,31 +104,33 @@ class GUI_Base(tk.Tk):
         image = ImageTk.PhotoImage(coverImage)
         return image
 
-    def CreateUserMontageImage(self):
+    ### User Image
+    def CreateUserMontageImage(self):  # Create montage with user image
         cameraImage = CameraHandler.Instance().GetPilImage()
         montageImage = MontageHandler.Instance().CreateMontageUserImage(cameraImage)
         finalImage = ImageTk.PhotoImage(montageImage)
 
         return finalImage
 
-    def GetUserMontageImage(self):
+    def GetUserMontageImage(self):  # Get montage with the user image
 
         montageImage = MontageHandler.Instance().GetUserMontageImage()
         finalImage = ImageTk.PhotoImage(montageImage)
         return finalImage
 
-    def CreatePostalMontageImage(self):
+    ### Postal Image
+    def CreatePostalMontageImage(self):  # Create postal with the user image
         postal = MontageHandler.Instance().CreateMontagePostalImage()
         postal = ImageTk.PhotoImage(postal)
         return postal
 
-    def GetPostalMontageImage(self):
-        postal = MontageHandler.Instance().GetUserMontageImage()
+    def GetPostalMontageImage(self):  # Get Postal with the user image
+        postal = MontageHandler.Instance().GetPostalMontageImage()
         postal = ImageTk.PhotoImage(postal)
         return postal
 
-    def SavePostalImage(self, barcode):
-        image = MontageHandler.Instance().GetFinalMontageImage()
+    def SavePostalImage(self, barcode):  # save postal image
+        image = MontageHandler.Instance().GetPostalMontageImage()
         image.save("UserPhotos/" + barcode + ".png")
 
     def SetLang(self, lang):

@@ -68,14 +68,6 @@ class MontageHandler:
         # Return the corresponding Montage object
         return self.montageList[self.currentMontage]
 
-    def CreateMontageUserImage(self, image):
-        self.montageList[self.currentMontage].createUserMontageImage(image)
-        return self.montageList[self.currentMontage].userMontageImage
-
-    def CreateMontagePostalImage(self):
-        self.montageList[self.currentMontage].CreatePostalImage()
-        return self.montageList[self.currentMontage].finalImage
-
     def SetMontageToFirst(self):
         if not self.montageList:
             return None
@@ -89,10 +81,16 @@ class MontageHandler:
     def GetCurrentMontage(self):
         return self.montageList[self.currentMontage]
 
-    # def Get_NextItem(self):
-
-    def GetUserMontageImage(self):
+    def CreateMontageUserImage(self, image):                                # Inserts the user image
+        self.montageList[self.currentMontage].createUserMontageImage(image)
         return self.montageList[self.currentMontage].userMontageImage
 
-    def GetFinalMontageImage(self):
+    def GetUserMontageImage(self):                                          # Gets the current montage user image
+        return self.montageList[self.currentMontage].userMontageImage
+
+    def CreateMontagePostalImage(self):                                     # Create the user postal image
+        self.montageList[self.currentMontage].CreatePostalImage()
+        return self.montageList[self.currentMontage].finalImage
+
+    def GetPostalMontageImage(self):                                         # Gets the user postal image
         return self.montageList[self.currentMontage].finalImage
