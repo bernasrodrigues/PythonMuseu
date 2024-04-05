@@ -20,7 +20,6 @@ def MontageBaseEffect(name, image):
     # image = filter_saturation.enhance(settings[name + "saturation"])
     image = filter_saturation.enhance(settings["saturation"])
 
-
     return image
 
 
@@ -28,6 +27,14 @@ def MontageNoEffect(name, image):
     return image
 
 
-def MontagebasePlacement(name, coverImage, image):
-    coverImage.paste(image, (settings[name + "_x"], settings[name + "_y"]), image)
+def MontageBasePlacement(name, coverImage, image):
+    coverImage.paste(image, (settings[name + "_UserImage_x"], settings[name + "_UserImage_y"]), image)
     return coverImage
+
+
+def MontageBaseResize(name, image):
+    #print(image.size)
+
+    size = (settings[name + "_Resize_x"], settings[name + "_Resize_y"])
+    resizedImage = image.resize(size)
+    return resizedImage

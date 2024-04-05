@@ -12,18 +12,19 @@ from Settings.SettingsHandler import settings
 
 class Montage:
 
-    def __init__(self, folder, placementFunct, effectFunct):
+    def __init__(self, folder, placementFunct, resizeFunct, effectFunct):
         self.name = folder  # Name for the montage
         self.coverImage = None  # Original image
         self.frontImage = None  # Image in front of the user
         self.exampleImage = None  # Image of the user
         self.userMontageImage = None  # Final generated image
-        self.postalImage = None     # image of the postal
-        self.finalImage = None      # final image on the postal
+        self.postalImage = None  # image of the postal
+        self.finalImage = None  # final image on the postal
 
         # functions to apply Effects
         self.placementFunct = placementFunct
         self.effectFunct = effectFunct
+        self.resizeFunct = resizeFunct
 
         print(f"Creating Montage for {folder}")
 
@@ -48,7 +49,6 @@ class Montage:
                 case "postal.png":
                     self.postalImage = Image.open(fileName).convert('RGBA')
                     print(f"Image {imageName} added as postal")
-
 
             '''
             if os.path.basename(fileName) == "cover.png":  # add cover image
@@ -81,16 +81,22 @@ class Montage:
         width, height = self.coverImage.size  # get the size of the first image in the layers
         self.userMontageImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
 
-        userImage = self.effectFunct(self.name, userImage)  # add effect to the user image (ex: black and white filter)
+        ## Function effectFunct
+        # add effect to the user image (ex: black and white filter)
+        userImage = self.effectFunct(self.name, userImage)
 
-        # TODO remove this
+        ## Function resizeFunct
+        # resizes the image to the to the value in settings (ex: Montagem1_Resize_x)
+        userImage = self.resizeFunct(self.name, userImage)
+
+        # TODO DEBUG MODE   remove in final function
         userImage = ImageOps.expand(userImage, border=1, fill='red')  # add border to know the image position
 
         self.userMontageImage.paste(self.coverImage, (0, 0), self.coverImage)  # start by adding the initial image
 
-        self.userMontageImage = self.placementFunct(self.name,
-                                                    self.userMontageImage,
-                                                    userImage)  # paste user image
+        ## Function placementFunct
+        # Places the image in the position in the settings (ex: Montagem1_UserImage_x)
+        self.userMontageImage = self.placementFunct(self.name, self.userMontageImage, userImage)
 
         self.userMontageImage.paste(self.frontImage, (0, 0), self.frontImage)  # paste front image
 

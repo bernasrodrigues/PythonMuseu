@@ -90,24 +90,39 @@ comp_countdownTimer = 5                                         # tempo com cont
 
 ############### Settings for MontagePlacement ###############
 ### Montagem 1 ###
-Montagem1_x = 300
-Montagem1_y = 300
+Montagem1_UserImage_x = 300                                             # Places the user image on the x and y coordinates ( anchor = "nw")
+Montagem1_UserImage_y = 300
+
+Montagem1_Resize_x = 640                                                # Resizes the user image to the x and y size
+Montagem1_Resize_y = 480
 
 ### Montagem 2 ###
-Montagem2_x = 300
-Montagem2_y = 300
+Montagem2_UserImage_x = 300
+Montagem2_UserImage_y = 300
+
+Montagem2_Resize_x = 640
+Montagem2_Resize_y = 480
 
 ### Montagem 3 ###
-Montagem3_x = 300
-Montagem3_y = 300
+Montagem3_UserImage_x = 300
+Montagem3_UserImage_y = 300
+
+Montagem3_Resize_x = 640
+Montagem3_Resize_y = 480
 
 ### Montagem 4 ###
-Montagem4_x = 300
-Montagem4_y = 300
+Montagem4_UserImage_x = 300
+Montagem4_UserImage_y = 300
+
+Montagem4_Resize_x = 640
+Montagem4_Resize_y = 480
 
 ### Montagem 5 ###
-Montagem5_x = 300
-Montagem5_y = 300
+Montagem5_UserImage_x = 300
+Montagem5_UserImage_y = 300
+
+Montagem5_Resize_x = 640
+Montagem5_Resize_y = 480
 
 ############### Settings for ImageEffects ###############
 brightness = 1

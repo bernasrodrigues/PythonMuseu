@@ -2,7 +2,7 @@ import os
 import threading
 
 from Photos.Montage import Montage
-from Photos.MontageFunctions import MontagebasePlacement, MontageBaseEffect
+from Photos.MontageFunctions import MontageBasePlacement, MontageBaseEffect, MontageBaseResize
 
 
 class MontageHandler:
@@ -27,11 +27,16 @@ class MontageHandler:
                     cls._instance.MontageList[folder_name] = Montage(folder_name)
                 '''
 
-                cls._instance.montageList["Montagem1"] = Montage("Montagem1", MontagebasePlacement, MontageBaseEffect)
-                cls._instance.montageList["Montagem2"] = Montage("Montagem2", MontagebasePlacement, MontageBaseEffect)
-                cls._instance.montageList["Montagem3"] = Montage("Montagem3", MontagebasePlacement, MontageBaseEffect)
-                cls._instance.montageList["Montagem4"] = Montage("Montagem4", MontagebasePlacement, MontageBaseEffect)
-                cls._instance.montageList["Montagem5"] = Montage("Montagem5", MontagebasePlacement, MontageBaseEffect)
+                cls._instance.montageList["Montagem1"] = Montage("Montagem1",
+                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
+                cls._instance.montageList["Montagem2"] = Montage("Montagem2",
+                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
+                cls._instance.montageList["Montagem3"] = Montage("Montagem3",
+                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
+                cls._instance.montageList["Montagem4"] = Montage("Montagem4",
+                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
+                cls._instance.montageList["Montagem5"] = Montage("Montagem5",
+                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
 
             return cls._instance
 
