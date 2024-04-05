@@ -133,3 +133,4 @@ saturation = 0
 
 
 ### Settings
+UserPostageFolder = "UserPhotos/"                                       # Folder where the user postal will be stored

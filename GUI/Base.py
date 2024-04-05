@@ -1,6 +1,7 @@
 import glob
 import os
 import sys
+import time
 import tkinter as tk
 
 sys.path.append("..")
@@ -131,7 +132,12 @@ class GUI_Base(tk.Tk):
 
     def SavePostalImage(self, barcode):  # save postal image
         image = MontageHandler.Instance().GetPostalMontageImage()
-        image.save("UserPhotos/" + barcode + ".png")
+        current_time = int(time.time())  # time since epoch
+        time_string = str(current_time)  # Convert it to a string
+        fileType = "png"
+
+        saveFile = '{0}{1}_{2}.{3}'.format(settings["UserPostageFolder"], barcode, time_string, fileType)
+        image.save(saveFile)
 
     def SetLang(self, lang):
         print("set language to " + lang[1:])

@@ -80,22 +80,23 @@ class Montage:
 
         width, height = self.coverImage.size  # get the size of the first image in the layers
         self.userMontageImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
+        self.userMontageImage.paste(self.coverImage, (0, 0), self.coverImage)  # start by adding the initial image
 
-        ## Function effectFunct
-        # add effect to the user image (ex: black and white filter)
+        '''Function effectFunct
+        add effect to the user image (ex: black and white filter)'''
         userImage = self.effectFunct(self.name, userImage)
 
-        ## Function resizeFunct
-        # resizes the image to the to the value in settings (ex: Montagem1_Resize_x)
+        ''' 
+        Function resizeFunct
+        resizes the image to the to the value in settings (ex: Montagem1_Resize_x)'''
         userImage = self.resizeFunct(self.name, userImage)
 
         # TODO DEBUG MODE   remove in final function
         userImage = ImageOps.expand(userImage, border=1, fill='red')  # add border to know the image position
 
-        self.userMontageImage.paste(self.coverImage, (0, 0), self.coverImage)  # start by adding the initial image
-
-        ## Function placementFunct
-        # Places the image in the position in the settings (ex: Montagem1_UserImage_x)
+        '''
+        Function placementFunct
+        Places the image in the position in the settings (ex: Montagem1_UserImage_x)'''
         self.userMontageImage = self.placementFunct(self.name, self.userMontageImage, userImage)
 
         self.userMontageImage.paste(self.frontImage, (0, 0), self.frontImage)  # paste front image
