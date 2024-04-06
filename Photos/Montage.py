@@ -3,8 +3,6 @@ import os
 import rembg
 from PIL import Image, ImageOps
 
-from Settings.SettingsHandler import settings
-
 
 # A Montage contains the list of layers that compose an Image
 # the user images is inserted in the position that we want it to be
@@ -101,9 +99,13 @@ class Montage:
 
         self.userMontageImage.paste(self.frontImage, (0, 0), self.frontImage)  # paste front image
 
+    # Paste the generated image into a postal (postal.png)
     def CreatePostalImage(self):
 
         width, height = self.postalImage.size  # get the size of the first image in the layers
         self.finalImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
         self.finalImage = self.postalImage
-        self.finalImage.paste(self.userMontageImage, (0, 0), self.userMontageImage)
+
+        # TODO placement / size ???
+        placement = (124, 80)
+        self.finalImage.paste(self.userMontageImage, placement, self.userMontageImage)

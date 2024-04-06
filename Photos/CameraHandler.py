@@ -54,7 +54,7 @@ class CameraHandler:
     def GetRawImage(self):
         return self.image
 
-    # Applies effects to the camera to apear more natural
+    # Applies effects to the camera to appear more natural
     def GetProcessedImage(self):
 
         im = self.FlipImage()

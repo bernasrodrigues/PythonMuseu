@@ -45,15 +45,15 @@ class PostalPage(tk.Frame):
                                                        image=self.controller.degrade)
         '''
 
-        # self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
-        # self.canvas.bind("<Key>", self.KeyPress)
-        keyboard.on_press(self.on_barcode_scan)
+        # TODO review on click ??
+        self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("PostalPageFinal"))
 
     def EnterFrame(self):
         self.active = True
-        self.ConfigureImage(self.controller.CreatePostalMontageImage())
-        self.barCode = ""
+        self.ConfigureImage(self.controller.CreatePostalMontageImage())     # on enter create postal image
+        self.barCode = ""                                                   # reset barcode
         print("Showing Postal Image")
+        keyboard.on_press(self.on_barcode_scan)                             # start listening to keyboard
         # self.canvas.after(10000, self.MoveToNextPage)
 
     def ConfigureImage(self, image):
@@ -66,6 +66,7 @@ class PostalPage(tk.Frame):
                 print("Enter key pressed")
                 print("Final barcode:", self.barCode)
                 self.controller.SavePostalImage(self.barCode)
+                self.barCode = ""                                   # reset barcode (just to be safe)
 
             else:
                 self.barCode += event.name
@@ -93,4 +94,5 @@ class PostalPage(tk.Frame):
         pass
 
     def ExitFrame(self):
+        keyboard.unhook_all()                           # stop listening to keyboard
         self.active = False
