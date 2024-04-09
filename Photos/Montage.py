@@ -1,11 +1,16 @@
 import os
 
+import cv2
+import cvzone
+import numpy
+import numpy as np
 import rembg
 from PIL import Image, ImageOps
-
+from cvzone.SelfiSegmentationModule import SelfiSegmentation
 
 # A Montage contains the list of layers that compose an Image
 # the user images is inserted in the position that we want it to be
+segmentor = SelfiSegmentation()
 
 
 class Montage:
@@ -67,10 +72,47 @@ class Montage:
     def GetCoverImage(self):
         return self.coverImage
 
+    def RemBGRemove(self, userImage):  # Removing using rembg
+        userImageWithoutBackground = rembg.remove(userImage)
+
+        return userImageWithoutBackground
+
+    def SelfieSegmentationRemove(self, userImage):
+
+        userImage = numpy.array(userImage)
+        userImage = userImage[:, :, :3]  # remove alpha channel
+
+        color = (255, 0, 255)
+        imgOut = segmentor.removeBG(userImage, imgBg=color, cutThreshold=0.1)
+
+        mask = np.where((imgOut == color).all(axis=2), 0, 255).astype(np.uint8)
+
+        result = imgOut.copy()
+        result = cv2.cvtColor(result, cv2.COLOR_BGR2BGRA)
+        result[:, :, 3] = mask
+
+        userImage = Image.fromarray(result)
+        '''
+        # Convert PIL image to NumPy array
+        numpy_image = np.array(userImage)
+
+        # Perform self-segmentation
+        segmented_img = segmentor.removeBG(numpy_image, imgBg=(255, 0, 255), cutThreshold=0.1)
+
+        output_path = "output_image.png"  # Output image path
+        cv2.imwrite(output_path, segmented_img)
+        '''
+
+        return userImage
+
     # User image -> file path to the user image
     def createUserMontageImage(self, userImage):
         # Apply background removal using rembg
-        userImageWithoutBackground = rembg.remove(userImage)
+        # userImageWithoutBackground = rembg.remove(userImage)
+
+        #userImageWithoutBackground = self.RemBGRemove(userImage)
+        userImageWithoutBackground = self.SelfieSegmentationRemove(userImage)
+
         self.InsertUserImage(userImageWithoutBackground)
 
     # User Image -> image with the recorted background

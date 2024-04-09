@@ -44,8 +44,7 @@ class PostalPageFinal(tk.Frame):
                                                    fill="white",
                                                    font=settings["comp_Title_Font"])
 
-
-        # self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
+        self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
         # self.canvas.bind("<Key>", self.KeyPress)
         keyboard.on_press(self.on_barcode_scan)
 
