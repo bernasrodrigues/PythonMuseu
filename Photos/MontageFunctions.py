@@ -1,6 +1,16 @@
-from PIL import ImageEnhance
+from PIL import ImageEnhance, ImageTk
 
 from Settings.SettingsHandler import settings
+
+
+# function that retuns an image with the set size
+def resize(image, size_x, size_y):
+    size = size_x, size_y
+
+    imageResize = image.copy()
+    imageResize.thumbnail(size)
+
+    return imageResize
 
 
 def MontageBaseEffect(name, image):
@@ -33,7 +43,7 @@ def MontageBasePlacement(name, coverImage, image):
 
 
 def MontageBaseResize(name, image):
-    #print(image.size)
+    # print(image.size)
 
     size = (settings[name + "_Resize_x"], settings[name + "_Resize_y"])
     resizedImage = image.resize(size)

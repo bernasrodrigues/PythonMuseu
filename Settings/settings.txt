@@ -15,13 +15,13 @@ start_Title_Text = "Selfie"                                     # Texto que apar
 start_Title_X = 540                                             # coordenadas x e y do titulo
 start_Title_Y = 900
 start_Title_Font = ('Helvetica 200 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
-start_Title_Fill = "black"                                      # cor do texto
+start_Title_Fill = "white"                                      # cor do texto
 
 start_Subtitle_PT_Text = "toca no ecrã\npara começar"           # Texto que aparece como subtitulo em portugues
 start_Subtitle_PT_X = 540                                       # coordenadas x e y do subtitulo
 start_Subtitle_PT_Y = 1100
 start_Subtitle_PT_Font = ('Helvetica 40')                       # fonte do texto
-start_Subtitle_PT_Fill = "black"                                # cor do texto
+start_Subtitle_PT_Fill = "white"                                # cor do texto
 
 
 start_Subtitle_EN_Text = "tap the screen\nto start"             # Texto que aparece como subtitulo em ingles
@@ -39,8 +39,8 @@ choose_Title_Text_PT = "Escolhe a image"                         # Texto que apa
 choose_Title_Text_EN = "Choose the image"
 choose_Title_X = 540                                             # coordenadas x e y do titulo
 choose_Title_Y = 1400
-choose_Title_Font = ('Helvetica 20 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
-choose_Title_Fill = "black"                                      # cor do texto
+choose_Title_Font = ('Helvetica 26')                            # fonte do texto    formato: (fonte tamanho pesos/slants)
+choose_Title_Fill = "white"                                      # cor do texto
 
 
 choose_RightArrow_X = 740                                      # coordenadas x e y da seta de escolha da direita

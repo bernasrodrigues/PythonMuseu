@@ -8,6 +8,8 @@ import rembg
 from PIL import Image, ImageOps
 from cvzone.SelfiSegmentationModule import SelfiSegmentation
 
+from Photos.MontageFunctions import resize
+
 # A Montage contains the list of layers that compose an Image
 # the user images is inserted in the position that we want it to be
 segmentor = SelfiSegmentation()
@@ -92,30 +94,22 @@ class Montage:
         result[:, :, 3] = mask
 
         userImage = Image.fromarray(result)
-        '''
-        # Convert PIL image to NumPy array
-        numpy_image = np.array(userImage)
-
-        # Perform self-segmentation
-        segmented_img = segmentor.removeBG(numpy_image, imgBg=(255, 0, 255), cutThreshold=0.1)
-
-        output_path = "output_image.png"  # Output image path
-        cv2.imwrite(output_path, segmented_img)
-        '''
-
         return userImage
 
     # User image -> file path to the user image
     def createUserMontageImage(self, userImage):
-        # Apply background removal using rembg
-        # userImageWithoutBackground = rembg.remove(userImage)
-
-        #userImageWithoutBackground = self.RemBGRemove(userImage)
+        # TODO
+        # userImageWithoutBackground = self.RemBGRemove(userImage)
         userImageWithoutBackground = self.SelfieSegmentationRemove(userImage)
 
         self.InsertUserImage(userImageWithoutBackground)
+        return
 
-    # User Image -> image with the recorted background
+    ''' Inserts the userimage into the montage
+    creates a empty image -> copies the cover image into the empty image
+    applies the effects of the montage (effectFunct , resizeFunct, and the placementFunct)
+    after the user image is placed -> places the front image
+    '''
     def InsertUserImage(self, userImage):
 
         width, height = self.coverImage.size  # get the size of the first image in the layers
@@ -140,14 +134,24 @@ class Montage:
         self.userMontageImage = self.placementFunct(self.name, self.userMontageImage, userImage)
 
         self.userMontageImage.paste(self.frontImage, (0, 0), self.frontImage)  # paste front image
+        return
 
-    # Paste the generated image into a postal (postal.png)
+    '''  Generates the postal with the user image
+    creates and empty images
+    pastes the postal image into the empty image
+    resizes the user image to the intended size and pastes the user image into the postal'''
     def CreatePostalImage(self):
 
         width, height = self.postalImage.size  # get the size of the first image in the layers
         self.finalImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
         self.finalImage = self.postalImage
 
+        userImage_resize = resize(self.userMontageImage, 400, 400)
+
+        print(userImage_resize)
+        print(self.userMontageImage)
+
         # TODO placement / size ???
-        placement = (124, 80)
-        self.finalImage.paste(self.userMontageImage, placement, self.userMontageImage)
+        placement = (101, 65)
+        self.finalImage.paste(userImage_resize, placement, userImage_resize)
+        return

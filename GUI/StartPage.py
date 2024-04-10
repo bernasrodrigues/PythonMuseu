@@ -61,8 +61,22 @@ class StartPage(tk.Frame):
                 self.image_index = 0
 
             else:
+                '''
+                image = self.controller.images_intro[self.image_index]
+                img = ImageTk.getimage(image)
+                img = img.rotate(30, expand=True)
+                size = 800, 800
+                img.thumbnail(size)
+                imgTK = ImageTk.PhotoImage(img)
+                img.save("AAAAAAAAAAA.png")
+
+                self.im = imgTK
+                self.canvas.itemconfig(self.canvas_image, image=imgTK)
+                '''
+
                 self.canvas.itemconfig(self.canvas_image, image=self.controller.images_intro[self.image_index])
                 self.image_index += 1
+
             self.canvas.after(settings["start_ImageCarrousel_Timer"], self.ImageCarrousel)
 
     def EnterFrame(self):
