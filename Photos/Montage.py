@@ -110,6 +110,7 @@ class Montage:
     applies the effects of the montage (effectFunct , resizeFunct, and the placementFunct)
     after the user image is placed -> places the front image
     '''
+
     def InsertUserImage(self, userImage):
 
         width, height = self.coverImage.size  # get the size of the first image in the layers
@@ -140,18 +141,17 @@ class Montage:
     creates and empty images
     pastes the postal image into the empty image
     resizes the user image to the intended size and pastes the user image into the postal'''
+
     def CreatePostalImage(self):
 
         width, height = self.postalImage.size  # get the size of the first image in the layers
         self.finalImage = Image.new('RGBA', (width, height))  # create new empty image as blank canvas
         self.finalImage = self.postalImage
 
-        userImage_resize = resize(self.userMontageImage, 400, 400)
+        # TODO see size of userImage
+        userImage_resize = resize(self.userMontageImage, 880, 1172)
 
-        print(userImage_resize)
-        print(self.userMontageImage)
-
-        # TODO placement / size ???
-        placement = (101, 65)
+        # TODO placement
+        placement = (100, 65)
         self.finalImage.paste(userImage_resize, placement, userImage_resize)
         return
