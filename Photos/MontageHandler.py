@@ -44,13 +44,16 @@ class MontageHandler:
     def Instance(cls):
         return cls()
 
-    # Not used
+    def GetMontage(self, MontageName):
+        return self.montageList[MontageName]
+
     def GetMontageCoverImage(self, MontageName):
         montage = self.montageList[MontageName]
         return montage.GetCoverImage()
 
-    def GetMontage(self, MontageName):
-        return self.montageList[MontageName]
+    def GetMontageExampleImage(self, MontageName):
+        montage = self.montageList[MontageName]
+        return montage.GetExampleImage()
 
     def GetNextElement(self, direction):
         # Check if MontageList is empty
@@ -81,7 +84,10 @@ class MontageHandler:
         # print(self.currentMontage)
 
     def GetCurrentMontageCoverImage(self):
-        return self.montageList[self.currentMontage].coverImage
+        return self.montageList[self.currentMontage].GetCoverImage()
+
+    def GetCurrentMontageExampleImage(self):
+        return self.montageList[self.currentMontage].GetExampleImage()
 
     def GetCurrentMontage(self):
         return self.montageList[self.currentMontage]

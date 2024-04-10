@@ -74,6 +74,9 @@ class Montage:
     def GetCoverImage(self):
         return self.coverImage
 
+    def GetExampleImage(self):
+        return self.exampleImage
+
     def RemBGRemove(self, userImage):  # Removing using rembg
         userImageWithoutBackground = rembg.remove(userImage)
 

@@ -26,6 +26,7 @@ class ChoosePage(tk.Frame):
         # Starting canvas image
         self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2, anchor=tk.CENTER,
                                                      image=None)
+
         # degrade
         self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
                                                        anchor=tk.CENTER,
@@ -80,7 +81,21 @@ class ChoosePage(tk.Frame):
 
         self.canvas.tag_bind(self.canvas_t1, '<Button-1>', lambda event: self.SetLang("_PT"))
         self.canvas.tag_bind(self.canvas_t3, '<Button-1>', lambda event: self.SetLang("_EN"))
-        ### BUTTONS ###
+        #-- BUTTONS --#
+
+        self.fade = None
+
+    def ImageTransparency(self , alpha):
+
+        imageOriginal = None
+        imageUserIndicator = None
+        '''
+        while 1.0 > alpha:
+            image.blend(img1, img2, alpha)
+            alpha = alpha + 0.01
+            label_image.update()
+        return
+        '''
 
     def NextImage(self, direction):
         image = self.controller.GetNextMontageCover(direction)
