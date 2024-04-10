@@ -100,10 +100,13 @@ class Montage:
         return userImage
 
     # User image -> file path to the user image
-    def createUserMontageImage(self, userImage):
+    def createUserMontageImage(self, userImage, function):
         # TODO
-        # userImageWithoutBackground = self.RemBGRemove(userImage)
-        userImageWithoutBackground = self.SelfieSegmentationRemove(userImage)
+
+        if function == "rembg":
+            userImageWithoutBackground = self.RemBGRemove(userImage)
+        if function == "segmentation":
+            userImageWithoutBackground = self.SelfieSegmentationRemove(userImage)
 
         self.InsertUserImage(userImageWithoutBackground)
         return

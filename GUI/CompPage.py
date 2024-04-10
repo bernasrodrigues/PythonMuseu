@@ -2,6 +2,7 @@ import tkinter as tk  # python 3
 
 from Settings.SettingsHandler import settings
 
+# NOT USED
 
 class CompPage(tk.Frame):
 
@@ -29,13 +30,18 @@ class CompPage(tk.Frame):
                                                        anchor=tk.CENTER,
                                                        image=self.controller.degrade)
 
-
         # text for the user
         self.canvas_text = self.canvas.create_text(settings["comp_Title_X"],
                                                    settings["comp_Title_Y"],
                                                    text=settings["comp_Ready_Text_PT"],
                                                    fill=settings['comp_Title_Fill'],
                                                    font=settings["comp_Title_Font"])
+
+        self.canvas_text_countdown = self.canvas.create_text(settings["comp_Timer_X"],
+                                                             settings["comp_Timer_Y"],
+                                                             text="",
+                                                             fill=settings["comp_Title_Fill"],
+                                                             font=settings["comp_Timer_Font"])
 
         # Language Select button
         # coordinates initially zero because they are set once all are created
@@ -63,33 +69,33 @@ class CompPage(tk.Frame):
     def EnterFrame(self):
         self.active = True
         self.StartTimer()  # Set user warn timer
-        self.ShowImage()  # shows photo combined with the webcam user image
+        self.ShowImage("segmentation")  # shows photo combined with the webcam user image
         self.UpdateLanguage()
 
     # Updates the generated image every x seconds
-    def ShowImage(self):
+    def ShowImage(self, function):
         if self.active:
-            userMontageImage = self.controller.CreateUserMontageImage()
+            userMontageImage = self.controller.CreateUserMontageImage(function)
             self.ConfigureImage(userMontageImage)
-            self.canvas.after(100, self.ShowImage)
+            self.canvas.after(100, self.ShowImage, function)
 
     # After the user ready timer starts the countdown timer and configures the text
     def StartTimer(self):
         self.canvas.itemconfig(self.canvas_text, text=settings["comp_Ready_Text" + self.controller.language])
-        self.canvas.after(settings["comp_readyTimer"] * 1000, self.Timer, settings["comp_countdownTimer"])
+        self.canvas.after(settings["comp_readyTimer"] * 1000, self.Timer, settings["comp_countdownTimer"])      # start the ready timer after the time set in the settings
 
     # Starts user ready timer after the set time has passed it starts the countdown timer
     def Timer(self, countdown):
-
+        self.canvas.itemconfig(self.canvas_text, text=settings["comp_CountDown_Text" + self.controller.language])
         if countdown >= 0:
             # call countdown again after 1000ms (1s)
             print("countdown = " + str(countdown))
-            self.canvas.itemconfig(self.canvas_text,
-                                   text=settings["comp_CountDown_Text" + self.controller.language] + str(countdown))
+            self.canvas.itemconfig(self.canvas_text_countdown, text=countdown)
             self.canvas.after(1000, self.Timer, countdown - 1)
 
         if countdown < 0:
-            self.controller.show_frame("ResultPage")
+            self.ShowImage("rembg")
+            self.controller.show_frame("PostalPage")
 
     def ConfigureImage(self, image):
         self.canvas.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)

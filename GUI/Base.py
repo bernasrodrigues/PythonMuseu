@@ -113,9 +113,9 @@ class GUI_Base(tk.Tk):
 
 
     ### User Image
-    def CreateUserMontageImage(self):  # Create montage with user image
+    def CreateUserMontageImage(self , function):  # Create montage with user image
         cameraImage = CameraHandler.Instance().GetPilImage()
-        montageImage = MontageHandler.Instance().CreateMontageUserImage(cameraImage)
+        montageImage = MontageHandler.Instance().CreateMontageUserImage(cameraImage, function)
         finalImage = ImageTk.PhotoImage(montageImage)
 
         return finalImage

@@ -94,23 +94,26 @@ class ChoosePage(tk.Frame):
     '''
 
     def fadeImage(self, alpha):
-        image = self.ImageTransparency(alpha)
-        self.ConfigureImage(image)
 
-        if alpha <= 1:  # repeat until fade in is done
-            self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha + 0.01)
-        else:
-            self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha)
+        if self.active:
+            image = self.ImageTransparency(alpha)
+            self.ConfigureImage(image)
+
+            if alpha <= 1:  # repeat until fade in is done
+                self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha + 0.01)
+            else:
+                self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha)
 
 
     def fadeImageOut(self, alpha):
-        image = self.ImageTransparency(alpha)
-        self.ConfigureImage(image)
+        if self.active:
+            image = self.ImageTransparency(alpha)
+            self.ConfigureImage(image)
 
-        if alpha >= 0:  # repeat until all fade is done
-            self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha - 0.01)
-        else:
-            self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha)
+            if alpha >= 0:  # repeat until all fade is done
+                self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha - 0.01)
+            else:
+                self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha)
 
     def ImageTransparency(self, alpha):
         imageOriginal = self.controller.GetMontageCover()  # ImageTk.PhotoImage format
@@ -169,4 +172,5 @@ class ChoosePage(tk.Frame):
         self.canvas.itemconfigure(self.canvasChooseText, text=settings["choose_Title_Text" + lang])
 
     def ExitFrame(self):
+        self.canvas.after_cancel(self.fadeAfter)
         self.active = False

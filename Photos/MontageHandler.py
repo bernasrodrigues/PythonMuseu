@@ -92,8 +92,8 @@ class MontageHandler:
     def GetCurrentMontage(self):
         return self.montageList[self.currentMontage]
 
-    def CreateMontageUserImage(self, image):                                # Inserts the user image
-        self.montageList[self.currentMontage].createUserMontageImage(image)
+    def CreateMontageUserImage(self, image , function):                                # Inserts the user image
+        self.montageList[self.currentMontage].createUserMontageImage(image , function)
         return self.montageList[self.currentMontage].userMontageImage
 
     def GetUserMontageImage(self):                                          # Gets the current montage user image

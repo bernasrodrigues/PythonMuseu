@@ -35,19 +35,19 @@ start_ImageCarrousel_Timer = 2000                               # tempo que demo
 
 ############### Settings for ChoosePage ###############
 
-choose_Title_Text_PT = "Escolhe a image"                         # Texto que aparece no inicio da pagina inicial em Portugues
+choose_Title_Text_PT = "Escolhe a imagem"                         # Texto que aparece no inicio da pagina inicial em Portugues
 choose_Title_Text_EN = "Choose the image"
 choose_Title_X = 540                                             # coordenadas x e y do titulo
 choose_Title_Y = 1400
-choose_Title_Font = ('Helvetica 26')                            # fonte do texto    formato: (fonte tamanho pesos/slants)
+choose_Title_Font = ('Helvetica 40')                            # fonte do texto    formato: (fonte tamanho pesos/slants)
 choose_Title_Fill = "white"                                      # cor do texto
 
 
-choose_RightArrow_X = 740                                      # coordenadas x e y da seta de escolha da direita
+choose_RightArrow_X = 980                                      # coordenadas x e y da seta de escolha da direita
 choose_RightArrow_Y = 1400
 
 
-choose_LeftArrow_X = 340                                      # coordenadas x e y da seta de escolha da esquerda
+choose_LeftArrow_X = 100                                      # coordenadas x e y da seta de escolha da esquerda
 choose_LeftArrow_Y = 1400
 
 choose_Subtitle_Font = ('Helvetica 20')
@@ -66,9 +66,15 @@ comp_Ready_Text_EN = "Get in position"
 comp_CountDown_Text_PT = "Preparados?"                          # texto que aparece para a contagem decrescente
 comp_CountDown_Text_EN = "Ready?"
 comp_Title_X = 540                                             # coordenadas x e y do texto
-comp_Title_Y = 900
+comp_Title_Y = 1400
 comp_Title_Font = ('Helvetica 30 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
-comp_Title_Fill = "black"                                      # cor do texto
+comp_Title_Fill = "white"                                      # cor do texto
+
+
+comp_Timer_X = 540                                             # coordenadas x e y do texto
+comp_Timer_Y = 850
+comp_Timer_Font = ('Helvetica 200 bold')
+comp_Title_Fill = "white"
 
 
 
