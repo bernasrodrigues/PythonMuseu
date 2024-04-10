@@ -61,8 +61,8 @@ choose_SubTitle_EN = "EN"
 
 ############### Settings for CompPage ###############
 
-comp_Ready_Text_PT = "Faz a tua composição"                     # texto inicial para avisar o utilizador
-comp_Ready_Text_EN = "Make your composition"
+comp_Ready_Text_PT = "Coloque-se em posição"                     # texto inicial para avisar o utilizador
+comp_Ready_Text_EN = "Get in position"
 comp_CountDown_Text_PT = "Preparados?"                          # texto que aparece para a contagem decrescente
 comp_CountDown_Text_EN = "Ready?"
 comp_Title_X = 540                                             # coordenadas x e y do texto

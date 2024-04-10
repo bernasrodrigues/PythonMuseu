@@ -86,15 +86,31 @@ class ChoosePage(tk.Frame):
         self.canvas.tag_bind(self.canvas_t3, '<Button-1>', lambda event: self.SetLang("_EN"))
         # -- BUTTONS --#
 
-        self.fade = None
-
-
-
+        self.fadeAfter = None
 
     '''
     pil objects for image effects
     tkinter widgets require photoImage objects
     '''
+
+    def fadeImage(self, alpha):
+        image = self.ImageTransparency(alpha)
+        self.ConfigureImage(image)
+
+        if alpha <= 1:  # repeat until fade in is done
+            self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha + 0.01)
+        else:
+            self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha)
+
+
+    def fadeImageOut(self, alpha):
+        image = self.ImageTransparency(alpha)
+        self.ConfigureImage(image)
+
+        if alpha >= 0:  # repeat until all fade is done
+            self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha - 0.01)
+        else:
+            self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha)
 
     def ImageTransparency(self, alpha):
         imageOriginal = self.controller.GetMontageCover()  # ImageTk.PhotoImage format
@@ -103,34 +119,31 @@ class ChoosePage(tk.Frame):
         imageOriginal = ImageTk.getimage(imageOriginal)  # convert to pil
         imageUserIndicator = ImageTk.getimage(imageUserIndicator)  # convert to pil
 
-        # self.iaa = imageUserIndicator
-        # print(imageUserIndicator)
-        # self.iaa.save("aaaa.png")
-        # imageUserIndicator.write("AAAAA.png")
-
         # ex = ImageTk.getimage(ex)                                             # convert photoimage to pil
         # ex = ImageTk.PhotoImage(ex)                                           # convert pil to photoimage
-
-        # imageUserIndicator = ImageTk.getimage(imageUserIndicator)
 
         image = Image.blend(imageOriginal, imageUserIndicator, alpha)
         # image.save("AAAAA.png")
 
         image = ImageTk.PhotoImage(image)
-        self.ConfigureImage(image)
-        return
+        return image
 
     def NextImage(self, direction):
-        image = self.controller.GetNextMontageCover(direction)
-        self.ConfigureImage(image)
+        self.canvas.after_cancel(self.fadeAfter)
+        self.controller.GetNextMontageCover(direction)
+        self.fadeImage(0)                                               # fade in configures the image
+        #self.ConfigureImage(image)
 
     def EnterFrame(self):
         self.active = True
         self.controller.SetMontageToFirst()  # Resetting the image list to the first montage
-        image = self.controller.GetMontageCover()
-        self.ConfigureImage(image)
 
-        self.ImageTransparency(1)
+        self.fadeImage(0)
+
+        # image = self.controller.GetMontageCover()
+        # self.ConfigureImage(image)
+
+        # self.ImageTransparency(1)
         self.UpdateLanguage()
 
     # Sets the image in the Image label
