@@ -97,8 +97,6 @@ class ChoosePage(tk.Frame):
     '''
 
     def ImageTransparency(self, alpha):
-
-        print("AAAAAAAAAA")
         imageOriginal = self.controller.GetMontageCover()  # ImageTk.PhotoImage format
         imageUserIndicator = self.controller.GetMontageExample()
 

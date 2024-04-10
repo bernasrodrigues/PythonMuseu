@@ -164,7 +164,7 @@ if __name__ == "__main__":
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')
     # app.overrideredirect(True)                 # dont use
-    # app.attributes('-fullscreen', True)
+    # app.attributes('-fullscreen', True)         # start in full screen borderless
 
     app.show_frame("StartPage")
     app.mainloop()
