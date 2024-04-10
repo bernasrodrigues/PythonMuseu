@@ -18,15 +18,15 @@ start_Title_Font = ('Helvetica 200 bold')                       # fonte do texto
 start_Title_Fill = "white"                                      # cor do texto
 
 start_Subtitle_PT_Text = "toca no ecrã\npara começar"           # Texto que aparece como subtitulo em portugues
-start_Subtitle_PT_X = 540                                       # coordenadas x e y do subtitulo
+start_Subtitle_PT_X = 535                                       # coordenadas x e y do subtitulo
 start_Subtitle_PT_Y = 1100
 start_Subtitle_PT_Font = ('Helvetica 40')                       # fonte do texto
 start_Subtitle_PT_Fill = "white"                                # cor do texto
 
 
 start_Subtitle_EN_Text = "tap the screen\nto start"             # Texto que aparece como subtitulo em ingles
-start_Subtitle_EN_X = 540                                       # coordenadas x e y do subtitulo
-start_Subtitle_EN_Y = 1240
+start_Subtitle_EN_X = 535                                       # coordenadas x e y do subtitulo
+start_Subtitle_EN_Y = 1220
 start_Subtitle_EN_Font = ('Helvetica 40')                       # fonte do texto
 start_Subtitle_EN_Fill = "gray"                                 # cor do texto
 

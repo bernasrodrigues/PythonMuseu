@@ -45,7 +45,7 @@ class ChoosePage(tk.Frame):
         self.canvas.tag_bind(self.canvasChooseText, '<Button-1>', lambda event: self.controller.show_frame("CompPage"))
 
         # Right Button
-        self.rightArrowImage = tk.PhotoImage(file='Images/arrow_right.png')
+        self.rightArrowImage = tk.PhotoImage(file='Images/Arrow_white_right.png')
 
         self.canvas_rightButton = self.canvas.create_image(settings["choose_RightArrow_X"],
                                                            settings["choose_RightArrow_Y"],
@@ -54,7 +54,7 @@ class ChoosePage(tk.Frame):
         self.canvas.tag_bind(self.canvas_rightButton, '<Button-1>', lambda event: self.NextImage(1))
 
         # Left Button
-        self.leftArrowImage = tk.PhotoImage(file='Images/arrow_right.png')
+        self.leftArrowImage = tk.PhotoImage(file='Images/Arrow_white_left.png')
 
         self.canvas_leftButton = self.canvas.create_image(settings["choose_LeftArrow_X"],
                                                           settings["choose_LeftArrow_Y"],
