@@ -106,7 +106,7 @@ class GUI_Base(tk.Tk):
         return image
 
     def GetMontageExample(self):
-        coverImage = MontageHandler.Instance().GetCurrentMontageCoverImage()
+        coverImage = MontageHandler.Instance().GetCurrentMontageExampleImage()
         image = ImageTk.PhotoImage(coverImage)
         return image
 

@@ -1,4 +1,7 @@
 import tkinter as tk  # python 3
+
+from PIL import Image, ImageTk
+
 from Settings.SettingsHandler import settings
 
 
@@ -81,21 +84,43 @@ class ChoosePage(tk.Frame):
 
         self.canvas.tag_bind(self.canvas_t1, '<Button-1>', lambda event: self.SetLang("_PT"))
         self.canvas.tag_bind(self.canvas_t3, '<Button-1>', lambda event: self.SetLang("_EN"))
-        #-- BUTTONS --#
+        # -- BUTTONS --#
 
         self.fade = None
 
-    def ImageTransparency(self , alpha):
 
-        imageOriginal = None
-        imageUserIndicator = None
-        '''
-        while 1.0 > alpha:
-            image.blend(img1, img2, alpha)
-            alpha = alpha + 0.01
-            label_image.update()
+
+
+    '''
+    pil objects for image effects
+    tkinter widgets require photoImage objects
+    '''
+
+    def ImageTransparency(self, alpha):
+
+        print("AAAAAAAAAA")
+        imageOriginal = self.controller.GetMontageCover()  # ImageTk.PhotoImage format
+        imageUserIndicator = self.controller.GetMontageExample()
+
+        imageOriginal = ImageTk.getimage(imageOriginal)  # convert to pil
+        imageUserIndicator = ImageTk.getimage(imageUserIndicator)  # convert to pil
+
+        # self.iaa = imageUserIndicator
+        # print(imageUserIndicator)
+        # self.iaa.save("aaaa.png")
+        # imageUserIndicator.write("AAAAA.png")
+
+        # ex = ImageTk.getimage(ex)                                             # convert photoimage to pil
+        # ex = ImageTk.PhotoImage(ex)                                           # convert pil to photoimage
+
+        # imageUserIndicator = ImageTk.getimage(imageUserIndicator)
+
+        image = Image.blend(imageOriginal, imageUserIndicator, alpha)
+        # image.save("AAAAA.png")
+
+        image = ImageTk.PhotoImage(image)
+        self.ConfigureImage(image)
         return
-        '''
 
     def NextImage(self, direction):
         image = self.controller.GetNextMontageCover(direction)
@@ -103,11 +128,11 @@ class ChoosePage(tk.Frame):
 
     def EnterFrame(self):
         self.active = True
-        # Resetting the image list to the first montage
-        self.controller.SetMontageToFirst()
+        self.controller.SetMontageToFirst()  # Resetting the image list to the first montage
         image = self.controller.GetMontageCover()
         self.ConfigureImage(image)
 
+        self.ImageTransparency(1)
         self.UpdateLanguage()
 
     # Sets the image in the Image label
