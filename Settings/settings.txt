@@ -17,14 +17,14 @@ start_Title_Y = 1270
 start_Title_Font = ('Helvetica 200 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
 start_Title_Fill = "white"                                      # cor do texto
 
-start_Subtitle_PT_Text = "toca no ecrã\npara começar"           # Texto que aparece como subtitulo em portugues
+start_Subtitle_PT_Text = "Toque no ecrã\npara dar início à selfie"           # Texto que aparece como subtitulo em portugues
 start_Subtitle_PT_X = 535                                       # coordenadas x e y do subtitulo
 start_Subtitle_PT_Y = 1470
 start_Subtitle_PT_Font = ('Helvetica 40')                       # fonte do texto
 start_Subtitle_PT_Fill = "white"                                # cor do texto
 
 
-start_Subtitle_EN_Text = "tap the screen\nto start"             # Texto que aparece como subtitulo em ingles
+start_Subtitle_EN_Text = "Tap the screen\nto start the selfie"             # Texto que aparece como subtitulo em ingles
 start_Subtitle_EN_X = 535                                       # coordenadas x e y do subtitulo
 start_Subtitle_EN_Y = 1595605787029036
 0
@@ -36,8 +36,8 @@ start_ImageCarrousel_Timer = 5000                               # tempo que demo
 
 ############### Settings for ChoosePage ###############
 
-choose_Title_Text_PT = "Escolhe a imagem"                         # Texto que aparece no inicio da pagina inicial em Portugues
-choose_Title_Text_EN = "Choose the image"
+choose_Title_Text_PT = "Escolha a imagem"                         # Texto que aparece no inicio da pagina inicial em Portugues
+choose_Title_Text_EN = "Choose the picture"
 choose_Title_X = 540                                             # coordenadas x e y do titulo
 choose_Title_Y = 1400
 choose_Title_Font = ('Helvetica 40')                            # fonte do texto    formato: (fonte tamanho pesos/slants)
@@ -51,26 +51,28 @@ choose_RightArrow_Y = 1400
 choose_LeftArrow_X = 100                                      # coordenadas x e y da seta de escolha da esquerda
 choose_LeftArrow_Y = 1400
 
+
+### Subtitles ###
 choose_Subtitle_Font = ('Helvetica 20')
 choose_Subtitle_Font_Bold = ('Helvetica 20 bold')
-choose_Subtitle_X = 100
-choose_Subtitle_Y = 1400
+choose_Subtitle_X = 200
+choose_Subtitle_Y = 1800
 choose_SubTitle_fill_selected = "white"
 choose_SubTitle_fill_deselected = "gray"
-choose_SubTitle_PT = "PT"
+choose_SubTitle_PT = "pt"
 Choose_SubTitle_Separator = " | "
-choose_SubTitle_EN = "EN"
+choose_SubTitle_EN = "en"
 
 
 ############### Settings for CompPage ###############
 
 comp_Ready_Text_PT = "Coloque-se em posição"                     # texto inicial para avisar o utilizador
-comp_Ready_Text_EN = "Get in position"
-comp_CountDown_Text_PT = "Preparados?"                          # texto que aparece para a contagem decrescente
+comp_Ready_Text_EN = "Put yourself in position"
+comp_CountDown_Text_PT = "Preparado?"                          # texto que aparece para a contagem decrescente
 comp_CountDown_Text_EN = "Ready?"
 comp_Title_X = 540                                             # coordenadas x e y do texto
 comp_Title_Y = 1400
-comp_Title_Font = ('Helvetica 30 bold')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
+comp_Title_Font = ('Helvetica 40')                       # fonte do texto    formato: (fonte tamanho pesos/slants)
 comp_Title_Fill = "white"                                      # cor do texto
 
 
@@ -91,10 +93,10 @@ comp_countdownTimer = 5                                         # tempo com cont
 
 ############### Settings for PostalPage ###############
 
-postal_Title_Text_PT = "Passa o teu bilhete\npara guardares\na selfie"      # Texto que aparece para o utilizador guardar a selfie
-postal_Title_Text_EN = "Use the keycard\nto save\nthe selfie"               # Texto em ingles
+postal_Title_Text_PT = "Introduza o bilhete\npara guardar\na sua selfie"      # Texto que aparece para o utilizador guardar a selfie
+postal_Title_Text_EN = "Insert the ticket\nto save\nthe selfie"               # Texto em ingles
 postal_Title_X = 540                                                        # coordenadas x e y do texto
-postal_Title_Y = 1400
+postal_Title_Y = 1600
 postal_Title_Font = ('Helvetica 40')                                        # fonte do texto    formato: (fonte tamanho pesos/slants)
 postal_Title_Fill = "white"                                                 # cor do texto
 
@@ -109,17 +111,17 @@ postal_Image_resize_Y = 1240
 ############### Settings for PostalFinalPage ###############
 
 postal_Final_Title_Text_PT = "Obrigado!"                                        # Texto a agradecer o utilizador
-postal_Final_Title_Text_EN = "Thank you"                                        # Texto em ingles
+postal_Final_Title_Text_EN = "Thank you!"                                        # Texto em ingles
 postal_Final_Title_X = 300                                                      # coordenadas x e y do texto
-postal_Final_Title_Y = 1400
+postal_Final_Title_Y = 1600
 postal_Final_Title_Font = ('Helvetica 40')                                      # fonte do texto    formato: (fonte tamanho pesos/slants)
 postal_Final_Title_Fill = "white"                                               # cor do texto
 
-postal_Final_Subtitle_Text_PT = "A tua selfie já está disponível.\nAcede a www.cip.pt\selfie\ne partilha nas tuas redes"                                     # Texto a dar o link
-postal_Final_Subtitle_Text_EN = "Your selfie is available ..."                                     # Texto em ingles
+postal_Final_Subtitle_Text_PT = "Aceda a www.cip.pt\\selfie\ne partilhe"                                    # Texto a dar o link
+postal_Final_Subtitle_Text_EN = "Acess www.cip.pt\\selfie\n and share "                                                                                              # Texto em ingles
 postal_Final_Subtitle_X = 300                                                   # coordenadas x e y do texto
-postal_Final_Subtitle_Y = 1460
-postal_Final_Subtitle_Font = ('Helvetica 20')                                   # fonte do texto    formato: (fonte tamanho pesos/slants)
+postal_Final_Subtitle_Y = 1700
+postal_Final_Subtitle_Font = ('Helvetica 30')                                   # fonte do texto    formato: (fonte tamanho pesos/slants)
 postal_Final_Subtitle_Fill = "white"                                            # cor do texto
 
 

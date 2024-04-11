@@ -54,7 +54,8 @@ class CompPage(tk.Frame):
         self.canvas_t2 = self.canvas.create_text(0, 0,
                                                  text=settings["Choose_SubTitle_Separator"],
                                                  anchor=tk.CENTER,
-                                                 font=settings["choose_Subtitle_Font"])
+                                                 font=settings["choose_Subtitle_Font"],
+                                                 fill=settings["choose_SubTitle_fill_deselected"])
         self.canvas_t3 = self.canvas.create_text(0, 0,
                                                  text=settings["choose_SubTitle_EN"],
                                                  anchor=tk.W,
@@ -73,7 +74,6 @@ class CompPage(tk.Frame):
         self.StartTimer()  # Set user warn timer
         self.ShowImage("segmentation")  # shows photo combined with the webcam user image
         self.inCountdown = False
-
         self.canvas.itemconfig(self.canvas_text_countdown, text="")  # reset countdown text
         self.UpdateLanguage()
 
@@ -115,12 +115,16 @@ class CompPage(tk.Frame):
 
         lang = self.controller.language
         if lang == "_PT":
-            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font_Bold"])
-            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font"])
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font_Bold"],
+                                      fill=settings["choose_SubTitle_fill_selected"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font"],
+                                      fill=settings["choose_SubTitle_fill_deselected"])
 
         if lang == "_EN":
-            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font"])
-            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"])
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font"],
+                                      fill=settings["choose_SubTitle_fill_deselected"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"],
+                                      fill=settings["choose_SubTitle_fill_selected"])
 
         if self.inCountdown:
             self.canvas.itemconfigure(self.canvas_text, text=settings["comp_CountDown_Text" + self.controller.language])

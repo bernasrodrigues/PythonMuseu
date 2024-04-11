@@ -50,7 +50,31 @@ class PostalPage(tk.Frame):
                                                        image=self.controller.degrade)
         '''
 
-        #self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("PostalPageFinal"))
+        # Language Select button
+        # coordinates initially zero because they are set once all are created
+        self.canvas_t1 = self.canvas.create_text(0, 0,
+                                                 text=settings["choose_SubTitle_PT"],
+                                                 anchor=tk.E,
+                                                 font=settings["choose_Subtitle_Font"])
+        self.canvas_t2 = self.canvas.create_text(0, 0,
+                                                 text=settings["Choose_SubTitle_Separator"],
+                                                 anchor=tk.CENTER,
+                                                 font=settings["choose_Subtitle_Font"],
+                                                 fill=settings["choose_SubTitle_fill_deselected"])
+        self.canvas_t3 = self.canvas.create_text(0, 0,
+                                                 text=settings["choose_SubTitle_EN"],
+                                                 anchor=tk.W,
+                                                 font=settings["choose_Subtitle_Font"])
+
+        # set the coordinates of the language select buttons
+        self.canvas.coords(self.canvas_t1, settings["choose_Subtitle_X"] - 20, settings["choose_Subtitle_Y"])
+        self.canvas.coords(self.canvas_t2, settings["choose_Subtitle_X"], settings["choose_Subtitle_Y"])
+        self.canvas.coords(self.canvas_t3, settings["choose_Subtitle_X"] + 20, settings["choose_Subtitle_Y"])
+
+        self.canvas.tag_bind(self.canvas_t1, '<Button-1>', lambda event: self.SetLang("_PT"))
+        self.canvas.tag_bind(self.canvas_t3, '<Button-1>', lambda event: self.SetLang("_EN"))
+
+        # self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("PostalPageFinal"))
 
     def EnterFrame(self):
         self.active = True
@@ -60,17 +84,18 @@ class PostalPage(tk.Frame):
         # create postal , resize and set the image to postal
         postal = self.controller.CreatePostalMontageImage()
         postal = self.ResizePostal(postal, settings["postal_Image_resize_X"], settings["postal_Image_resize_Y"])
-        #postal = self.ResizePostal(postal, 500, 500)
+        # postal = self.ResizePostal(postal, 500, 500)
 
         self.ConfigureImage(postal)  # on enter create postal image
 
         keyboard.on_press(self.on_barcode_scan)  # start listening to keyboard
-        #self.canvas.after(10000, self.MoveToNextPage)           # move to next page
+        # self.canvas.after(10000, self.MoveToNextPage)           # move to next page
+        self.UpdateLanguage()
 
     def ResizePostal(self, postal, x, y):
         postal = ImageTk.getimage(postal)  # convert to pil
         size = (x, y)
-        postal = postal.resize(size , resample=Image.BICUBIC)  # resize it
+        postal = postal.resize(size, resample=Image.BICUBIC)  # resize it
         postal = ImageTk.PhotoImage(postal)  # convert to photo image
         return postal
 
@@ -93,6 +118,27 @@ class PostalPage(tk.Frame):
                 self.barCode += event.name
                 # Handle barcode scanning
                 print("Barcode scanned:", self.barCode)
+
+    def SetLang(self, lang):
+        self.controller.SetLang(lang)
+        self.UpdateLanguage()
+
+    def UpdateLanguage(self):
+
+        lang = self.controller.language
+        if lang == "_PT":
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font_Bold"],
+                                      fill=settings["choose_SubTitle_fill_selected"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font"],
+                                      fill=settings["choose_SubTitle_fill_deselected"])
+
+        if lang == "_EN":
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font"],
+                                      fill=settings["choose_SubTitle_fill_deselected"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"],
+                                      fill=settings["choose_SubTitle_fill_selected"])
+
+        self.canvas.itemconfigure(self.canvas_text, text=settings["postal_Title_Text" + self.controller.language])
 
     # automatically move to next page if not clicked
     def MoveToNextPage(self):

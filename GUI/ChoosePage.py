@@ -71,7 +71,8 @@ class ChoosePage(tk.Frame):
         self.canvas_t2 = self.canvas.create_text(0, 0,
                                                  text=settings["Choose_SubTitle_Separator"],
                                                  anchor=tk.CENTER,
-                                                 font=settings["choose_Subtitle_Font"])
+                                                 font=settings["choose_Subtitle_Font"],
+                                                 fill=settings["choose_SubTitle_fill_deselected"])
         self.canvas_t3 = self.canvas.create_text(0, 0,
                                                  text=settings["choose_SubTitle_EN"],
                                                  anchor=tk.W,
