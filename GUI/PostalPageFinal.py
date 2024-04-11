@@ -1,6 +1,6 @@
 import tkinter as tk  # python 3
-import keyboard
-from PIL import ImageTk
+
+from PIL import Image, ImageTk
 
 from Settings.SettingsHandler import settings
 
@@ -57,7 +57,6 @@ class PostalPageFinal(tk.Frame):
         self.ConfigureImage(self.controller.GetPostalMontageImage())
         print("Showing Postal Final Image")
 
-
         postal = self.controller.CreatePostalMontageImage()
         postal = self.ResizeAnglePostal(postal,
                                         x=settings["postal_Final_Image_resize_X"],
@@ -72,8 +71,8 @@ class PostalPageFinal(tk.Frame):
     def ResizeAnglePostal(self, postal, x, y, angle):
         postal = ImageTk.getimage(postal)  # convert to pil
         size = (x, y)
-        postal = postal.resize(size)  # resize it
-        postal = postal.rotate(angle, expand=True)
+        postal = postal.resize(size, resample=Image.BICUBIC)  # resize it
+        postal = postal.rotate(angle, expand=True, resample=Image.BICUBIC)
         postal = ImageTk.PhotoImage(postal)  # convert to photo image
         return postal
 

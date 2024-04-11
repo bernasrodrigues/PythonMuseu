@@ -1,8 +1,7 @@
 import tkinter as tk  # python 3
 
-import PIL
 import keyboard
-from PIL import ImageTk
+from PIL import ImageTk, Image
 
 from Settings.SettingsHandler import settings
 
@@ -71,7 +70,7 @@ class PostalPage(tk.Frame):
     def ResizePostal(self, postal, x, y):
         postal = ImageTk.getimage(postal)  # convert to pil
         size = (x, y)
-        postal = postal.resize(size)  # resize it
+        postal = postal.resize(size , resample=Image.BICUBIC)  # resize it
         postal = ImageTk.PhotoImage(postal)  # convert to photo image
         return postal
 
