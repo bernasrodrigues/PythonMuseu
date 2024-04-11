@@ -54,6 +54,10 @@ class StartPage(tk.Frame):
 
         self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("ChoosePage"))
 
+    def EnterFrame(self):
+        self.active = True
+        self.ImageCarrousel()
+
     def ImageCarrousel(self):
         if self.active:
             if self.image_index == len(self.controller.images_intro) - 1:
@@ -61,27 +65,10 @@ class StartPage(tk.Frame):
                 self.image_index = 0
 
             else:
-                '''
-                image = self.controller.images_intro[self.image_index]
-                img = ImageTk.getimage(image)
-                img = img.rotate(30, expand=True)
-                size = 800, 800
-                img.thumbnail(size)
-                imgTK = ImageTk.PhotoImage(img)
-                img.save("AAAAAAAAAAA.png")
-
-                self.im = imgTK
-                self.canvas.itemconfig(self.canvas_image, image=imgTK)
-                '''
-
                 self.canvas.itemconfig(self.canvas_image, image=self.controller.images_intro[self.image_index])
                 self.image_index += 1
 
             self.canvas.after(settings["start_ImageCarrousel_Timer"], self.ImageCarrousel)
-
-    def EnterFrame(self):
-        self.active = True
-        self.ImageCarrousel()
 
     def ExitFrame(self):
         self.active = False

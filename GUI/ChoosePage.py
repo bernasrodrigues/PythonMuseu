@@ -93,6 +93,18 @@ class ChoosePage(tk.Frame):
     tkinter widgets require photoImage objects
     '''
 
+    def EnterFrame(self):
+        self.active = True
+        self.controller.SetMontageToFirst()  # Resetting the image list to the first montage
+
+        self.fadeImage(0)
+
+        # image = self.controller.GetMontageCover()
+        # self.ConfigureImage(image)
+
+        # self.ImageTransparency(1)
+        self.UpdateLanguage()
+
     def fadeImage(self, alpha):
 
         if self.active:
@@ -103,7 +115,6 @@ class ChoosePage(tk.Frame):
                 self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha + 0.01)
             else:
                 self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha)
-
 
     def fadeImageOut(self, alpha):
         if self.active:
@@ -134,20 +145,8 @@ class ChoosePage(tk.Frame):
     def NextImage(self, direction):
         self.canvas.after_cancel(self.fadeAfter)
         self.controller.GetNextMontageCover(direction)
-        self.fadeImage(0)                                               # fade in configures the image
-        #self.ConfigureImage(image)
-
-    def EnterFrame(self):
-        self.active = True
-        self.controller.SetMontageToFirst()  # Resetting the image list to the first montage
-
-        self.fadeImage(0)
-
-        # image = self.controller.GetMontageCover()
+        self.fadeImage(0)  # fade in configures the image
         # self.ConfigureImage(image)
-
-        # self.ImageTransparency(1)
-        self.UpdateLanguage()
 
     # Sets the image in the Image label
     def ConfigureImage(self, image):
@@ -162,12 +161,16 @@ class ChoosePage(tk.Frame):
 
         lang = self.controller.language
         if lang == "_PT":
-            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font_Bold"])
-            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font"])
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font_Bold"],
+                                      fill=settings["choose_SubTitle_fill_selected"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font"],
+                                      fill=settings["choose_SubTitle_fill_deselected"])
 
         if lang == "_EN":
-            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font"])
-            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"])
+            self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font"],
+                                      fill=settings["choose_SubTitle_fill_deselected"])
+            self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"],
+                                      fill=settings["choose_SubTitle_fill_selected"])
 
         self.canvas.itemconfigure(self.canvasChooseText, text=settings["choose_Title_Text" + lang])
 
