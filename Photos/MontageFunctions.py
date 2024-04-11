@@ -15,20 +15,20 @@ def resize(image, size_x, size_y):
 
 def MontageBaseEffect(name, image):
     filter_brightness = ImageEnhance.Brightness(image)
-    # image = filter_brightness.enhance(settings[name + "brightness"])
-    image = filter_brightness.enhance(settings["brightness"])
+    image = filter_brightness.enhance(settings[name + "_brightness"])
+    #image = filter_brightness.enhance(settings["brightness"])
 
     filter_contrast = ImageEnhance.Contrast(image)
-    # image = filter_contrast.enhance(settings[name + "contrast"])
-    image = filter_contrast.enhance(settings["contrast"])
+    image = filter_contrast.enhance(settings[name + "_contrast"])
+    #image = filter_contrast.enhance(settings["contrast"])
 
     filter_sharpness = ImageEnhance.Sharpness(image)
-    # image = filter_sharpness.enhance(settings[name + "sharpness"])
-    image = filter_sharpness.enhance(settings["sharpness"])
+    image = filter_sharpness.enhance(settings[name + "_sharpness"])
+    #image = filter_sharpness.enhance(settings["sharpness"])
 
     filter_saturation = ImageEnhance.Color(image)
-    # image = filter_saturation.enhance(settings[name + "saturation"])
-    image = filter_saturation.enhance(settings["saturation"])
+    image = filter_saturation.enhance(settings[name + "_saturation"])
+    #image = filter_saturation.enhance(settings["saturation"])
 
     return image
 
@@ -43,8 +43,6 @@ def MontageBasePlacement(name, coverImage, image):
 
 
 def MontageBaseResize(name, image):
-    # print(image.size)
-
     size = (settings[name + "_Resize_x"], settings[name + "_Resize_y"])
     resizedImage = image.resize(size)
     return resizedImage

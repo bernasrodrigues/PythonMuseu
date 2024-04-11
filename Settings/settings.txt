@@ -167,12 +167,40 @@ Montagem5_Resize_x = 640
 Montagem5_Resize_y = 480
 
 ############### Settings for ImageEffects ###############
-brightness = 1
+brightness = 1              # base settings not used just for testing
 contrast = 1
 sharpness = 1
 saturation = 0
 
 
+Montagem1_brightness = 1
+Montagem1_contrast = 1
+Montagem1_sharpness = 1
+Montagem1_saturation= 0
 
-### Settings
+Montagem2_brightness = 1
+Montagem2_contrast = 1
+Montagem2_sharpness = 1
+Montagem2_saturation= 0
+
+Montagem3_brightness = 1
+Montagem3_contrast = 1
+Montagem3_sharpness = 1
+Montagem3_saturation= 0
+
+Montagem4_brightness = 1
+Montagem4_contrast = 1
+Montagem4_sharpness = 1
+Montagem4_saturation= 0
+
+Montagem5_brightness = 1
+Montagem5_contrast = 1
+Montagem5_sharpness = 1
+Montagem5_saturation= 0
+
+
+
+
+############### Settings ###############
 UserPostageFolder = "UserPhotos/"                                       # Folder where the user postal will be stored
+debug = True

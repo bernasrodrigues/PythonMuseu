@@ -9,6 +9,7 @@ from PIL import Image, ImageOps
 from cvzone.SelfiSegmentationModule import SelfiSegmentation
 
 from Photos.MontageFunctions import resize
+from Settings.SettingsHandler import settings
 
 # A Montage contains the list of layers that compose an Image
 # the user images is inserted in the position that we want it to be
@@ -132,8 +133,9 @@ class Montage:
         resizes the image to the to the value in settings (ex: Montagem1_Resize_x)'''
         userImage = self.resizeFunct(self.name, userImage)
 
-        # TODO DEBUG MODE   remove in final function
-        userImage = ImageOps.expand(userImage, border=1, fill='red')  # add border to know the image position
+        #TODO DEBUG MODE   remove in final function
+        if settings["debug"]:
+            userImage = ImageOps.expand(userImage, border=1, fill='red')  # add border to know the image position
 
         '''
         Function placementFunct
