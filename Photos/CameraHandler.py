@@ -13,10 +13,12 @@ class CameraHandler:
         with cls._lock:
             if not cls._instance:
                 cls._instance = super().__new__(cls)
-                cls._instance.camera = cv2.VideoCapture(0)
+                cls._instance.camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
                 cls._instance.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1980)
                 cls._instance.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+                cls._instance.camera.set(cv2.CAP_PROP_FPS, 30)
+                cls._instance.camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
 
                 cls._instance.image = None
                 cls._instance.is_recording = False

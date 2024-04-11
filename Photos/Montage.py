@@ -157,7 +157,7 @@ class Montage:
         self.finalImage = self.postalImage
 
         # TODO see size of userImage
-        userImage_resize = resize(self.userMontageImage, 880, 1172)
+        userImage_resize = resize(self.userMontageImage, 889, 1188)
 
         # TODO placement
         placement = (100, 65)
