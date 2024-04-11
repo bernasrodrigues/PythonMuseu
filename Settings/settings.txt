@@ -8,7 +8,7 @@ windowHeight = 1920
 baseFont = ('Helvetica 18 bold')
 
 
-############### Settings for Base Page ###############
+############### Settings for StartPage ###############
 
 
 start_Title_Text = "Selfie"                                     # Texto que aparece no inicio da pagina inicial
@@ -78,20 +78,56 @@ comp_Title_Fill = "white"
 
 
 
-comp_readyTimer = 5                                             # tempo em segundos para dar tempo para preparar
-comp_countdownTimer = 5                                         # tempo com contagem decresente para tirar foto
+comp_readyTimer = 0                                             # tempo em segundos para dar tempo para preparar
+comp_countdownTimer = 0                                         # tempo com contagem decresente para tirar foto
 
 
 ############### Settings for ResultPage ###############
 
+# NOT USED
+
+############### Settings for PostalPage ###############
+
+postal_Title_Text_PT = "Passa o teu bilhete\npara guardares\na selfie"      # Texto que aparece para o utilizador guardar a selfie
+postal_Title_Text_EN = "Use the keycard\nto save\nthe selfie"               # Texto em ingles
+postal_Title_X = 540                                                        # coordenadas x e y do texto
+postal_Title_Y = 1400
+postal_Title_Font = ('Helvetica 40')                                        # fonte do texto    formato: (fonte tamanho pesos/slants)
+postal_Title_Fill = "white"                                                 # cor do texto
 
 
-############### Settings for StartPage ###############
+postal_Image_X = 540
+postal_Image_Y = 800
+
+postal_Image_resize_X = 856
+postal_Image_resize_Y = 1240
 
 
+############### Settings for PostalFinalPage ###############
+
+postal_Final_Title_Text_PT = "Obrigado!"                                        # Texto a agradecer o utilizador
+postal_Final_Title_Text_EN = "Thank you"                                        # Texto em ingles
+postal_Final_Title_X = 300                                                      # coordenadas x e y do texto
+postal_Final_Title_Y = 1400
+postal_Final_Title_Font = ('Helvetica 40')                                      # fonte do texto    formato: (fonte tamanho pesos/slants)
+postal_Final_Title_Fill = "white"                                               # cor do texto
+
+postal_Final_Subtitle_Text_PT = "A tua selfie já está disponível.\nAcede a www.cip.pt\selfie\ne partilha nas tuas redes"                                     # Texto a dar o link
+postal_Final_Subtitle_Text_EN = "Your selfie is available ..."                                     # Texto em ingles
+postal_Final_Subtitle_X = 300                                                   # coordenadas x e y do texto
+postal_Final_Subtitle_Y = 1460
+postal_Final_Subtitle_Font = ('Helvetica 20')                                   # fonte do texto    formato: (fonte tamanho pesos/slants)
+postal_Final_Subtitle_Fill = "white"                                            # cor do texto
 
 
+postal_Final_Image_X = 540
+postal_Final_Image_Y = 800
 
+postal_Final_Image_resize_X = 856
+postal_Final_Image_resize_Y = 1240
+postal_Final_Image_angle = 10
+
+postal_Final_TimeUntilMoveToStart = 10                                              # time until moves to the start page
 
 
 ############### Settings for MontagePlacement ###############

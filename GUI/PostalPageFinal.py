@@ -1,5 +1,6 @@
 import tkinter as tk  # python 3
 import keyboard
+from PIL import ImageTk
 
 from Settings.SettingsHandler import settings
 
@@ -20,7 +21,7 @@ class PostalPageFinal(tk.Frame):
             self,
             width=1080,
             height=1980,
-            background='gray'
+            background='black'
 
         )
         self.canvas.place(
@@ -30,64 +31,59 @@ class PostalPageFinal(tk.Frame):
         )
 
         # Final image presentation initially set to none
-        self.canvas_image = self.canvas.create_image(1080 / 2, 1980 / 2, anchor=tk.CENTER, image=None)
+        self.canvas_image = self.canvas.create_image(settings["postal_Final_Image_X"],
+                                                     settings["postal_Final_Image_Y"],
+                                                     anchor=tk.CENTER,
+                                                     image=None)
 
-        self.canvas_text = self.canvas.create_text(500,
-                                                   500,
-                                                   text="Obrigado",
-                                                   fill="white",
-                                                   font=settings["comp_Title_Font"])
+        self.canvas_text = self.canvas.create_text(settings["postal_Final_Title_X"],
+                                                   settings["postal_Final_Title_Y"],
+                                                   text=settings["postal_Final_Title_Text_PT"],
+                                                   fill=settings["postal_Final_Title_Fill"],
+                                                   font=settings["postal_Final_Title_Font"],
+                                                   anchor="w")
 
-        self.canvas_text = self.canvas.create_text(500,
-                                                   600,
-                                                   text="A tua selfie já está disponivel",
-                                                   fill="white",
-                                                   font=settings["comp_Title_Font"])
+        self.canvas_text_subtitle = self.canvas.create_text(settings["postal_Final_Subtitle_X"],
+                                                            settings["postal_Final_Subtitle_Y"],
+                                                            text=settings["postal_Final_Subtitle_Text_PT"],
+                                                            fill=settings["postal_Final_Subtitle_Fill"],
+                                                            font=settings["postal_Final_Subtitle_Font"],
+                                                            anchor="w")
 
-        self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
-        # self.canvas.bind("<Key>", self.KeyPress)
-        keyboard.on_press(self.on_barcode_scan)
+        # self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
 
     def EnterFrame(self):
         self.active = True
         self.ConfigureImage(self.controller.GetPostalMontageImage())
         print("Showing Postal Final Image")
-        # self.canvas.after(10000, self.MoveToNextPage)
+
+
+        postal = self.controller.CreatePostalMontageImage()
+        postal = self.ResizeAnglePostal(postal,
+                                        x=settings["postal_Final_Image_resize_X"],
+                                        y=settings["postal_Final_Image_resize_Y"],
+                                        angle=settings["postal_Final_Image_angle"])
+
+        self.ConfigureImage(postal)  # on enter create postal image
+
+        self.canvas.after(settings["postal_Final_TimeUntilMoveToStart"] * 1000,
+                          self.MoveToNextPage)  # move to next page
+
+    def ResizeAnglePostal(self, postal, x, y, angle):
+        postal = ImageTk.getimage(postal)  # convert to pil
+        size = (x, y)
+        postal = postal.resize(size)  # resize it
+        postal = postal.rotate(angle, expand=True)
+        postal = ImageTk.PhotoImage(postal)  # convert to photo image
+        return postal
 
     def ConfigureImage(self, image):
         self.canvas.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)
         self.canvas.itemconfig(self.canvas_image, image=image)
 
-    # Listen for barcode scanner input events
-    def on_barcode_scan(self, event):
-        if self.active:
-            if event.name == 'enter':
-                print("Enter key pressed")
-                print("Final barcode:", self.barCode)
-                self.controller.SavePostalImage(self.barCode)
-
-            else:
-                self.barCode += event.name
-                # Handle barcode scanning
-                print("Barcode scanned:", self.barCode)
-
-    '''
-    def KeyPress(self, event):
-
-        if event.char in '0123456789':
-            self.controller.barCode += event.char
-            # print('>', code)
-            print(self.controller.barCode)
-
-        elif event.keysym == 'Return':
-            # print('result:', code)
-            print("barcode end: " + self.controller.barCode)
-            self.controller.barCode = ""
-    '''
-
-    # automatically move to next page if not clicked
     def MoveToNextPage(self):
-        pass
+        if self.active:
+            self.controller.show_frame("StartPage")
 
     def ExitFrame(self):
         self.active = False
