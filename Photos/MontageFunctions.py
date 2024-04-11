@@ -1,4 +1,4 @@
-from PIL import ImageEnhance, ImageTk
+from PIL import ImageEnhance, Image
 
 from Settings.SettingsHandler import settings
 
@@ -7,8 +7,10 @@ from Settings.SettingsHandler import settings
 def resize(image, size_x, size_y):
     size = size_x, size_y
 
-    imageResize = image.copy()
-    imageResize.thumbnail(size)
+    #imageResize = image.copy()
+    #imageResize.thumbnail(size)
+
+    imageResize = image.resize(size, resample=Image.BICUBIC)  # resize it
 
     return imageResize
 

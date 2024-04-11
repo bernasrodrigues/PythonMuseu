@@ -14,6 +14,10 @@ class CameraHandler:
             if not cls._instance:
                 cls._instance = super().__new__(cls)
                 cls._instance.camera = cv2.VideoCapture(0)
+
+                cls._instance.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1980)
+                cls._instance.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+
                 cls._instance.image = None
                 cls._instance.is_recording = False
             return cls._instance
