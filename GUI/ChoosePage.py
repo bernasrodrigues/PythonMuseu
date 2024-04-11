@@ -112,7 +112,7 @@ class ChoosePage(tk.Frame):
             self.ConfigureImage(image)
 
             if alpha <= 1:  # repeat until fade in is done
-                self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha + 0.01)
+                self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha + 0.05)
             else:
                 self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha)
 
@@ -122,7 +122,7 @@ class ChoosePage(tk.Frame):
             self.ConfigureImage(image)
 
             if alpha >= 0:  # repeat until all fade is done
-                self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha - 0.01)
+                self.fadeAfter = self.canvas.after(10, self.fadeImageOut, alpha - 0.05)
             else:
                 self.fadeAfter = self.canvas.after(10, self.fadeImage, alpha)
 

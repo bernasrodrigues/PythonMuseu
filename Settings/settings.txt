@@ -80,8 +80,8 @@ comp_Title_Fill = "white"
 
 
 
-comp_readyTimer = 0                                             # tempo em segundos para dar tempo para preparar
-comp_countdownTimer = 0                                         # tempo com contagem decresente para tirar foto
+comp_readyTimer = 5                                             # tempo em segundos para dar tempo para preparar
+comp_countdownTimer = 5                                         # tempo com contagem decresente para tirar foto
 
 
 ############### Settings for ResultPage ###############

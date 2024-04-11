@@ -2,6 +2,7 @@ import tkinter as tk  # python 3
 
 from Settings.SettingsHandler import settings
 
+
 # NOT USED
 
 class CompPage(tk.Frame):
@@ -10,6 +11,7 @@ class CompPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.active = False
+        self.inCountdown = False
 
         self.canvas = tk.Canvas(
             self,
@@ -70,6 +72,9 @@ class CompPage(tk.Frame):
         self.active = True
         self.StartTimer()  # Set user warn timer
         self.ShowImage("segmentation")  # shows photo combined with the webcam user image
+        self.inCountdown = False
+
+        self.canvas.itemconfig(self.canvas_text_countdown, text="")  # reset countdown text
         self.UpdateLanguage()
 
     # Updates the generated image every x seconds
@@ -82,18 +87,19 @@ class CompPage(tk.Frame):
     # After the user ready timer starts the countdown timer and configures the text
     def StartTimer(self):
         self.canvas.itemconfig(self.canvas_text, text=settings["comp_Ready_Text" + self.controller.language])
-        self.canvas.after(settings["comp_readyTimer"] * 1000, self.Timer, settings["comp_countdownTimer"])      # start the ready timer after the time set in the settings
+        self.canvas.after(settings["comp_readyTimer"] * 1000, self.Timer,
+                          settings["comp_countdownTimer"])  # start the ready timer after the time set in the settings
 
     # Starts user ready timer after the set time has passed it starts the countdown timer
     def Timer(self, countdown):
         self.canvas.itemconfig(self.canvas_text, text=settings["comp_CountDown_Text" + self.controller.language])
-        if countdown >= 0:
-            # call countdown again after 1000ms (1s)
+        self.inCountdown = True
+        if countdown >= 1:
             print("countdown = " + str(countdown))
             self.canvas.itemconfig(self.canvas_text_countdown, text=countdown)
-            self.canvas.after(1000, self.Timer, countdown - 1)
+            self.canvas.after(1000, self.Timer, countdown - 1)  # call countdown again after 1000ms (1s)
 
-        if countdown < 0:
+        else:
             self.ShowImage("rembg")
             self.controller.show_frame("PostalPage")
 
@@ -115,7 +121,12 @@ class CompPage(tk.Frame):
         if lang == "_EN":
             self.canvas.itemconfigure(self.canvas_t1, font=settings["choose_Subtitle_Font"])
             self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"])
-        pass
+
+        if self.inCountdown:
+            self.canvas.itemconfigure(self.canvas_text, text=settings["comp_CountDown_Text" + self.controller.language])
+        else:
+            self.canvas.itemconfigure(self.canvas_text, text=settings["comp_Ready_Text" + self.controller.language])
 
     def ExitFrame(self):
         self.active = False
+        self.inCountdown = False
