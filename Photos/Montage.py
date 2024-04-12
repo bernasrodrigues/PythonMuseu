@@ -27,6 +27,7 @@ class Montage:
         self.postalImage = None  # image of the postal
         self.finalImage = None  # final image on the postal
 
+        self.postalAdditionalEffects = None
         # functions to apply Effects
         self.placementFunct = placementFunct
         self.effectFunct = effectFunct
@@ -133,7 +134,7 @@ class Montage:
         resizes the image to the to the value in settings (ex: Montagem1_Resize_x)'''
         userImage = self.resizeFunct(self.name, userImage)
 
-        #TODO DEBUG MODE   remove in final function
+        # TODO DEBUG MODE   remove in final function
         if settings["debug"]:
             userImage = ImageOps.expand(userImage, border=1, fill='red')  # add border to know the image position
 
@@ -159,7 +160,11 @@ class Montage:
         # TODO see size of userImage
         userImage_resize = resize(self.userMontageImage, 889, 1188)
 
+        if self.postalAdditionalEffects is not None:
+            userImage_resize = self.postalAdditionalEffects(self.name, userImage_resize)
+
         # TODO placement
         placement = (100, 65)
+
         self.finalImage.paste(userImage_resize, placement, userImage_resize)
         return

@@ -2,7 +2,8 @@ import os
 import threading
 
 from Photos.Montage import Montage
-from Photos.MontageFunctions import MontageBasePlacement, MontageBaseEffect, MontageBaseResize
+from Photos.MontageFunctions import MontageBasePlacement, MontageBaseEffect, MontageBaseResize, MontageColorizeEffect, \
+    ColorizeEffect
 
 
 class MontageHandler:
@@ -26,17 +27,39 @@ class MontageHandler:
                 for folder_name in folders:
                     cls._instance.MontageList[folder_name] = Montage(folder_name)
                 '''
+                m1 = Montage("Montagem1",
+                             MontageBasePlacement,
+                             MontageBaseResize,
+                             MontageBaseEffect)
+                cls._instance.montageList["Montagem1"] = m1
 
-                cls._instance.montageList["Montagem1"] = Montage("Montagem1",
-                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
-                cls._instance.montageList["Montagem2"] = Montage("Montagem2",
-                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
-                cls._instance.montageList["Montagem3"] = Montage("Montagem3",
-                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
-                cls._instance.montageList["Montagem4"] = Montage("Montagem4",
-                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
-                cls._instance.montageList["Montagem5"] = Montage("Montagem5",
-                                                                 MontageBasePlacement, MontageBaseResize, MontageBaseEffect)
+                m2 = Montage("Montagem2",
+                             MontageBasePlacement,
+                             MontageBaseResize,
+                             MontageBaseEffect)
+
+                m2.postalAdditionalEffects = ColorizeEffect
+
+                cls._instance.montageList["Montagem2"] = m2
+
+                m3 = Montage("Montagem3",
+                             MontageBasePlacement,
+                             MontageBaseResize,
+                             MontageBaseEffect)
+                cls._instance.montageList["Montagem3"] = m3
+
+                m4 = Montage("Montagem4",
+                             MontageBasePlacement,
+                             MontageBaseResize,
+                             MontageBaseEffect)
+                cls._instance.montageList["Montagem4"] = m4
+
+                m5 = Montage("Montagem5",
+                             MontageBasePlacement,
+                             MontageBaseResize,
+                             MontageBaseEffect)
+
+                cls._instance.montageList["Montagem5"] = m5
 
             return cls._instance
 
@@ -92,16 +115,16 @@ class MontageHandler:
     def GetCurrentMontage(self):
         return self.montageList[self.currentMontage]
 
-    def CreateMontageUserImage(self, image , function):                                # Inserts the user image
-        self.montageList[self.currentMontage].createUserMontageImage(image , function)
+    def CreateMontageUserImage(self, image, function):  # Inserts the user image in the montage
+        self.montageList[self.currentMontage].createUserMontageImage(image, function)
         return self.montageList[self.currentMontage].userMontageImage
 
-    def GetUserMontageImage(self):                                          # Gets the current montage user image
+    def GetUserMontageImage(self):  # Gets the current montage user image
         return self.montageList[self.currentMontage].userMontageImage
 
-    def CreateMontagePostalImage(self):                                     # Create the user postal image
+    def CreateMontagePostalImage(self):  # Create the user postal image
         self.montageList[self.currentMontage].CreatePostalImage()
         return self.montageList[self.currentMontage].finalImage
 
-    def GetPostalMontageImage(self):                                         # Gets the user postal image
+    def GetPostalMontageImage(self):  # Gets the user postal image
         return self.montageList[self.currentMontage].finalImage
