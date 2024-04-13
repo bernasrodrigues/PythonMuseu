@@ -1,6 +1,8 @@
 import tkinter as tk  # python 3
+from time import sleep
 
 from Settings.SettingsHandler import settings
+from SoundPlayer.SoundPlayer import SoundPlayer
 
 
 # NOT USED
@@ -92,16 +94,19 @@ class CompPage(tk.Frame):
 
     # Starts user ready timer after the set time has passed it starts the countdown timer
     def Timer(self, countdown):
-        self.canvas.itemconfig(self.canvas_text, text=settings["comp_CountDown_Text" + self.controller.language])
-        self.inCountdown = True
-        if countdown >= 1:
-            print("countdown = " + str(countdown))
-            self.canvas.itemconfig(self.canvas_text_countdown, text=countdown)
-            self.canvas.after(1000, self.Timer, countdown - 1)  # call countdown again after 1000ms (1s)
+        if self.active:
+            self.canvas.itemconfig(self.canvas_text, text=settings["comp_CountDown_Text" + self.controller.language])
+            self.inCountdown = True
+            if countdown >= 0:
+                print("countdown = " + str(countdown))
+                self.canvas.itemconfig(self.canvas_text_countdown, text=countdown)
+                self.canvas.after(1000, self.Timer, countdown - 1)  # call countdown again after 1000ms (1s)
+                SoundPlayer.Instance().play_sound("beep.mp3")
 
-        else:
-            self.ShowImage("rembg")
-            self.controller.show_frame("PostalPage")
+            else:
+                SoundPlayer.Instance().play_sound("photo.wav")
+                self.ShowImage("rembg")
+                self.controller.show_frame("PostalPage")
 
     def ConfigureImage(self, image):
         self.canvas.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)

@@ -1,9 +1,5 @@
 import threading
-import time
-from tkinter import *
 
-import cv2
-from PIL import Image, ImageTk
 from pynput import mouse
 
 from Settings.SettingsHandler import settings
