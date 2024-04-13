@@ -11,6 +11,7 @@ class StartPage(tk.Frame):
         self.controller = controller
         self.image_index = 0
         self.active = False
+        self.imageCarrousel = None
 
         ### Canvas ###
         # Canvas
@@ -59,6 +60,9 @@ class StartPage(tk.Frame):
 
     def EnterFrame(self):
         self.active = True
+
+        if self.imageCarrousel is not None:
+            self.after_cancel(self.imageCarrousel)
         self.ImageCarrousel()
 
     def ImageCarrousel(self):
@@ -71,7 +75,9 @@ class StartPage(tk.Frame):
                 self.canvas.itemconfig(self.canvas_image, image=self.controller.images_intro[self.image_index])
                 self.image_index += 1
 
-            self.canvas.after(settings["start_ImageCarrousel_Timer"], self.ImageCarrousel)
+            self.imageCarrousel = self.canvas.after(settings["start_ImageCarrousel_Timer"], self.ImageCarrousel)
 
     def ExitFrame(self):
+        if self.imageCarrousel is not None:
+            self.after_cancel(self.imageCarrousel)
         self.active = False
