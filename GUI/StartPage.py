@@ -43,14 +43,17 @@ class StartPage(tk.Frame):
                                                           settings["start_Subtitle_PT_Y"],
                                                           text=settings["start_Subtitle_PT_Text"],
                                                           fill=settings['start_Subtitle_PT_Fill'],
-                                                          font=settings["start_Subtitle_PT_Font"])
+                                                          font=settings["start_Subtitle_PT_Font"],
+                                                          anchor="nw")
 
         # English subtitles
-        self.canvas_subtitle_PT = self.canvas.create_text(settings["start_Subtitle_EN_X"],
+
+        self.canvas_subtitle_EN = self.canvas.create_text(settings["start_Subtitle_EN_X"],
                                                           settings["start_Subtitle_EN_Y"],
                                                           text=settings["start_Subtitle_EN_Text"],
                                                           fill=settings['start_Subtitle_EN_Fill'],
-                                                          font=settings["start_Subtitle_EN_Font"])
+                                                          font=settings["start_Subtitle_EN_Font"],
+                                                          anchor="nw")
 
         self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("ChoosePage"))
 

@@ -4,6 +4,8 @@ import sys
 import time
 import tkinter as tk
 
+from SoundPlayer.SoundPlayer import SoundPlayer
+
 sys.path.append("..")
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 
@@ -97,7 +99,6 @@ class GUI_Base(tk.Tk):
         self.currentFrame.tkraise()
         self.refreshTimer(settings["pageTimeout"])
 
-
     def start_timer(self, timeoutTimer):
         self.timer = self.after(timeoutTimer * 1000, self.show_frame, "StartPage")
 
@@ -173,16 +174,18 @@ if __name__ == "__main__":
     # Initialize the montages
     MontageHandler.Instance()
 
-
     # Initialize the MouseListener
     MouseListener.Instance()
     MouseListener.Instance().AssignController(app)
     MouseListener.Instance().Start()
 
+    # Initialize SoundPlayer
+    SoundPlayer.Instance()
+
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')
     # app.overrideredirect(True)                 # dont use
-    app.attributes('-fullscreen', not settings["debug"])         # start in full screen borderless
+    app.attributes('-fullscreen', not settings["debug"])  # start in full screen borderless
 
     app.show_frame("StartPage")
     app.mainloop()
