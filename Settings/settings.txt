@@ -213,5 +213,5 @@ Montagem5_saturation= 0
 
 ############### Settings ###############
 UserPostageFolder = "UserPhotos/"                                       # Folder where the user postal will be stored
-debug = False
+debug = True
 pageTimeout = 20                                                        # time (in seconds until it is returned to the start page)
