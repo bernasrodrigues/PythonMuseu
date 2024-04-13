@@ -102,6 +102,9 @@ class GUI_Base(tk.Tk):
         self.timer = self.after(timeoutTimer * 1000, self.show_frame, "StartPage")
 
     def refreshTimer(self, timeoutTimer):
+        if self.currentFrame == self.frames["StartPage"]:  # dont start a timer when on the first page
+            return
+
         if self.timer:
             self.after_cancel(self.timer)
 
