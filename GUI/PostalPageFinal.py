@@ -74,7 +74,6 @@ class PostalPageFinal(tk.Frame):
         self.canvas.tag_bind(self.canvas_t1, '<Button-1>', lambda event: self.SetLang("_PT"))
         self.canvas.tag_bind(self.canvas_t3, '<Button-1>', lambda event: self.SetLang("_EN"))
 
-
         # self.canvas.bind("<Button-1>", lambda e: self.controller.show_frame("StartPage"))
 
     def EnterFrame(self):
@@ -90,11 +89,9 @@ class PostalPageFinal(tk.Frame):
 
         self.ConfigureImage(postal)  # on enter create postal image
 
-        self.canvas.after(settings["postal_Final_TimeUntilMoveToStart"] * 1000,
-                          self.MoveToNextPage)  # move to next page
+        self.canvas.after(settings["postal_Final_TimeUntilMoveToStart"] * 1000, self.MoveToNextPage)  # move to next page
 
         self.UpdateLanguage()
-
 
     def ResizeAnglePostal(self, postal, x, y, angle):
         postal = ImageTk.getimage(postal)  # convert to pil
@@ -112,7 +109,6 @@ class PostalPageFinal(tk.Frame):
         self.controller.SetLang(lang)
         self.UpdateLanguage()
 
-
     def UpdateLanguage(self):
 
         lang = self.controller.language
@@ -129,10 +125,8 @@ class PostalPageFinal(tk.Frame):
                                       fill=settings["choose_SubTitle_fill_selected"])
 
         self.canvas.itemconfigure(self.canvas_text, text=settings["postal_Final_Title_Text" + self.controller.language])
-        self.canvas.itemconfigure(self.canvas_text_subtitle, text=settings["postal_Final_Subtitle_Text" + self.controller.language])
-
-
-
+        self.canvas.itemconfigure(self.canvas_text_subtitle,
+                                  text=settings["postal_Final_Subtitle_Text" + self.controller.language])
 
     def MoveToNextPage(self):
         if self.active:

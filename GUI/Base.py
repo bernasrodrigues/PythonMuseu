@@ -18,6 +18,7 @@ from PostalPage import PostalPage
 from PostalPageFinal import PostalPageFinal
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
+from Listener.MouseListener import MouseListener
 from Settings import SettingsHandler
 from Settings.SettingsHandler import settings
 
@@ -40,6 +41,8 @@ class GUI_Base(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         LoadSettings()
+
+        self.timer = None
 
         self.currentFrame = None
         self.debugMode = False
@@ -92,6 +95,17 @@ class GUI_Base(tk.Tk):
         self.currentFrame = self.frames[page_name]
         self.currentFrame.EnterFrame()
         self.currentFrame.tkraise()
+        self.refreshTimer(settings["pageTimeout"])
+
+
+    def start_timer(self, timeoutTimer):
+        self.timer = self.after(timeoutTimer * 1000, self.show_frame, "StartPage")
+
+    def refreshTimer(self, timeoutTimer):
+        if self.timer:
+            self.after_cancel(self.timer)
+
+        self.start_timer(timeoutTimer=timeoutTimer)
 
     def SetMontageToFirst(self):
         MontageHandler.Instance().SetMontageToFirst()
@@ -110,10 +124,8 @@ class GUI_Base(tk.Tk):
         image = ImageTk.PhotoImage(coverImage)
         return image
 
-
-
     ### User Image
-    def CreateUserMontageImage(self , function):  # Create montage with user image
+    def CreateUserMontageImage(self, function):  # Create montage with user image
         cameraImage = CameraHandler.Instance().GetPilImage()
         montageImage = MontageHandler.Instance().CreateMontageUserImage(cameraImage, function)
         finalImage = ImageTk.PhotoImage(montageImage)
@@ -160,6 +172,12 @@ if __name__ == "__main__":
 
     # Initialize the montages
     MontageHandler.Instance()
+
+
+    # Initialize the MouseListener
+    MouseListener.Instance()
+    MouseListener.Instance().AssignController(app)
+    MouseListener.Instance().Start()
 
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')

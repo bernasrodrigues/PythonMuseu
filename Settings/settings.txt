@@ -132,7 +132,7 @@ postal_Final_Image_resize_X = 856
 postal_Final_Image_resize_Y = 1240
 postal_Final_Image_angle = 10
 
-postal_Final_TimeUntilMoveToStart = 10                                              # time until moves to the start page
+postal_Final_TimeUntilMoveToStart = 20                                              # time until moves to the start page
 
 
 ############### Settings for MontagePlacement ###############
@@ -214,3 +214,4 @@ Montagem5_saturation= 0
 ############### Settings ###############
 UserPostageFolder = "UserPhotos/"                                       # Folder where the user postal will be stored
 debug = True
+pageTimeout = 20                                                        # time (in seconds until it is returned to the start page)
