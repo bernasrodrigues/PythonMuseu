@@ -4,8 +4,6 @@ import sys
 import time
 import tkinter as tk
 
-from SoundPlayer.SoundPlayer import SoundPlayer
-
 sys.path.append("..")
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 
@@ -21,6 +19,7 @@ from PostalPageFinal import PostalPageFinal
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
 from Listener.MouseListener import MouseListener
+from SoundPlayer.SoundPlayer import SoundPlayer
 from Settings import SettingsHandler
 from Settings.SettingsHandler import settings
 
