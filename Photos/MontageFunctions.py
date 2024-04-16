@@ -103,20 +103,21 @@ def MontageBaseResize(name, image):
 
 
 def MontagePerspectiveTransformResize(name, image):
-    image = MontageBaseResize(name , image)
+    image = MontageBaseResize(name, image)
 
     # image.save("in.png")
     width, height = image.size
-    pa = [(0, 0), (width, 0), (0, height), (width, height)]  # Original image points
+    pa = [(0, 0), (width, 0), (width, height), (0, height)]  # Original image points
 
-    TL = (0, 0)
-    TR = (width, 0)
-    BL = (0, height + 200)
+    TL = (0 + 300, 0 + 200)
+    TR = (width , 0)
     BR = (width, height)
+    BL = (0 + 300, height - 100)
 
-    pb = [TL, TR, BL, BR]
+    pb = [TL, TR, BR, BL]
 
-    coeffs = find_coeffs(pa, pb)
+    coeffs = find_coeffs(pb, pa)
+    #image.save("in.png")
     image = image.transform((width, height), Image.PERSPECTIVE, coeffs, Image.BICUBIC, fillcolor=(0, 0, 0, 0))
-    # image.save("out.png")
+    #image.save("out.png")
     return image
