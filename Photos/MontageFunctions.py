@@ -103,6 +103,8 @@ def MontageBaseResize(name, image):
 
 
 def MontagePerspectiveTransformResize(name, image):
+    image = MontageBaseResize(name , image)
+
     # image.save("in.png")
     width, height = image.size
     pa = [(0, 0), (width, 0), (0, height), (width, height)]  # Original image points
