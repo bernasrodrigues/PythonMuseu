@@ -3,7 +3,7 @@ import threading
 
 from Photos.Montage import Montage
 from Photos.MontageFunctions import MontageBasePlacement, MontageBaseEffect, MontageBaseResize, MontageColorizeEffect, \
-    ColorizeEffect
+    ColorizeEffect, MontagePerspectiveTransformResize
 
 
 class MontageHandler:
@@ -35,7 +35,7 @@ class MontageHandler:
 
                 m2 = Montage("Montagem2",
                              MontageBasePlacement,
-                             MontageBaseResize,
+                             MontagePerspectiveTransformResize,
                              MontageBaseEffect)
 
                 m2.postalAdditionalEffects = ColorizeEffect

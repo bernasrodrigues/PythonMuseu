@@ -166,5 +166,5 @@ class Montage:
         # TODO placement
         placement = (100, 65)
 
-        self.finalImage.paste(userImage_resize, placement, userImage_resize)
+        self.finalImage.paste(userImage_resize, placement)
         return

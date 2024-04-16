@@ -186,27 +186,33 @@ Montagem1_brightness = 0.9
 Montagem1_contrast = 1.7
 Montagem1_sharpness = 1
 Montagem1_saturation= 0
+Montagem1_noise = 0.05
 
 Montagem2_brightness = 0.9
 Montagem2_contrast = 1.7
 Montagem2_sharpness = 1
 Montagem2_saturation= 0
+Montagem2_colorize_white = "white"
+Montagem2_colorize_black = (50,35,0)
+Montagem2_noise = 0
 
 Montagem3_brightness = 1.3
 Montagem3_contrast = 1.3
 Montagem3_sharpness = 1
 Montagem3_saturation= 1.5
+Montagem3_noise = 0
 
 Montagem4_brightness = 1.5
 Montagem4_contrast = 1
 Montagem4_sharpness = 1
 Montagem4_saturation= 0
+Montagem4_noise = 0
 
 Montagem5_brightness = 1.3
 Montagem5_contrast = 1.2
 Montagem5_sharpness = 1
 Montagem5_saturation= 0
-
+Montagem5_noise = 0
 
 
 
