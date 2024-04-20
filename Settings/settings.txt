@@ -145,6 +145,7 @@ base_UserImage_x =  int ((1080- base_Resize_x)/2)                       # Places
 base_UserImage_y =  int ((1980- base_Resize_y)/2)
 
 
+############### Settings for MontageEffects ###############
 ### Montagem 1 ###
 
 Montagem1_Resize_x = 2000                                                # Resizes the user image to the x and y size
