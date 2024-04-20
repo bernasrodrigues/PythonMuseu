@@ -17,6 +17,10 @@ def find_coeffs(pa, pb):
     return np.array(res).reshape(8)
 
 
+import numpy as np
+from PIL import Image
+
+
 def add_noise(image, intensity=0.1):
     """
     Add grain to the given image.
@@ -30,8 +34,19 @@ def add_noise(image, intensity=0.1):
 
     np_image = np.array(image)
     h, w, c = np_image.shape
+    # If the image has an alpha channel, check for transparency
+    if c == 4:
+        alpha_channel = np_image[:, :, 3]  # Extract alpha channel
+        fully_opaque = alpha_channel >= 250  # Check if alpha is fully opaque
+    else:
+        fully_opaque = np.ones((h, w), dtype=bool)  # If no alpha channel, consider all pixels as fully opaque
+
     noise = np.random.normal(scale=intensity, size=(h, w, c))
+    # Only add noise to fully opaque pixels
     noisy_image = np.clip(np_image + noise * 255, 0, 255).astype(np.uint8)
+    # Set noisy pixels to original image where not fully opaque
+
+    noisy_image[~fully_opaque] = np_image[~fully_opaque]
     return Image.fromarray(noisy_image)
 
 
@@ -64,7 +79,8 @@ def MontageBaseEffect(name, image):
     image = filter_saturation.enhance(settings[name + "_saturation"])
     # image = filter_saturation.enhance(settings["saturation"])
 
-    image = add_noise(image, intensity=settings[name + "_noise"])
+    if settings[name + "_noise"] is not None:
+        image = add_noise(image, intensity=settings[name + "_noise"])
 
     return image
 

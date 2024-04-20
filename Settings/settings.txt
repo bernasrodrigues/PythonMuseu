@@ -135,6 +135,14 @@ postal_Final_TimeUntilMoveToStart = 20                                          
 
 
 ############### Settings for MontagePlacement ###############
+# apply in test cases                                                   # Resizes the user image to the x and y size
+base_Resize_x = 1000
+base_Resize_y = 1000
+
+base_UserImage_x =  int ((1080- base_Resize_x)/2)                       # Places the user image on the x and y coordinates ( anchor = "nw")
+base_UserImage_y =  int ((1980- base_Resize_y)/2)
+
+
 ### Montagem 1 ###
 
 Montagem1_Resize_x = 2000                                                # Resizes the user image to the x and y size
@@ -160,11 +168,11 @@ Montagem3_UserImage_x = int ((1080- Montagem3_Resize_x)/2)
 Montagem3_UserImage_y = int ((1980- Montagem3_Resize_x)/2) + 440
 
 ### Montagem 4 ###
-Montagem4_Resize_x = 1400
+Montagem4_Resize_x = 1400                                   #   (a imagem da camara é ajustada para este tamanho)
 Montagem4_Resize_y = 764
 
-Montagem4_UserImage_x = int ((1080- Montagem4_Resize_x)/2) + 100
-Montagem4_UserImage_y = int ((1980- Montagem4_Resize_x)/2) + 100
+Montagem4_UserImage_x = int ((1080- Montagem4_Resize_x)/2)      #   (posicionamento da imagem, (1080- Montagem4_Resize_x)/2 -> centro da imagem)
+Montagem4_UserImage_y = int ((1980- Montagem4_Resize_x)/2)
 
 
 ### Montagem 5 ###
@@ -202,10 +210,10 @@ Montagem3_sharpness = 1
 Montagem3_saturation= 1.5
 Montagem3_noise = 0
 
-Montagem4_brightness = 1.5
+Montagem4_brightness = 1
 Montagem4_contrast = 1
 Montagem4_sharpness = 1
-Montagem4_saturation= 0
+Montagem4_saturation= 1
 Montagem4_noise = 0
 
 Montagem5_brightness = 1.3
