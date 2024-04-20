@@ -116,8 +116,10 @@ postal_Final_Title_Y = 1600
 postal_Final_Title_Font = ('Helvetica 40')                                      # fonte do texto    formato: (fonte tamanho pesos/slants)
 postal_Final_Title_Fill = "white"                                               # cor do texto
 
-postal_Final_Subtitle_Text_PT = "Aceda a www.cip.pt\\selfie\ne partilhe"                                    # Texto a dar o link
-postal_Final_Subtitle_Text_EN = "Acess www.cip.pt\\selfie\n and share "                                                                                              # Texto em ingles
+#postal_Final_Subtitle_Text_PT = "Aceda a www.cip.pt\\selfie\ne partilhe"                                    # Texto a dar o link
+#postal_Final_Subtitle_Text_EN = "Acess www.cip.pt\\selfie\n and share "                                                                                              # Texto em ingles
+postal_Final_Subtitle_Text_PT = ""                                    # Texto a dar o link
+postal_Final_Subtitle_Text_EN = ""                                                                                              # Texto em ingles
 postal_Final_Subtitle_X = 300                                                   # coordenadas x e y do texto
 postal_Final_Subtitle_Y = 1700
 postal_Final_Subtitle_Font = ('Helvetica 30')                                   # fonte do texto    formato: (fonte tamanho pesos/slants)
@@ -131,12 +133,12 @@ postal_Final_Image_resize_X = 856
 postal_Final_Image_resize_Y = 1240
 postal_Final_Image_angle = 10
 
-postal_Final_TimeUntilMoveToStart = 20                                              # time until moves to the start page
+postal_Final_TimeUntilMoveToStart = 20                                              # time until moves back to the start page
 
 
 ############### Settings for MontagePlacement ###############
-# apply in test cases                                                   # Resizes the user image to the x and y size
-base_Resize_x = 1000
+# apply in test cases
+base_Resize_x = 1000                                                    # Resizes the user image to the x and y size (ancora: canto direito esquerdo)
 base_Resize_y = 1000
 
 base_UserImage_x =  int ((1080- base_Resize_x)/2)                       # Places the user image on the x and y coordinates ( anchor = "nw")
@@ -156,7 +158,7 @@ Montagem2_Resize_x = 1300
 Montagem2_Resize_y = 709
 
 Montagem2_UserImage_x = int ((1080- Montagem2_Resize_x)/2)
-Montagem2_UserImage_y = int ((1980- Montagem2_Resize_x)/2) - 300
+Montagem2_UserImage_y = int ((1980- Montagem2_Resize_x)/2)
 
 
 ### Montagem 3 ###
