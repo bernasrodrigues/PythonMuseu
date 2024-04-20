@@ -1,0 +1,42 @@
+ATENÇÃO -Para remover a barra de controlo e automaticamente por em fullscreen ir ao fim das settings e por a variavel "debug" = False
+
+
+SETTINGS para alterar o tamanho
+
+# -> representa o numero da image
+
+#####
+TAMANHO
+Montagem#_Resize_x e Montagem#_Resize_y  -> alteram o tamanho da imagem antes de esta ser colocada na imagem
+
+exemplo: 
+Montagem1_Resize_x = 1400
+Montagem1_Resize_y = 1000
+
+redimensiona o tamanho da imagem capturada pela camera para 1400 px por 1000 px, sendo está a seguir montada na montagem
+
+#####
+POSICIONAMENTO
+Montagem#_UserImage_x e Montagem#_UserImage_y   -> controla onde a imagem é posicionada com ancora no canto esquerdo direito
+
+exemplo:
+Montagem1_UserImage_x = int ((1080- Montagem1_Resize_x)/2)
+Montagem1_UserImage_y = int  ((1980- Montagem1_Resize_y)/2) + 300
+
+coloca a imagem do utilizador (a imagem capturada pela camara) na montagem
+neste caso centra-a no x, e no y a 300 pixeis abaixo do centro    (quanto maior o valor mais à esquerda (no x) ou mais abaixo (y))
+
+#####
+EFEITOS
+As imagens têm 4 efeitos posiveis: brightness, contrast, sharpness (não usado) e saturation
+
+Para os alterar
+Montagem#_Effeito = valor
+
+Os valores a 1 -> sem alteração
+
+
+
+
+
+ 
