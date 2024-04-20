@@ -17,7 +17,7 @@ redimensiona o tamanho da imagem capturada pela camera para 1400 px por 1000 px,
 
 #####
 POSICIONAMENTO
-Montagem#_UserImage_x e Montagem#_UserImage_y   -> controla onde a imagem é posicionada com ancora no canto esquerdo direito
+Montagem#_UserImage_x e Montagem#_UserImage_y   -> controla onde a imagem é posicionada com ancora no canto superior esquerdo
 
 exemplo:
 Montagem1_UserImage_x = int ((1080- Montagem1_Resize_x)/2)
