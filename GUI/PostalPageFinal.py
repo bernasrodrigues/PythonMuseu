@@ -78,9 +78,9 @@ class PostalPageFinal(tk.Frame):
 
     def EnterFrame(self):
         self.active = True
-        self.ConfigureImage(self.controller.GetPostalMontageImage())
         print("Showing Postal Final Image")
 
+        # create postal , resize and set the image to postal
         postal = self.controller.CreatePostalMontageImage()
         postal = self.ResizeAnglePostal(postal,
                                         x=settings["postal_Final_Image_resize_X"],
