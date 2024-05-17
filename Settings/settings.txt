@@ -116,10 +116,8 @@ postal_Final_Title_Y = 1600
 postal_Final_Title_Font = ('Helvetica 40')                                      # fonte do texto    formato: (fonte tamanho pesos/slants)
 postal_Final_Title_Fill = "white"                                               # cor do texto
 
-#postal_Final_Subtitle_Text_PT = "Aceda a www.cip.pt\\selfie\ne partilhe"                                    # Texto a dar o link
-#postal_Final_Subtitle_Text_EN = "Acess www.cip.pt\\selfie\n and share "                                                                                              # Texto em ingles
-postal_Final_Subtitle_Text_PT = ""                                    # Texto a dar o link
-postal_Final_Subtitle_Text_EN = ""                                                                                              # Texto em ingles
+postal_Final_Subtitle_Text_PT = "Aceda a www.cip.pt\\selfie\ne partilhe"                                    # Texto a dar o link
+postal_Final_Subtitle_Text_EN = "Acess www.cip.pt\\selfie\nand share "                                                                                              # Texto em ingles
 postal_Final_Subtitle_X = 300                                                   # coordenadas x e y do texto
 postal_Final_Subtitle_Y = 1700
 postal_Final_Subtitle_Font = ('Helvetica 30')                                   # fonte do texto    formato: (fonte tamanho pesos/slants)
@@ -231,3 +229,5 @@ Montagem5_noise = 0
 UserPostageFolder = "UserPhotos/"                                       # Folder where the user postal will be stored
 debug = True
 pageTimeout = 20                                                        # time (in seconds until it is returned to the start page)
+
+deleteFilesOlderThan = 30                                               # on startUp delete all user images older than (in days)

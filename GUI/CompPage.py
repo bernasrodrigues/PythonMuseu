@@ -106,7 +106,7 @@ class CompPage(tk.Frame):
             else:
                 SoundPlayer.Instance().play_sound("photo.wav")
                 self.ShowImage("rembg")
-                self.controller.show_frame("PostalPageFinal")
+                self.controller.show_frame("PostalPage")
 
     def ConfigureImage(self, image):
         self.canvas.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)

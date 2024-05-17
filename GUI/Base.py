@@ -4,6 +4,8 @@ import sys
 import time
 import tkinter as tk
 
+from Settings.UserPhotosCleaner import UserPhotosCleaner
+
 sys.path.append("..")
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 
@@ -12,7 +14,6 @@ from PIL import Image, ImageTk
 
 from ChoosePage import ChoosePage
 from CompPage import CompPage
-from ResultPage import ResultPage
 from StartPage import StartPage
 from PostalPage import PostalPage
 from PostalPageFinal import PostalPageFinal
@@ -25,7 +26,7 @@ from Settings.SettingsHandler import settings
 
 ##########################################################################################################
 # Pages to add to the list of Pages
-Pages = (StartPage, ChoosePage, CompPage, ResultPage, PostalPage, PostalPageFinal)
+Pages = (StartPage, ChoosePage, CompPage, PostalPage, PostalPageFinal)
 
 
 def LoadSettings():
@@ -102,7 +103,7 @@ class GUI_Base(tk.Tk):
         self.timer = self.after(timeoutTimer * 1000, self.show_frame, "StartPage")
 
     def refreshTimer(self, timeoutTimer):
-        if self.currentFrame == self.frames["StartPage"]:  # dont start a timer when on the first page
+        if self.currentFrame == self.frames["StartPage"]:  # don´t start a timer when on the first page
             return
 
         if self.timer:
@@ -183,6 +184,10 @@ if __name__ == "__main__":
 
     # Initialize SoundPlayer
     SoundPlayer.Instance()
+
+    # CleanUp old files on startUp
+    folder_cleaner = UserPhotosCleaner(settings["UserPostageFolder"], settings["deleteFilesOlderThan"])
+    folder_cleaner.DeleteOldPhotos()
 
     # Initialize the GUI application
     app.geometry(f'{settings["windowWidth"]}x{settings["windowHeight"]}')

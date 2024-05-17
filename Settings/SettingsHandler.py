@@ -1,6 +1,7 @@
 
 settings = {"testVariable": "loaded"}
 
+
 def ReadSettingsFromFile(file_path):
     print("------------\nLoading settings")
 

@@ -37,6 +37,16 @@ Os valores a 1 -> sem alteração
 
 
 
+#####
+Paginas
+Base    -> Controla as outras paginas
+StartPage       ->      Pagina inicial (Pressione para começar a selfie)
+ChoosePage      ->      Clique para selecionar a imagem
+CompPage        ->      Posicionar o utilizador
+PostalPage      ->      Indicar o passar o cartão
+PostalPageFinal ->  Obrigado por usar (link para o site) -> reset para a StartPage
+
+
 
 
  
