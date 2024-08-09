@@ -39,7 +39,7 @@ class ChoosePage(tk.Frame):
         self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
                                                        anchor=tk.CENTER,
                                                        image=self.controller.degrade)
-        #self.canvas.tag_bind(self.canvas_degrade, '<Button-1>', lambda event: self.controller.show_frame("CompPage"))   # clicks on all image will go to the next page
+        self.canvas.tag_bind(self.canvas_degrade, '<Button-1>', lambda event: self.controller.show_frame("CompPage"))   # clicks on all image will go to the next page
 
         ### BUTTONS ###
         # Middle Button
