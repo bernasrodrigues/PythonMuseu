@@ -4,10 +4,10 @@ import sys
 import time
 import tkinter as tk
 
-from Settings.UserPhotosCleaner import UserPhotosCleaner
-
-sys.path.append("..")
+# To help with relative imports
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+sys.path.append("..")
 
 from tkinter import font as tkfont
 from PIL import Image, ImageTk
@@ -22,12 +22,17 @@ from Photos.MontageHandler import MontageHandler
 from Listener.MouseListener import MouseListener
 from SoundPlayer.SoundPlayer import SoundPlayer
 from Settings import SettingsHandler
+from Settings.UserPhotosCleaner import UserPhotosCleaner
 from Settings.SettingsHandler import settings
+
+'''
+Page lineup
+StartPage -> ChoosePage -> CompPage -> PostalPage -> PostalPageFinal -> StartPage
+'''
 
 ##########################################################################################################
 # Pages to add to the list of Pages
 Pages = (StartPage, ChoosePage, CompPage, PostalPage, PostalPageFinal)
-
 
 def LoadSettings():
     currentDirectory = os.getcwd()

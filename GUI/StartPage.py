@@ -2,7 +2,10 @@ import tkinter as tk
 
 from Settings.SettingsHandler import settings
 
-
+'''
+Initial page, where the images an image carrousel is displayed to the user
+StartPage -> ChoosePage ...
+'''
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):

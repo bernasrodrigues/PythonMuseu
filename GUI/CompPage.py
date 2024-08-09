@@ -5,8 +5,11 @@ from Settings.SettingsHandler import settings
 from SoundPlayer.SoundPlayer import SoundPlayer
 
 
-# NOT USED
-
+'''
+Page where the user is presented with a timer to take a photo
+at the end of the timer moves to frame PostalPage
+ChoosePage -> CompPage -> PostalPage
+'''
 class CompPage(tk.Frame):
 
     def __init__(self, parent, controller):

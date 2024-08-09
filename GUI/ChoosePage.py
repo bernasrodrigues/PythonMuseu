@@ -5,6 +5,12 @@ from PIL import Image, ImageTk
 from Settings.SettingsHandler import settings
 
 
+
+'''
+Page where the user is presented with an image carrousel
+arrows allow user to select a diferent image
+StartPage -> ChoosePage -> CompPage
+'''
 class ChoosePage(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -29,11 +35,11 @@ class ChoosePage(tk.Frame):
         # Starting canvas image
         self.canvas_image = self.canvas.create_image(1080 / 2, 1440 / 2, anchor=tk.CENTER,
                                                      image=None)
-
         # degrade
         self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
                                                        anchor=tk.CENTER,
                                                        image=self.controller.degrade)
+        #self.canvas.tag_bind(self.canvas_degrade, '<Button-1>', lambda event: self.controller.show_frame("CompPage"))   # clicks on all image will go to the next page
 
         ### BUTTONS ###
         # Middle Button
