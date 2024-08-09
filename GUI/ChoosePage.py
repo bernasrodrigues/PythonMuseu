@@ -4,13 +4,13 @@ from PIL import Image, ImageTk
 
 from Settings.SettingsHandler import settings
 
-
-
 '''
 Page where the user is presented with an image carrousel
 arrows allow user to select a diferent image
 StartPage -> ChoosePage -> CompPage
 '''
+
+
 class ChoosePage(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -39,7 +39,7 @@ class ChoosePage(tk.Frame):
         self.canvas_degrade = self.canvas.create_image(1080 / 2, 1980 / 2,
                                                        anchor=tk.CENTER,
                                                        image=self.controller.degrade)
-        self.canvas.tag_bind(self.canvas_degrade, '<Button-1>', lambda event: self.controller.show_frame("CompPage"))   # clicks on all image will go to the next page
+        self.canvas.tag_bind(self.canvas_degrade, '<Button-1>', lambda event: self.clickedArea(event))  # checks the area where it was clicked
 
         ### BUTTONS ###
         # Middle Button
@@ -159,6 +159,14 @@ class ChoosePage(tk.Frame):
     def ConfigureImage(self, image):
         self.canvas.image = image  # <- Prevent garbage collection from deleting the image (tkinter is stupid)
         self.canvas.itemconfig(self.canvas_image, image=image)
+
+    def clickedArea(self, event):
+        # print(event)
+        x = event.x  # x mouse coordinates
+        y = event.y  # y mouse coordinates
+
+        if (0 <= x <= 1080 and 0 <= y <= 1360):
+            self.controller.show_frame("CompPage")
 
     def SetLang(self, lang):
         self.controller.SetLang(lang)
