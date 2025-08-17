@@ -2,7 +2,7 @@ import threading
 
 from pynput import mouse
 
-from Settings.SettingsHandler import settings
+import Settings.SettingsHandler
 
 
 class MouseListener:
@@ -34,7 +34,7 @@ class MouseListener:
         # pressed if the button is pressed (true/false)
 
         if pressed:
-            self.controller.refreshTimer(settings["pageTimeout"])
+            self.controller.refreshTimer(Settings.SettingsHandler.settings["pageTimeout"])
 
     def Start(self):
         self.listener = mouse.Listener(on_click=self.On_click)

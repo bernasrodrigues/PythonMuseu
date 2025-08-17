@@ -1,7 +1,6 @@
 import os
 
 import cv2
-import cvzone
 import numpy
 import numpy as np
 import rembg

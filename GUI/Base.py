@@ -4,6 +4,9 @@ import sys
 import time
 import tkinter as tk
 
+from APIGetter.APIClientWorker import APIClientWorker
+from QRGenerator.QRgenerator import QRGenerator
+
 # To help with relative imports
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
@@ -16,7 +19,9 @@ from ChoosePage import ChoosePage
 from CompPage import CompPage
 from StartPage import StartPage
 from PostalPage import PostalPage
+from PostalPage_API import PostalPage_API
 from PostalPageFinal import PostalPageFinal
+
 from Photos.CameraHandler import CameraHandler
 from Photos.MontageHandler import MontageHandler
 from Listener.MouseListener import MouseListener
@@ -27,12 +32,13 @@ from Settings.SettingsHandler import settings
 
 '''
 Page lineup
-StartPage -> ChoosePage -> CompPage -> PostalPage -> PostalPageFinal -> StartPage
+StartPage -> ChoosePage -> CompPage -> PostalPage_API -> PostalPageFinal -> StartPage
 '''
 
 ##########################################################################################################
 # Pages to add to the list of Pages
-Pages = (StartPage, ChoosePage, CompPage, PostalPage, PostalPageFinal)
+Pages = (StartPage, ChoosePage, CompPage, PostalPage_API, PostalPage, PostalPageFinal)
+
 
 def LoadSettings():
     currentDirectory = os.getcwd()
@@ -114,6 +120,7 @@ class GUI_Base(tk.Tk):
         if self.timer:
             self.after_cancel(self.timer)
 
+        print("TImer refresh")
         self.start_timer(timeoutTimer=timeoutTimer)
 
     def SetMontageToFirst(self):
@@ -189,6 +196,12 @@ if __name__ == "__main__":
 
     # Initialize SoundPlayer
     SoundPlayer.Instance()
+
+    # Initialize QR Generator
+    QRGenerator.Instance()
+
+    # Initialize SoundPlayer
+    APIClientWorker.Instance()
 
     # CleanUp old files on startUp
     folder_cleaner = UserPhotosCleaner(settings["UserPostageFolder"], settings["deleteFilesOlderThan"])

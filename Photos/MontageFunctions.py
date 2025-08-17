@@ -1,5 +1,4 @@
-import numpy as np
-from PIL import ImageEnhance, Image, ImageOps
+from PIL import ImageEnhance, ImageOps
 
 from Settings.SettingsHandler import settings
 

@@ -7,12 +7,11 @@ import pygame
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Navigate up one directory to BaseFolder
-base_folder = os.path.dirname(current_dir)              # Parent Folder (PythonMuseu)
+base_folder = os.path.dirname(current_dir)  # Parent Folder (PythonMuseu)
+
 
 # Enter the GUI/sounds directory
 # sound_file_path = os.path.join(base_folder, 'GUI', 'sounds', 'song.mp3')
-
-
 
 
 class SoundPlayer:
@@ -33,7 +32,6 @@ class SoundPlayer:
     def Instance(cls):
         return cls()
 
-
     def GetPathToFile(self, fileName):
         sound_file_path = os.path.join(base_folder, 'GUI', 'sounds', fileName)
         return sound_file_path
@@ -44,7 +42,7 @@ class SoundPlayer:
         thread.start()
 
     def _play_sound(self, sound):
-        #print(f"Playing sound: {sound}")
+        # print(f"Playing sound: {sound}")
         pygame.mixer.music.load(sound)
         pygame.mixer.music.play()
         while pygame.mixer.music.get_busy():

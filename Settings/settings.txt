@@ -107,6 +107,33 @@ postal_Image_resize_X = 856
 postal_Image_resize_Y = 1240
 
 
+############### Settings for PostalPage API ###############
+
+postal_API_Title_Text_PT = "Contactando Servidor"           # Texto que aparece enquanto contacta API
+postal_API_Title_Text_EN = "Checking server"                # Texto em ingles
+
+postal_API_Scan_QR_Text_PT = "Leia o codigo QR\npara aceder à\nsua selfie"           # Texto que aparece para o utilizador scannar a API
+postal_API_Scan_QR_Text_EN = "Scan the QR code\nto check\nyour selfie"              # Texto em ingles
+
+postal_API_ERROR_Text_PT = "Erro ao contactar servidor"           # Texto que aparece em caso de erro
+postal_API_ERROR_Text_EN = "Server response error"              # Texto em ingles
+
+postal_API_Title_X = 640                                                        # coordenadas x e y do texto
+postal_API_Title_Y = 1600
+postal_API_Title_Font = ('Helvetica 40')                                        # fonte do texto    formato: (fonte tamanho pesos/slants)
+postal_API_Title_Fill = "white"                                                 # cor do texto
+
+
+postal_API_Image_X = 540
+postal_API_Image_Y = 800
+
+postal_API_Image_resize_X = 856
+postal_API_Image_resize_Y = 1240
+
+postal_API_QR_X = 200,
+postal_API_QR_Y = 1600,
+
+
 ############### Settings for PostalFinalPage ###############
 
 postal_Final_Title_Text_PT = "Obrigado!"                                        # Texto a agradecer o utilizador
@@ -183,6 +210,12 @@ Montagem5_Resize_y = 1257
 Montagem5_UserImage_x = int ((1080- Montagem5_Resize_x)/2)
 Montagem5_UserImage_y = int ((1980- Montagem5_Resize_x)/2) + 180
 
+############### Settings for API ###############
+api_endpoint =  "http://127.0.0.1:5000/"        # url of the endpoint
+api_max_retries = 5                             # maximum number of retries until error
+api_retry_delay = 2                             # seconds until try again
+
+
 
 ############### Settings for ImageEffects ###############
 brightness = 1              # base settings not used just for testing
@@ -191,6 +224,7 @@ sharpness = 1
 saturation = 0
 
 
+############### Settings for Montagem ###############
 Montagem1_brightness = 0.9
 Montagem1_contrast = 1.7
 Montagem1_sharpness = 1
@@ -225,7 +259,7 @@ Montagem5_noise = 0
 
 
 
-############### Settings ###############
+############### Overall Settings ###############
 UserPostageFolder = "UserPhotos/"                                       # Folder where the user postal will be stored
 debug = True
 pageTimeout = 20                                                        # time (in seconds until it is returned to the start page)
