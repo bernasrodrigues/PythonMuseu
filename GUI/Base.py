@@ -120,7 +120,7 @@ class GUI_Base(tk.Tk):
         if self.timer:
             self.after_cancel(self.timer)
 
-        print("TImer refresh")
+        # print("TImer refresh")
         self.start_timer(timeoutTimer=timeoutTimer)
 
     def SetMontageToFirst(self):

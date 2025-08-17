@@ -19,6 +19,8 @@ class PostalPage_API(tk.Frame):
         self.active = False
         self.barCode = ""
 
+        self.currentText = "postal_API_Title_Text"
+
         ### Canvas ###
         # Canvas
         self.canvas = tk.Canvas(
@@ -42,7 +44,7 @@ class PostalPage_API(tk.Frame):
 
         self.canvas_text = self.canvas.create_text(settings["postal_API_Title_X"],
                                                    settings["postal_API_Title_Y"],
-                                                   text=settings["postal_API_Title_Text_PT"],
+                                                   text=settings[self.currentText + self.controller.language],
                                                    fill=settings["postal_API_Title_Fill"],
                                                    font=settings["postal_API_Title_Font"])
 
@@ -92,6 +94,7 @@ class PostalPage_API(tk.Frame):
         print("API Response Data:", data)
 
         if data:
+            self.currentText = "postal_API_Scan_QR_Text"
             # Generate QR code from data
             qr_img = QRGenerator.Instance().generate_qr(data)
 
@@ -103,7 +106,7 @@ class PostalPage_API(tk.Frame):
             def update_ui():
                 self.canvas.itemconfigure(
                     self.canvas_text,
-                    text=settings["postal_API_Scan_QR_Text" + self.controller.language]
+                    text=settings[self.currentText + self.controller.language]
                 )
                 self.canvas_qr_image = qr_photo  # Prevent GC
                 self.canvas.itemconfigure(self.canvas_qr, image=self.canvas_qr_image)
@@ -111,10 +114,11 @@ class PostalPage_API(tk.Frame):
             self.canvas.after(0, update_ui)
 
         else:
+            self.currentText = "postal_API_ERROR_Text"
             # Handle error case
             self.canvas.after(0, lambda: self.canvas.itemconfigure(
                 self.canvas_text,
-                text=settings["postal_API_ERROR_Text" + self.controller.language]
+                text=settings[self.currentText + self.controller.language]
             ))
 
         APIClientWorker.Instance().close_session()
@@ -185,7 +189,7 @@ class PostalPage_API(tk.Frame):
             self.canvas.itemconfigure(self.canvas_t3, font=settings["choose_Subtitle_Font_Bold"],
                                       fill=settings["choose_SubTitle_fill_selected"])
 
-        self.canvas.itemconfigure(self.canvas_text, text=settings["postal_Title_Text" + self.controller.language])
+        self.canvas.itemconfigure(self.canvas_text, text=settings[self.currentText + self.controller.language])
 
     # automatically move to next page if not clicked
     def MoveToNextPage(self):

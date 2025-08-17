@@ -2,10 +2,11 @@ from flask import Flask
 
 app = Flask(__name__)
 
-
+# API super simples
 @app.route("/")
 def hello():
-    return "Text data"
+    # Returna texto (url)
+    return "www.google.com"
 
 
 if __name__ == "__main__":

@@ -212,8 +212,8 @@ Montagem5_UserImage_y = int ((1980- Montagem5_Resize_x)/2) + 180
 
 ############### Settings for API ###############
 api_endpoint =  "http://127.0.0.1:5000/"        # url of the endpoint
-api_max_retries = 5                             # maximum number of retries until error
-api_retry_delay = 2                             # seconds until try again
+api_max_retries = 3                             # maximum number of retries until error
+api_retry_delay = 1                             # seconds until try again
 
 
 
@@ -261,7 +261,7 @@ Montagem5_noise = 0
 
 ############### Overall Settings ###############
 UserPostageFolder = "UserPhotos/"                                       # Folder where the user postal will be stored
-debug = True
+debug = False
 pageTimeout = 20                                                        # time (in seconds until it is returned to the start page)
 
 deleteFilesOlderThan = 30                                               # on startUp delete all user images older than (in days)
